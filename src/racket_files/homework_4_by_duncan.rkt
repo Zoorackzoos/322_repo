@@ -54,10 +54,14 @@
 ;; Literal checks
 ;; ============================================================
 
+;; goofy ahh funcitons man. 
+;; if this is a true or a true or a false, then true.
+;; otherwise false. 
 (define (boolean-literal? x)
   (or (equal? x 'true)
       (equal? x 'false)))
 
+;; returns true if the input is a number or boolean 
 (define (literal? x)
   (or (number? x)
       (boolean-literal? x)))
@@ -91,6 +95,10 @@
       (equal? x '!)
       (equal? x 'not)))
 
+;; true if either of these:
+;;   +, -, *, /
+;;   &&, ||
+;;   ==, !=, <, <=, >, >= 
 (define (binary-op? x)
   (or (arithmetic-op? x)
       (boolean-op? x)
@@ -117,7 +125,7 @@
 
 
 ;; ============================================================
-    ;; Precedence
+;; Precedence
 ;;
 ;; Larger number = tighter binding
 ;;
@@ -195,8 +203,8 @@
 ;; this is a word nobody uses.
 ;;     https://docs.google.com/document/d/1HOnXb8v4rdqWKvQWRcCS--AHOB0hQhTt20cyo58_x1s/edit?usp=sharing
 ;; if e is a list, and has length 2, and the 1st element is either ! or -.
-;;    like: -x, !x
-;;    not: ++x, --x, ~x
+;;    like: - x, ! x
+;;    not: + + x, - - x, ~ x, -x, !x, !!x, --x
 (define (unary-shape? e)
   (and (list? e)
        (= (length e) 2)
@@ -208,6 +216,11 @@
   (and (list? e)
        (= (length e) 3)))
 
+;; has to be a list of length 3.
+;; the 2nd piece of the list has to be a "binary operation":
+;;   +, -, *, /
+;;   &&, ||
+;;   ==, !=, <, <=, >, >= 
 (define (binary-shape? e)
   (and (three-part-shape? e)
        (binary-op? (my-second e))))
@@ -240,6 +253,7 @@
 ;;
 ;; ============================================================
 
+;; (define (valid-unary? e))
 
 ;; ============================================================
 ;; validate-program
@@ -255,6 +269,10 @@
 ;;   (validate-program '(1 + 2))          => #t
 ;;   (validate-program '(1 + * 3))        => '*
 ;;   (validate-program '(1 < 2 > 3))      => '>
+;; duncan esamples:
+;;   unary 
+;;       (validate-program '(! 1) )      => #t
+;;       (validate-program '(- 1) )      => #t
 ;;
 ;; TODO:
 ;;   implement this function
@@ -266,12 +284,46 @@
      #t]          ;;so if you put in a number it's just true, or if ture tures
 
     ;; TODO: handle unary expressions
-    
+    ;;   if it's `(- x) or ! x then yay
+    ;;   if it's not you have to predict the bullshit the user put in.
+    ;;   ! ! x and - - x means return '-' and '!'
+    [(unary-shape? e) #t ]
+    ;;    idk how to clarify the "you messed up" string on a unary.
     
     ;; TODO: handle binary expressions
+    ;;   aceptable:
+    ;;     '(1 + 2) <-- correct --> #t
+    ;;     '(1 + * 3) <-- not proper use of binary operation --> `*
+    ;;     '(1 < 2 > 3) <-- not a binary operation --> `>
+    ;;     '(1 + 1 *) <-- not correct --> `*
+    ;;     '(1 + 1 + * 1) <-- "undefined behavoir" --> error
+    ;;     '(1 + (1 + 1)) <-- good --> #t
+    ;;     ` ' <-- left does something idk, right does good
+    ;;
+    ;;  1. check length. either == or length > wahtever
+    ;;  2. identify operatator
+    ;;  3. binary -> l
+    ;;  `(1 +) <-- invalid because poor length --> '+
+    ;;  make length > 4 && length < 2 like algorithm
+    ;;  
+    [(binary-shape? e) #t ]
+    [
+      (and
+        ( =(length e) 4)
+        ( >(length e) 4)
+        ( binary-op? (my-third e))
+      )
+      (my-third e) ;; return value 
+    ]
+    
     ;; TODO: handle longer infix expressions with precedence
+    ;; (1 + (1 + 1)) <-- what be yapping about
+    ;; (1 + (2 * 3)) <-- other one use for
+    ;; use precidence here
+    
     ;; TODO: return smallest offending piece on failure
-
+    ;; 
+    
     [else
      e]))
 
@@ -313,17 +365,25 @@
 ;; ============================================================
 
 ;; validation tests
+`mr.t_validation_tests
 (validate-program 5)
 (validate-program 'true)
 (validate-program '(1 + 2))
 (validate-program '(1 + 2 * 3))
 (validate-program '((1 + 2) * 3))
 (validate-program '(false || !false))
-(validate-program '(1 + * 3))
-(validate-program '(1 < 2 > 3))
+`meant_to_fail_tests
+;;(binary-shape? '(1 + * 3))
+(validate-program '(1 + * 3)) ;; must return `*
+(validate-program '(1 < 2 > 3)) ;; must return `>
 (validate-program '(true && && false))
 
+`_
+`_
+`_
+
 ;; translation tests
+`mr.t_translation_tests
 (infix->prefix 5)
 (infix->prefix 'true)
 (infix->prefix '(1 + 2))
@@ -331,3 +391,18 @@
 (infix->prefix '((1 + 2) * 3))
 (infix->prefix '(false || !false))
 (infix->prefix '((2 * 3) < 7))
+
+`_
+`_
+`_
+
+`duncan_validate_program_tests_unary
+(length `(-x + -x) ) ;; 3
+(length `(-x+-x) ) ;; 1
+(validate-program `(- 1))
+(validate-program `(! 1))
+(validate-program `(- -1))
+(validate-program `(! !1))
+;;(validate-program `- x) ;; x: unbound identifier in: x
+(validate-program `(- 1 -))
+(validate-program `(! 1 -))
