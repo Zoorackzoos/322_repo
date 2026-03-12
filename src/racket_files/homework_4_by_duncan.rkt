@@ -58,8 +58,15 @@
 ;; if this is a true or a true or a false, then true.
 ;; otherwise false. 
 (define (boolean-literal? x)
-  (or (equal? x 'true)
-      (equal? x 'false)))
+  (or
+   (equal? x 'true)
+   (equal? x 'false)
+   (equal? x '!true)
+   (equal? x '!false)
+   (equal? x '!!true)
+   (equal? x '!!false)
+  )
+)
 
 ;; returns true if the input is a number or boolean 
 (define (literal? x)
@@ -274,43 +281,65 @@
 ;;   implement this function
 ;; ============================================================
 
+;; '(false || !false)
 (define (validate-program e)
   (
    cond
     [
-     (null? e) ;; if( e == null) 
-      #t       ;;  return true 
+     (null? e)
+      #t
     ]
     [
-     (not (equal? (null? e) #t) ) ;; if( e != null ) 
+     (literal? e)
+      #t
+    ]
+    [
+     (binary-op? e)
+      e
+    ]
+    [
+     (list? e)
       (
        cond
         [
-         (literal? e) #t ;; if(e == 1,2,3...)
+         (unary-shape? e)
+          #t
         ]
         [
-         (binary-op? e) e
+         (= (length e) 1);; single element left, check it's a valid value
+          (if (or
+               (literal? (car e))
+               (list? (car e))
+              )
+            #t      ;; yes_condition
+            (car e) ;; no_condtion
+          )
         ]
         [
-         ;; '5                      GOOD 
-         ;; 'true
-         ;; '(1 + 2)
-         ;; '(1 + 2 * 3)
-         ;; '((1 + 2) * 3)
-         ;; '(false || !false)
-         ;; '(1 + * 3)               BAD
-         ;; '(1 < 2 > 3)
-         ;; '(true && && false)
-        ;;if condition true_phase false_phase
-         (if (binary-shape? e) #t (validate-program (cdr(cdr e)) ) )
+         (< (length e) 3) ;; length 2 is always malformed
+          (car e)
+        ]
+        [
+         (not (binary-op? (my-second e)))
+          (my-second e)
+        ]
+        [
+         (and (> (length e) 3)
+              (non-associative-op? (my-second e))
+         )
+          (my-second (cddr e))  ;; return the NEXT operator as the offender
+        ]
+        [
+         else
+          (validate-program (cddr e))
         ]
       )
     ]
     [
      else
-      e
+      #t
     ]
- )
+  )
 )
 
 
@@ -381,11 +410,4 @@
 `_
 `_
 
-'duncan_validate_program_tests_unary
-;; '(1 + 2 * 3)
-(binary-shape? '(1 + 2 * 3))
-(cdr (cdr '(1 + 2 * 3)))
-;; '((1 + 2) * 3)
-(binary-shape? '((1 + 2) * 3))
-(cdr (cdr '((1 + 2) * 3)))
-
+'duncan_temp_tests
