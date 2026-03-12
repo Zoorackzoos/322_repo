@@ -257,7 +257,7 @@
 
 ;; ============================================================
 ;; validate-program
-;;\
+;;
 ;; Input:
 ;;   any Racket value
 ;;
@@ -269,10 +269,6 @@
 ;;   (validate-program '(1 + 2))          => #t
 ;;   (validate-program '(1 + * 3))        => '*
 ;;   (validate-program '(1 < 2 > 3))      => '>
-;; duncan esamples:
-;;   unary 
-;;       (validate-program '(! 1) )      => #t
-;;       (validate-program '(- 1) )      => #t
 ;;
 ;; TODO:
 ;;   implement this function
@@ -293,21 +289,26 @@
          (literal? e) #t ;; if(e == 1,2,3...)
         ]
         [
-         (or                  ;; if( e[0] == literal || e[0] == list)
-          (literal?(car e))
-          (list?(car e))
-         )
-          (validate-program (cdr e)) #f
-           (car e)
+         (binary-op? e) e
+        ]
+        [
+         ;; '5                      GOOD 
+         ;; 'true
+         ;; '(1 + 2)
+         ;; '(1 + 2 * 3)
+         ;; '((1 + 2) * 3)
+         ;; '(false || !false)
+         ;; '(1 + * 3)               BAD
+         ;; '(1 < 2 > 3)
+         ;; '(true && && false)
+        ;;if condition true_phase false_phase
+         (if (binary-shape? e) #t (validate-program (cdr(cdr e)) ) )
         ]
       )
     ]
     [
      else
-      (if (binary-op? (car e)) ;; if(e[0] == binary-op)
-          (validate-program (cdr e) #t) ;; recirsive call w/ e[1:]
-          (car e)
-      )
+      e
     ]
  )
 )
@@ -380,16 +381,11 @@
 `_
 `_
 
-`duncan_validate_program_tests_unary
-(length `(-x + -x) ) ;; 3
-(length `(-x+-x) ) ;; 1
-(validate-program `(- 1))
-(validate-program `(! 1))
-(validate-program `(- -1))
-(validate-program `(! !1))
-;;(validate-program `- x) ;; x: unbound identifier in: x
-(validate-program `(- 1 -))
-(validate-program `(! 1 -))
-(length'(1 < 2 > 3))
-(> (length'(1 < 2 > 3)) 4)
-( binary-op? (my-third '(1 < 2 > 3)))
+'duncan_validate_program_tests_unary
+;; '(1 + 2 * 3)
+'(binary-shape?_(1_+_2_*_3))
+(binary-shape? '(1 + 2 * 3))
+'(binary-shape?_(1_+_2))
+(binary-shape? '(1 + 2))
+'(binary-shape?_(1_*_3))
+(binary-shape? '(1 * 3))
