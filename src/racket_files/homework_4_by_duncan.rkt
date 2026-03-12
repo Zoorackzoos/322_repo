@@ -279,57 +279,54 @@
 ;; ============================================================
 
 (define (validate-program e)
-  (cond
-    [(literal? e) ;;checks if it's a number or a -,+,/,*,
-     #t]          ;;so if you put in a number it's just true, or if ture tures
-
-    ;; TODO: handle unary expressions
-    ;;   if it's `(- x) or ! x then yay
-    ;;   if it's not you have to predict the bullshit the user put in.
-    ;;   ! ! x and - - x means return '-' and '!'
-    [(unary-shape? e) #t ]
-    ;;    idk how to clarify the "you messed up" string on a unary.
-    
-    ;; TODO: handle binary expressions
-    ;;   aceptable:
-    ;;     '(1 + 2) <-- correct --> #t
-    ;;     '(1 + * 3) <-- not proper use of binary operation --> `*
-    ;;     '(1 < 2 > 3) <-- not a binary operation --> `>
-    ;;     '(1 + 1 *) <-- not correct --> `*
-    ;;     '(1 + 1 + * 1) <-- "undefined behavoir" --> error
-    ;;     '(1 + (1 + 1)) <-- good --> #t
-    ;;     ` ' <-- left does something idk, right does good
-    ;;
-    ;;  1. check length. either == or length > wahtever
-    ;;  2. identify operatator
-    ;;  3. binary -> l
-    ;;  `(1 +) <-- invalid because poor length --> '+
-    ;;  make length > 4 && length < 2 like algorithm
-    ;;  
+  (
+   cond
     [
-     (binary-shape? e) #t
+     (null? e) ;; if( e == null) 
+      #t       ;;  return true 
     ]
     [
-     (and                     ;; if( e.length == 4 && e.binary-shape == false)
-      (= (length e) 4)        
+     (not (= (null? e)) )
+      ;;idk man i'm geeked
+    ]
+    [
+     (literal? e);; if( e == -,+,/,*,1,2,3.... )
+      #t         ;;  return true
+    ]         
+    [
+     (unary-shape? e) ;; if( e == '(- x) || e == '(! x) )
+      #t              ;; return true
+    ]
+    [
+     (binary-shape? e)
+      #t
+    ]
+    [
+     (and                     ;; if(e.binary-shape == false)       
       (not (binary-shape? e))
      )
-     (cond
-       [(binary-op? (my-third e))  (my-third e)]
-       [(binary-op? (my-fourth e)) (my-fourth e)]
-       [else e]
+     (cond                    
+       [
+        (binary-op? (my-third e)) ;; if( binary-op( e[2] )
+         (my-third e)             ;;   return e[3]   
+       ]
+       [
+        (binary-op? (my-fourth e)) ;; if( binary-op( e[3] )
+          (my-fourth e)            ;;   return e[3]
+       ]
+       [
+        else
+         e
+       ]
      )
     ]    
-    ;; TODO: handle longer infix expressions with precedence
-    ;; (1 + (1 + 1)) <-- what be yapping about
-    ;; (1 + (2 * 3)) <-- other one use for
-    ;; use precidence here
     
-    ;; TODO: return smallest offending piece on failure
-    ;; 
-    
-    [else
-     e]))
+    [
+     else
+      e
+    ]
+ )
+)
 
 
 ;; ============================================================
@@ -368,21 +365,18 @@
 ;; You may add more tests as you work.
 ;; ============================================================
 
-;; validation tests
+;; validation tests. the correct return statment is rightwards of the test.
 `mr.t_validation_tests
-(validate-program 5)
-(validate-program 'true)
-(validate-program '(1 + 2))
-;;              ( (binary-op? (my-third(e))) (my-third(e)) )
-(my-third '(1 + 2 * 3))
-(validate-program '(1 + 2 * 3))
-(validate-program '((1 + 2) * 3))
-(validate-program '(false || !false))
+(validate-program 5) ;; #t
+(validate-program 'true) ;; #t
+(validate-program '(1 + 2)) ;; #t
+(validate-program '(1 + 2 * 3)) ;; #t
+(validate-program '((1 + 2) * 3)) ;; #t
+(validate-program '(false || !false)) ;; #t
 `meant_to_fail_tests
-;;(binary-shape? '(1 + * 3))
-(validate-program '(1 + * 3)) ;; must return `*
-(validate-program '(1 < 2 > 3)) ;; must return `>
-(validate-program '(true && && false))
+(validate-program '(1 + * 3)) ;; `*
+(validate-program '(1 < 2 > 3)) ;; `>
+(validate-program '(true && && false)) ;; `&&
 
 `_
 `_
