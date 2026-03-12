@@ -306,16 +306,20 @@
     ;;  `(1 +) <-- invalid because poor length --> '+
     ;;  make length > 4 && length < 2 like algorithm
     ;;  
-    [(binary-shape? e) #t ]
-    [ 
-      (not(binary-shape? e)
-          ( (=(length e) 4)
-              ( (binary-op? (my-third(e))) (my-third(e)) )
-              ( (binary-op? (my-fourth(e))) (my-fourth(e)) )
-          )
-      )
+    [
+     (binary-shape? e) #t
     ]
-    
+    [
+     (and                     ;; if( e.length == 4 && e.binary-shape == false)
+      (= (length e) 4)        
+      (not (binary-shape? e))
+     )
+     (cond
+       [(binary-op? (my-third e))  (my-third e)]
+       [(binary-op? (my-fourth e)) (my-fourth e)]
+       [else e]
+     )
+    ]    
     ;; TODO: handle longer infix expressions with precedence
     ;; (1 + (1 + 1)) <-- what be yapping about
     ;; (1 + (2 * 3)) <-- other one use for
@@ -369,6 +373,8 @@
 (validate-program 5)
 (validate-program 'true)
 (validate-program '(1 + 2))
+;;              ( (binary-op? (my-third(e))) (my-third(e)) )
+(my-third '(1 + 2 * 3))
 (validate-program '(1 + 2 * 3))
 (validate-program '((1 + 2) * 3))
 (validate-program '(false || !false))
