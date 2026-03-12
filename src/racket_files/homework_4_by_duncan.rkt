@@ -383,9 +383,9 @@
 
 'duncan_validate_program_tests_unary
 ;; '(1 + 2 * 3)
-'(binary-shape?_(1_+_2_*_3))
 (binary-shape? '(1 + 2 * 3))
-'(binary-shape?_(1_+_2))
-(binary-shape? '(1 + 2))
-'(binary-shape?_(1_*_3))
-(binary-shape? '(1 * 3))
+(cdr (cdr '(1 + 2 * 3)))
+;; '((1 + 2) * 3)
+(binary-shape? '((1 + 2) * 3))
+(cdr (cdr '((1 + 2) * 3)))
+
