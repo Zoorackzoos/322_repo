@@ -1,5 +1,6 @@
 # infex_to_prefex.md
 
+## the bus
 everything is going to be fine.  
 just fine.  
 
@@ -58,3 +59,5 @@ i'm going to plug in that final algo.
  expected a procedure that can be applied to arguments
   given: '(+ 2 * 3)
 ```
+
+

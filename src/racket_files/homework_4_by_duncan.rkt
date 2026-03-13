@@ -1,6 +1,5 @@
 #lang racket
 (provide (all-defined-out))
-;;glingus
 
 ;; ============================================================
 ;; CSCE 322 - PA1 Starter File
@@ -62,6 +61,10 @@
   (or
    (equal? x 'true)
    (equal? x 'false)
+   (equal? x '!true)
+   (equal? x '!false)
+   (equal? x '!!true)
+   (equal? x '!!false)
   )
 )
 
@@ -415,8 +418,8 @@
 (validate-program '(1 + 2)) ;; #t
 (validate-program '(1 + 2 * 3)) ;; #t
 (validate-program '((1 + 2) * 3)) ;; #t
-`meant_to_fail_tests
-(validate-program '(false || ! false)) ;; #t
+(validate-program '(false || !false)) ;; #t
+'meant_to_fail_tests
 (validate-program '(1 + * 3)) ;; `*
 (validate-program '(1 < 2 > 3)) ;; `>
 (validate-program '(true && && false)) ;; `&&
