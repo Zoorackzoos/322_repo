@@ -395,17 +395,25 @@
         ]
         [
          (= (length e) 3) ;; conditional
-          ;; create a new list. 1 + 2 -> + 1 (2) -> + 1 2
-          (flatten (list (my-second e) (my-first e) (cdr(cdr e))) )
+          ;; create a new list. 1 + 2 -> + 1 (2)
+          (list (my-second e) (my-first e) (my-third e))
         ]
         [
          else 
-            (if 
-                ( > (length e) 3) ;; conditional 
-                (list (my-second e) (my-first e) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if yes 
-                (list (my-second e) (my-first e) ) ;; if no
+          (if
+           ( > (length e) 3) ;; conditional
+           (if ;; if yes 
+            (list? (my-first e))  ;; conditional
+            (if ;; if yes
+             (= (length (my-first e)) 3) ;; conditional
+             (list (my-second e) (my-first (infix->prefix e)) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if yes
+             (list (my-second e) (my-first e) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if no
             )
-        ]
+            (list (my-second e) (my-first e) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if no
+           )
+           (list (my-second e) (my-first e) ) ;; if no 
+          )
+         ]
     )
   ]
   [
@@ -445,7 +453,7 @@
 (infix->prefix 'true) ;; %#t
 (infix->prefix '(1 + 2)) ;; '(+ 1 2)
 (infix->prefix '(1 + 2 * 3)) ;; '(+ 1 (* 2 3) )
-(infix->prefix '((1 + 2) * 3)) ;; '(* 3(+ 1 2) )
+(infix->prefix '((1 + 2) * 3)) ;; '(* (1 + 2) 3)
 (infix->prefix '(false || !false)) ;; '(or false (not false) )
 (infix->prefix '((2 * 3) < 7)) ;; '( < (* 2 3) 7)
 
@@ -455,6 +463,6 @@
 
 'duncan_temp_tests
 '(1 + 2 * 3)
-'(+ 1 )
-(list(cdr(cdr '(1 + 2 * 3))))
-(list (my-second '(1 + 2 * 3)) (my-first '(1 + 2 * 3)) (flatten (list(cdr(cdr '(1 + 2 * 3))))))
+(infix->prefix '(1 + 2 * 3)) ;; #t
+'((1 + 2) * 3)
+(infix->prefix '((1 + 2) * 3)) ;; #t
