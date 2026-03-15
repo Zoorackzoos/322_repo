@@ -272,6 +272,86 @@
   )
 )
 
+;; gets the index of the lowest precedent within a list. 
+(define (lowest-precedence-position e)
+
+ (lowest-precedence-scan
+  e
+  0
+  -1
+  999)
+
+)
+
+;;                              e 0      -1       999
+(define (lowest-precedence-scan e index best-pos best-pre)
+  (cond
+    [
+     ;; function has exhausted index, so the operator is at the end. 
+     (>= index (length e))
+     best-pos
+     ]
+    [
+     (symbol? (list-ref e index))
+     (cond
+       [
+        (< (precedence (list-ref e index)) best-pre)
+        (lowest-precedence-scan
+         e
+         (+ index 1)
+         index
+         (precedence (list-ref e index))
+         )
+        ]
+       [
+        else
+
+        (lowest-precedence-scan
+         e
+         (+ index 1)
+         best-pos
+         best-pre
+         )
+        ]
+       )
+     ]
+    [
+     (= (precedence (list-ref e index)) best-pre)
+     (cond
+       [
+        (left-associative-op? (list-ref e index))
+     
+        (lowest-precedence-scan
+         e
+         (+ index 1)
+         index
+         best-pre
+         )
+        ]
+       [
+        else
+    
+        (lowest-precedence-scan
+         e
+         (+ index 1)
+         best-pos
+         best-pre
+         )
+        ]
+       )
+     ]
+    [
+     else
+     (lowest-precedence-scan
+      e
+      (+ index 1)
+      best-pos
+      best-pre
+      )
+     ]
+    )
+  )
+
 ;; ============================================================
 ;; validate-program
 ;;
@@ -291,7 +371,6 @@
 ;;   implement this function
 ;; ============================================================
 
-;; '(false || !false)
 (define (validate-program e)
   (
    cond
@@ -353,6 +432,7 @@
 )
 
 
+
 ;; ============================================================
 ;; infix->prefix
 ;;
@@ -373,53 +453,35 @@
 ;; ============================================================
 
 (define (infix->prefix e)
+
  (cond
+
   [
-   (equal? (validate-program e) #t)
-   ;; TODO:
-   ;; Replace this placeholder with your translation logic.
-   (cond
-        [
-            (number? e) e
-        ]
-        [
-            (boolean-literal? e)
-             (cond
-               [
-                (equal? e 'true) #t
-               ]
-               [
-                (equal? e 'false) #f
-               ]
-             )
-        ]
-        [
-         (= (length e) 3) ;; conditional
-          ;; create a new list. 1 + 2 -> + 1 (2)
-          (list (my-second e) (my-first e) (my-third e))
-        ]
-        [
-         else 
-          (if
-           ( > (length e) 3) ;; conditional
-           (if ;; if yes 
-            (list? (my-first e))  ;; conditional
-            (if ;; if yes
-             (= (length (my-first e)) 3) ;; conditional
-             (list (my-second e) (my-first (infix->prefix e)) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if yes
-             (list (my-second e) (my-first e) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if no
-            )
-            (list (my-second e) (my-first e) (infix->prefix(flatten (list(cdr(cdr e))))) ) ;; if no
-           )
-           (list (my-second e) (my-first e) ) ;; if no 
-          )
-         ]
-    )
+   (number? e)
+   e
   ]
+
+  [
+   (boolean-literal? e)
+   (if (equal? e 'true) #t #f)
+  ]
+
+  [
+   (= (length e) 1)
+   (infix->prefix (my-first e))
+  ]
+
   [
    else
-   (list 'err (validate-program e))
+
+   (list
+    ;;list-ref is calling a list based off a index
+    (list-ref e (lowest-precedence-position e))
+    (infix->prefix (take e (lowest-precedence-position e)))
+    (infix->prefix (drop e (+ (lowest-precedence-position e) 1)))
+   )
   ]
+
  )
 )
 
