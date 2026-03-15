@@ -305,25 +305,12 @@
  )
 )
 
-(define (search-for-weird-bool-ops lst iterator)
-  (if
-   (= (length lst) iterator);;condition
-   lst;;if yes
-   (cond ;;if no
-    [
-     (equal? [list-ref lst iterator] '&&);;condition
-     (list (take lst iterator) 'and (drop lst (+ iterator 1)))
-    ]
-    [
-     (equal? [list-ref lst iterator] '||);;condition
-     (list (take lst iterator) 'or (drop lst (+ iterator 1)))
-    ]
-    [
-     else
-     lst
-    ]
-   )
-  )
+(define (translate-weird-bools bool)
+ (cond
+  [(equal? bool '!false) '(not false)]
+  [(equal? bool '!true) '(not true)]
+  [else bool]
+ )
 )
 
 ;; ============================================================
@@ -430,7 +417,7 @@
   ;; literal values
   [
    (duncan-is-literal? e)
-   e
+   (translate-weird-bools e)
   ]
 
   ;; unary expressions
@@ -438,7 +425,7 @@
    (unary-shape? e)
    (list
     (my-first e)
-    (infix->prefix (my-second e))
+    (translate-weird-bools (infix->prefix (my-second e)))
    )
   ]
 
@@ -454,8 +441,8 @@
 
    (list
     (translate-op (list-ref e (lowest-precedence-position e 0 -1)))
-    (infix->prefix (take e (lowest-precedence-position e 0 -1)))
-    (infix->prefix (drop e (+ (lowest-precedence-position e 0 -1) 1)))
+    (translate-weird-bools (infix->prefix (take e (lowest-precedence-position e 0 -1))))
+    (translate-weird-bools (infix->prefix (drop e (+ (lowest-precedence-position e 0 -1) 1))))
    )
   ]
  )
@@ -513,9 +500,3 @@
 (infix->prefix '(true && false)) ;; '(and true false)
 (infix->prefix '(true || false)) ;; '(or true false)
 (infix->prefix '(1 < 2)) ;; '(< 1 2)
-
-'duncan_temp_tests
-'(1 + 2 * 3)
-(infix->prefix '(1 + 2 * 3)) ;; #t
-'((1 + 2) * 3)
-(infix->prefix '((1 + 2) * 3)) ;; #t
