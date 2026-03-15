@@ -297,6 +297,34 @@
  )
 )
 
+(define (translate-op op)
+ (cond
+  [(equal? op '||) 'or]
+  [(equal? op '&&) 'and]
+  [else op]
+ )
+)
+
+(define (search-for-weird-bool-ops lst iterator)
+  (if
+   (= (length lst) iterator);;condition
+   lst;;if yes
+   (cond ;;if no
+    [
+     (equal? [list-ref lst iterator] '&&);;condition
+     (list (take lst iterator) 'and (drop lst (+ iterator 1)))
+    ]
+    [
+     (equal? [list-ref lst iterator] '||);;condition
+     (list (take lst iterator) 'or (drop lst (+ iterator 1)))
+    ]
+    [
+     else
+     lst
+    ]
+   )
+  )
+)
 
 ;; ============================================================
 ;; validate-program
@@ -377,8 +405,6 @@
   )
 )
 
-
-
 ;; ============================================================
 ;; infix->prefix
 ;;
@@ -399,16 +425,15 @@
 ;; ============================================================
 
 (define (infix->prefix e)
-
  (cond
 
-  ;; 1. literal values
+  ;; literal values
   [
    (duncan-is-literal? e)
    e
   ]
 
-  ;; 2. unary expressions
+  ;; unary expressions
   [
    (unary-shape? e)
    (list
@@ -417,26 +442,22 @@
    )
   ]
 
-  ;; 3. unwrap parentheses
+  ;; unwrap parentheses
   [
    (= (lowest-precedence-position e 0 -1) -1)
    (infix->prefix (my-first e))
   ]
 
-  ;; 4. normal infix expression
+  ;; normal infix expression
   [
    else
 
    (list
-    ;(println "the operator")
-    (list-ref e (lowest-precedence-position e 0 -1))
-    ;(println "the left")
+    (translate-op (list-ref e (lowest-precedence-position e 0 -1)))
     (infix->prefix (take e (lowest-precedence-position e 0 -1)))
-    ;(println "the right")
     (infix->prefix (drop e (+ (lowest-precedence-position e 0 -1) 1)))
    )
   ]
-
  )
 )
 
