@@ -135,29 +135,29 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/build
 .PHONY : 322_programming_hmk_1_translation_and_validaiton/fast
 
-src/main.obj: src/main.c.obj
-.PHONY : src/main.obj
+main.obj: main.c.obj
+.PHONY : main.obj
 
 # target to build an object file
-src/main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/src/main.c.obj
-.PHONY : src/main.c.obj
+main.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/main.c.obj
+.PHONY : main.c.obj
 
-src/main.i: src/main.c.i
-.PHONY : src/main.i
+main.i: main.c.i
+.PHONY : main.i
 
 # target to preprocess a source file
-src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/src/main.c.i
-.PHONY : src/main.c.i
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/main.c.i
+.PHONY : main.c.i
 
-src/main.s: src/main.c.s
-.PHONY : src/main.s
+main.s: main.c.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/src/main.c.s
-.PHONY : src/main.c.s
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\322_programming_hmk_1_translation_and_validaiton.dir\build.make CMakeFiles/322_programming_hmk_1_translation_and_validaiton.dir/main.c.s
+.PHONY : main.c.s
 
 # Help Target
 help:
@@ -169,9 +169,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... 322_programming_hmk_1_translation_and_validaiton
-	@echo ... src/main.obj
-	@echo ... src/main.i
-	@echo ... src/main.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

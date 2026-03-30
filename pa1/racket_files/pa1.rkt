@@ -313,6 +313,22 @@
  )
 )
 
+(define (is-string? e)
+  
+)
+
+(define (contains-string? e index e-length)
+  ;;technically you could do (length e) every time instead of e-length.
+  ;;but having it be a parameter makes less method calls, thuss effecincy++
+  (cond
+    (not [list?]) e
+    [
+     
+    ]
+  )
+  
+)
+
 ;; ============================================================
 ;; validate-program
 ;;
@@ -345,6 +361,10 @@
     ]
     [
      (binary-op? e)
+      e
+    ]
+    [
+     (not (list? e))
       e
     ]
     [
@@ -490,13 +510,4 @@
 `_
 
 'Barbismo_tests
-(infix->prefix '(2 * 3)) ;; '(* 2 3)
-(infix->prefix '(2 * 3 + 4)) ;; '(+ (* 2 3) 4)
-(infix->prefix '(2 + 3 * 4 + 5)) ;; '(+ (+ 2 (* 3 4)) 5)
-(infix->prefix '((2 + 3))) ;; '(+ 2 3)
-(infix->prefix '((2 + 3) * (4 + 5))) ;; '(* (+ 2 3) (+ 4 5))
-(infix->prefix '(!true)) ;; '(not true)
-(infix->prefix '(!false)) ;; '(not false)
-(infix->prefix '(true && false)) ;; '(and true false)
-(infix->prefix '(true || false)) ;; '(or true false)
-(infix->prefix '(1 < 2)) ;; '(< 1 2)
+(validate-program ('hello))
