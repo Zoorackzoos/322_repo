@@ -1,6 +1,6 @@
-# 322_programming_hmk_1_translation_and_validaiton
+# 322_programming_assignments
 
-<img src="skeleton bashing sheild.gif">
+<img src="https://c.tenor.com/lTT6Bj52Og8AAAAC/tenor.gif" title="evil and intimidating skeleton">
 
 ## credits
 1. duncan holmes
