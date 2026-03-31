@@ -51,13 +51,10 @@
 (define (is-unary-bool? ast)
   (println "            is-unary-bool?")
   (and
-   (or
-    (equal? (my-first ast) '!)
-    (equal? (my-first ast) 'not)
-   )
+   (equal? (my-first ast) '!)
    (boolean-literal? (my-second ast))
    (begin
-     (println "                unary bool detected (#t)")
+     (println "            unary bool detected (#t)")
      #t
    )
   )
@@ -69,7 +66,7 @@
    (equal? (my-first ast) '-)
    (number? (my-second ast))
    (begin
-     (println "                negative number detected (#t)")
+     (println "            negative number detected (#t)")
      #t
    )
   )
@@ -81,10 +78,6 @@
 
 (define (eval-negative-number ast)
   (println "            eval-negative-number")
-  ;;like the only outcome you could have here is negative.
-  ;;so just set it negative.
-  (print "                ")
-  (println (- (my-second ast) (* (my-second ast) 2)) )
 )
 
 ;; ============================================================
@@ -198,8 +191,8 @@
 ;; (evaluate-program '(1 / (2 - 2)))
 (println "Barbismo test cases")
 (evaluate-prefix '(- 1))
-;;(evaluate-prefix '(- true))
-;;(evaluate-prefix '(- false))
-;;(evaluate-prefix '(! 1))
-;;(evaluate-prefix '(! true))
-;;(evaluate-prefix '(! false))
+(evaluate-prefix '(- true))
+(evaluate-prefix '(- false))
+(evaluate-prefix '(! 1))
+(evaluate-prefix '(! true))
+(evaluate-prefix '(! false))
