@@ -58,6 +58,18 @@
 ;; if this is a true or a true or a false, then true.
 ;; otherwise false. 
 (define (boolean-literal? x)
+  ;;display
+  (print "            boolean-literal? ")
+  (println x)
+  (print "                ")
+  (println
+   (or
+    (equal? x 'true)
+    (equal? x 'false)
+   )
+  )
+
+  ;;return value
   (or
    (equal? x 'true)
    (equal? x 'false)
@@ -81,8 +93,11 @@
       (equal? x '/)))
 
 (define (boolean-op? x)
-  (or (equal? x '&&)
-      (equal? x '||)))
+  (or
+   (equal? x '&&)
+   (equal? x '||)
+  )
+)
 
 (define (comparison-op? x)
   (or (equal? x '==)
@@ -229,7 +244,7 @@
 ;;   &&, ||
 ;;   ==, !=, <, <=, >, >= 
 (define (binary-shape? e)
-  (println "            binary-shape")
+  (println "            binary-shape?")
   (and
    (three-part-shape? e)
    (binary-op? (my-second e))

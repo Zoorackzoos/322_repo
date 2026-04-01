@@ -29,21 +29,21 @@
 
 this is broken down into X conditionals
 1. arithmatic
-   2. \+
-   3. \-
-   4. \*
-   5. \/ 
+   1. \+
+   2. \-
+   3. \*
+   4. \/ 
 2. 1 v 1 boolean
-   3. &&
-   4. ||
+   1. &&
+   2. ||
 3. 1 v 1 number comparison 
-   4. \>
-   5. \< 
-   6. \>=
-   7. \<=
+   1. \>
+   2. \< 
+   3. \>=
+   4. \<=
 4. equals and not equals
-   5. ==
-   6. !=
+   1. ==
+   2. !=
 
 [table of contents](0_table_of_contents.md)  
 [go back](3_abundence_of_println_statemetns.md)  

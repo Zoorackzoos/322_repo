@@ -72,7 +72,7 @@
   (and
    (unary-shape? ast)
    (is-unary-type-error? ast)
-   (println "            Type error , for a , unary input")
+   (println "            Type error , from , unary input")
    '(err "type error")
   )
 )
@@ -171,6 +171,8 @@
   (and
    (binary-shape? ast)
    (and
+    (number? (my-first ast))
+    (number? (my-third ast))
     (println "            is +?")
     (equal? (my-second ast) '+)
     (eval-addition ast)
@@ -185,7 +187,7 @@
   (print " + ")
   (println (my-third ast))
   (print "                ")
-  (println (+ (my-first ast) (my-third ast)))
+  (println (+ (my-first ast) (my-third ast))) 
   
   (+ (my-first ast) (my-third ast))
 )
@@ -195,6 +197,8 @@
   (and
    (binary-shape? ast)
    (and
+    (number? (my-first ast))
+    (number? (my-third ast))
     (println "            is -?")
     (equal? (my-second ast) '-)
     (eval-subtraciton ast)
@@ -219,6 +223,8 @@
   (and
    (binary-shape? ast)
    (and
+    (number? (my-first ast))
+    (number? (my-third ast))
     (println "            is *?")
     (equal? (my-second ast) '*)
     (eval-multiplicaiton ast)
@@ -243,6 +249,8 @@
   (and
    (binary-shape? ast)
    (and
+    (number? (my-first ast))
+    (number? (my-third ast))
     (println "            is /?")
     (equal? (my-second ast) '/)
     (eval-divizion ast)
@@ -260,6 +268,136 @@
   (println (/ (my-first ast) (my-third ast)))
   
   (/ (my-first ast) (my-third ast))
+)
+
+(define (binary-arithmatic-error-conditionals ast)
+  (println "        binary-arithmatic-error-conditionals")
+  ;;1 + true
+  ;;falst - 2
+  (and
+   (binary-shape? ast)
+   (or
+     (boolean-literal? (my-first ast))
+     (boolean-literal? (my-third ast))
+   )
+   (arithmetic-op? (my-second ast))
+   (println "            Type error , from , binary input")
+   '(err "type error")
+  )
+)
+
+(define (1v1-boolean-and-conditions ast)
+  (println "        1v1-boolean-and-conditions")
+  ;;true && false
+  (and
+   (boolean-literal? (my-first ast))
+   (boolean-literal? (my-third ast))
+   (equal? (my-second ast) '&&)
+   (eval-1v1-boolean-and-conditional ast)
+  )
+)
+
+(define (eval-1v1-boolean-and-conditional ast)
+  ;;display
+  (println "            eval-1v1-boolean-and-conditional")
+  (print "                ")
+  (println (my-first ast))
+  (print "                ")
+  (println (my-third ast))
+  (print "                    ")
+  (println
+   (and
+    (equal? (my-first ast) 'true)
+    (equal? (my-third ast) 'true)
+   )
+  )
+
+  ;;return value
+  (cond
+    [
+     ( equal?
+      (and
+       (equal? (my-first ast) 'true)
+       (equal? (my-third ast) 'true)
+      )
+      #t
+     )
+     (begin
+       (println "                #t -> 'true")
+       'true
+     )
+    ]
+    [
+     ( equal?
+      (and
+       (equal? (my-first ast) 'true)
+       (equal? (my-third ast) 'true)
+      )
+      #f
+     )
+     (begin
+       (println "                #f -> 'false")
+       'false
+     )
+    ]
+  )
+)
+
+(define (1v1-boolean-or-conditions ast)
+  (println "        1v1-boolean-or-conditions")
+  ;;true || false
+  (and
+   (boolean-literal? (my-first ast))
+   (boolean-literal? (my-third ast))
+   (equal? (my-second ast) '||)
+   (eval-1v1-boolean-or-conditional ast)
+  )
+)
+
+(define (eval-1v1-boolean-or-conditional ast)
+  ;;display
+  (println "            eval-1v1-boolean-or-conditional")
+  (print "                ")
+  (println (my-first ast))
+  (print "                ")
+  (println (my-third ast))
+  (print "                    ")
+  (println
+   (or
+    (equal? (my-first ast) 'true)
+    (equal? (my-third ast) 'true)
+   )
+  )
+
+  ;;return value
+  (cond
+    [
+     ( equal?
+      (or
+       (equal? (my-first ast) 'true)
+       (equal? (my-third ast) 'true)
+      )
+      #t
+     )
+     (begin
+       (println "                #t -> 'true")
+       'true
+     )
+    ]
+    [
+     ( equal?
+      (or
+       (equal? (my-first ast) 'true)
+       (equal? (my-third ast) 'true)
+      )
+      #f
+     )
+     (begin
+       (println "                #f -> 'false")
+       'false
+     )
+    ]
+  )
 )
 
 ;; ============================================================
@@ -308,6 +446,7 @@
     ;; TODO: handle binary operators
     ;; if it's bigger than 3 items then we simplofy that using recursion down the line
     ;; when it gets to here it is 3 items
+    ;;     arithmatic:
     [
      (adition-conditionals ast)
     ]
@@ -319,6 +458,17 @@
     ]
     [
      (divizion-conditionals ast)
+    ]
+    [
+     (binary-arithmatic-error-conditionals ast)
+    ]
+
+    ;;1v1 boolean
+    [
+     (1v1-boolean-and-conditions ast)
+    ]
+    [
+     (1v1-boolean-or-conditions ast)
     ]
     ;; TODO: implement type checking
     ;; TODO: implement division by zero check
@@ -387,8 +537,24 @@
 ;;(evaluate-prefix '(! true))
 ;;(evaluate-prefix '(! false))
 
-;;(println "mr.t pa2 grader tests")
+;;(println "mr.t pa2 binary arithmatic grader tests")
 ;;(evaluate-prefix '(1 + 2))
 ;;(evaluate-prefix '(5 - 2))
 ;;(evaluate-prefix '(3 * 4))
-(evaluate-prefix '(8 / 2))
+;;(evaluate-prefix '(8 / 2))
+
+;;(println "mr.t pa2 binary arithmatic type error grader tests")
+;;(evaluate-prefix '(1 + true))
+;;(evaluate-prefix '(false - 2))
+
+(println "barbismo 1v1 boolean and condition tests")
+;;(evaluate-prefix '(true && true))
+;;(evaluate-prefix '(false && false))
+;;(evaluate-prefix '(false && true))
+;;(evaluate-prefix '(true && false))
+
+;;(println "barbismo 1v1 boolean or condition tests")
+;;(evaluate-prefix '(true || true))
+(evaluate-prefix '(false || false))
+;;(evaluate-prefix '(false || true))
+;;(evaluate-prefix '(true || false))
