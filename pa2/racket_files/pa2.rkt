@@ -252,7 +252,7 @@
     (number? (my-first ast))
     (and
      (number? (my-third ast))
-     (not (equal? (my-third) 0))
+     (not (equal? (my-third ast) 0))
     )
     (println "            is /?")
     (equal? (my-second ast) '/)
@@ -291,8 +291,14 @@
 
 (define (binary-arthimatic-divide-by-zero-error ast)
   ;;TODO: implement this bih
-  (println "implmeent this bih")
+  (and
+   (binary-shape? ast)
+   (equal (my-second ast) '/)
+   (equal (my-third ast) 0)
+  )
 )
+
+
 
 (define (1v1-boolean-and-conditions ast)
   (println "        1v1-boolean-and-conditions")
@@ -531,10 +537,10 @@
 ;;(evaluate-prefix '(1 + true))
 ;;(evaluate-prefix '(false - 2))
 
-(println "barbismo 1v1 boolean and condition tests")
+;;(println "barbismo 1v1 boolean and condition tests")
 ;;(evaluate-prefix '(true && true))
 ;;(evaluate-prefix '(false && false))
-(evaluate-prefix '(false && true))
+;;(evaluate-prefix '(false && true))
 ;;(evaluate-prefix '(true && false))
 
 ;;(println "barbismo 1v1 boolean or condition tests")
@@ -542,3 +548,7 @@
 ;;(evaluate-prefix '(false || false))
 ;;(evaluate-prefix '(false || true))
 ;;(evaluate-prefix '(true || false))
+
+(println "Barbismo divide by 0 tests")
+(evaluate-prefix '(8 / 0))
+;;(evaluate-prefix '(0 / 8))
