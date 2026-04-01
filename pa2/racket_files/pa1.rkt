@@ -209,9 +209,13 @@
 ;;    like: - x, ! x
 ;;    not: + + x, - - x, ~ x, -x, !x, !!x, --x
 (define (unary-shape? e)
-  (and (list? e)
-       (= (length e) 2)
-       (unary-op? (my-first e))))
+  (println "            unary-shape?")
+  (and
+   (list? e)
+   (= (length e) 2)
+   (unary-op? (my-first e))
+  )
+)
 
 ;; if the list is a list, and is the length 3
 ;; why is this called a shape?
@@ -225,8 +229,12 @@
 ;;   &&, ||
 ;;   ==, !=, <, <=, >, >= 
 (define (binary-shape? e)
-  (and (three-part-shape? e)
-       (binary-op? (my-second e))))
+  (println "            binary-shape")
+  (and
+   (three-part-shape? e)
+   (binary-op? (my-second e))
+  )
+)
 
 
 ;; ============================================================

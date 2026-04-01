@@ -10,4 +10,4 @@ I need print statements to know how to code
 
 [table of contents](0_table_of_contents.md)  
 [go back](2_wtf_are_these_abbreviation.md)  
-[next]()
+[next](4_binary_detection_and_eval..md)

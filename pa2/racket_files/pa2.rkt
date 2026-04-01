@@ -48,6 +48,61 @@
 ;; ============================================================
 ;; Duncan helper functions
 ;; ============================================================
+
+(define (unary-bool-conditionals ast)
+  (println "        unary-bool-conditionals")
+  (and
+    (unary-shape? ast)
+    (is-unary-bool? ast)
+    (eval-unary-bool ast)
+  )
+)
+
+(define (negative-number-conditionals ast)
+  (println "        negative-number-conditionals")
+  (and
+   (unary-shape? ast)
+   (is-negative-number? ast)
+   (eval-negative-number ast)
+  )
+)
+
+(define (unary-type-error-conditionals ast)
+  (println "        unary-type-error-conditionals")
+  (and
+   (unary-shape? ast)
+   (is-unary-type-error? ast)
+   (println "            Type error , for a , unary input")
+   '(err "type error")
+  )
+)
+
+(define (is-unary-bool-operator? e)
+  (or
+   (equal? e '!)
+   (equal? e 'not)
+  )
+)
+
+(define (is-unary-type-error? ast)
+  ;;! 1
+  ;;- true
+  ;;not 1
+  (println "            is-unary-type-error?")
+  (or
+   (
+    and
+    (is-unary-bool-operator? (my-first ast))
+    (number? (my-second ast))
+   )
+   (
+    and
+    (equal? (my-first ast) '-)
+    (boolean-literal? (my-second ast))
+   )
+  )
+)
+
 (define (is-unary-bool? ast)
   (println "            is-unary-bool?")
   (and
@@ -57,7 +112,7 @@
    )
    (boolean-literal? (my-second ast))
    (begin
-     (println "                unary bool detected (#t)")
+     (println "                    unary bool detected (#t)")
      #t
    )
   )
@@ -106,9 +161,14 @@
   ;;so just set it negative.
   (print "                ")
   (begin
-    (println (- (my-second ast) (* (my-second ast) 2)) )
+    (println (- (my-second ast) (* (my-second ast) 2)) ) 
     (- (my-second ast) (* (my-second ast) 2))
   )
+)
+
+(define (eval-addition ast)
+  (println "            eval-negative-number")
+  (+ (my-first ast) (my-third ast))
 )
 
 ;; ============================================================
@@ -137,39 +197,35 @@
     [(equal? ast 'false) 'false]
 
     ;; TODO: handle unary operators
+
+    ;;unary bool 
     [
-     ;;so
-     ;;  '(! true) and '(! false) are valid by the progrma
-     ;;  '(- 1) are valid by the program
-     ;;  but
-     ;;  '(- true) and '(- false)
-     ;;  '(! 5)
-     ;;    are not allowed by teh program.
-     ;; invalid input i guess
-     (println "    unary conditionals in evaluate-prefix")
-     (equal? (unary-shape? ast) #t ;;conditional 
-      (begin
-        (println "        this is unary")
-        (cond ;;if yes
-          [
-           (is-unary-bool? ast) (eval-unary-bool ast)
-          ]
-          [
-           (is-negative-number? ast) (eval-negative-number ast)
-          ]
-          [
-           else
-           '(err "type error")
-          ]
-         )
-       )
-     )
+     (unary-bool-conditionals ast)
+    ]
+
+    ;;negative numbers
+    [
+     (negative-number-conditionals ast)
+    ]
+
+    ;;error cases for unary bools
+    ;;  idk any other way to do this bro
+    [
+     (unary-type-error-conditionals ast)
     ]
     
     ;; TODO: handle binary operators
+    ;; if it's bigger than 3 items then we simplofy that using recursion down the line
+    ;; when it gets to here it is 3 items
     [
-     (println "    binary conditionals in evaluate-prefix")
-     (binary-shape? ast) (println "fuck")
+     (and
+      (binary-shape? ast)
+      (and
+       (println "        is +?")
+       (equal? (my-second ast) '+)
+       (eval-addition ast)
+      )
+     )
     ]
     ;; TODO: implement type checking
     ;; TODO: implement division by zero check
@@ -238,8 +294,7 @@
 ;;(evaluate-prefix '(! true))
 ;;(evaluate-prefix '(! false))
 
-(println "mr.t pa2 grader tests")
-(unary-shape? '(1 + 2))
+;;(println "mr.t pa2 grader tests")
 (evaluate-prefix '(1 + 2))
 ;;(evaluate-prefix '(5 - 2))
 ;;(evaluate-prefix '(3 * 4))

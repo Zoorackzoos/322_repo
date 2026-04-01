@@ -8,8 +8,8 @@ unary track infection
 ;;  but
 ;;  '(- true) and '(- false)
 ;;  '(! 5)
-;;    are not allowed by teh program. 
-```
+;;    are not allowed by teh program. `
+``
 
 [table of contents](0_table_of_contents.md)  
 [go back](0_table_of_contents.md)  
