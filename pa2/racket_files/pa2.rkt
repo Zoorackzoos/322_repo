@@ -290,14 +290,26 @@
 )
 
 (define (binary-arthimatic-divide-by-zero-error ast)
-  ;;TODO: implement this bih
+  (println "        binary-arthimatic-divide-by-zero-error")
+  ;;0 in the numerator is ok. it's just 0. 
   (and
    (binary-shape? ast)
-   (equal (my-second ast) '/)
-   (equal (my-third ast) 0)
+   (equal? (my-second ast) '/)
+   (equal? (my-third ast) 0)
+    '(err "division by zero")
   )
 )
 
+(define (binary-arthimetic-zero-by-zero ast)
+  (println "        binary-arthimetic-zero-by-zero")
+  (and
+   (binary-shape? ast)
+   (equal? (my-first ast) '0)
+   (equal? (my-second ast) '/)
+   (equal? (my-third ast) '0)
+   '(err "divizion of zero by 0")
+  )
+)
 
 
 (define (1v1-boolean-and-conditions ast)
@@ -390,6 +402,62 @@
   )
 )
 
+(define (1v1-number-greater-than-conditional ast)
+  (println "        1v1-number-greater-than-conditional")
+  (and
+   (number? (my-first ast))
+   (equal? (my-second ast) '>)
+   (number? (my-third ast))
+   (convert-racket-bool-to-prefix-bool (> (my-first ast) (my-third ast)))
+  )
+)
+
+(define (1v1-number-less-than-conditional ast)
+  (println "        1v1-number-less-than-conditional")
+  (and
+   (number? (my-first ast))
+   (equal? (my-second ast) '<)
+   (number? (my-third ast))
+   (convert-racket-bool-to-prefix-bool (< (my-first ast) (my-third ast)))
+  )
+)
+
+(define (1v1-number-greater-than-equal-to-conditional ast)
+  (println "        1v1-number-greater-than-conditional")
+  (and
+   (number? (my-first ast))
+   (equal? (my-second ast) '>=)
+   (number? (my-third ast))
+   (convert-racket-bool-to-prefix-bool (>= (my-first ast) (my-third ast)))
+  )
+)
+
+(define (1v1-number-less-than-equal-to-conditional ast)
+  (println "        1v1-number-less-than-equal-to-conditional")
+  (and
+   (number? (my-first ast))
+   (equal? (my-second ast) '<=)
+   (number? (my-third ast))
+   (convert-racket-bool-to-prefix-bool (<= (my-first ast) (my-third ast)))
+  )
+)
+
+(define (prefix-equal-conditional ast)
+  (println "        prefix-equal-conditional")
+  (and
+    (equal? (my-second ast) '==)
+    (convert-racket-bool-to-prefix-bool (equal? (my-first ast) (my-third ast)))
+  )
+)
+
+(define (prefix-not-equal-conditional ast)
+  (println "        prefix-not-equal-conditional")
+  (and
+    (equal? (my-second ast) '!=)
+    (convert-racket-bool-to-prefix-bool (not (equal? (my-first ast) (my-third ast))))
+  )
+)
+
 ;; ============================================================
 ;; evaluate-prefix
 ;;
@@ -449,6 +517,13 @@
     [
      (divizion-conditionals ast)
     ]
+    ;;errors with binary arthmatic
+    [
+     (binary-arthimetic-zero-by-zero ast)
+    ]
+    [
+     (binary-arthimatic-divide-by-zero-error ast)
+    ]
     [
      (binary-arithmatic-error-conditionals ast)
     ]
@@ -459,6 +534,27 @@
     ]
     [
      (1v1-boolean-or-conditions ast)
+    ]
+
+    ;;1v1 number comparison
+    [
+     (1v1-number-greater-than-conditional ast)
+    ]
+    [
+     (1v1-number-less-than-conditional ast)
+    ]
+    [
+     (1v1-number-greater-than-equal-to-conditional ast)
+    ]
+    [
+     (1v1-number-less-than-equal-to-conditional ast)
+    ]
+    ;;equals and not equals
+    [
+     (prefix-equal-conditional ast)
+    ]
+    [
+     (prefix-not-equal-conditional ast)
     ]
     ;; TODO: implement type checking
     ;; TODO: implement division by zero check
@@ -549,6 +645,17 @@
 ;;(evaluate-prefix '(false || true))
 ;;(evaluate-prefix '(true || false))
 
-(println "Barbismo divide by 0 tests")
-(evaluate-prefix '(8 / 0))
-;;(evaluate-prefix '(0 / 8))
+;;(println "Barbismo divide by 0 tests")
+;;(evaluate-prefix '(7 / 0))
+;;(evaluate-prefix '(0 / 7))
+;;(evaluate-prefix '(0 / 0))
+
+(println "1v1 number comparison mr.t and barbismo hybrid tests")
+;;(evaluate-prefix '(3 > 1))
+;;(evaluate-prefix '(3 < 1))
+;;(evaluate-prefix '(3 >= 1))
+;;(evaluate-prefix '(3 <= 1))
+;;(evaluate-prefix '(3 == 1))
+;;(evaluate-prefix '(3 == 3))
+;;(evaluate-prefix '(3 != 3))
+(evaluate-prefix '(3 != 1))
