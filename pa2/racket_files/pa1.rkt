@@ -58,18 +58,6 @@
 ;; if this is a true or a true or a false, then true.
 ;; otherwise false. 
 (define (boolean-literal? x)
-  ;;display
-  (print "            boolean-literal? ")
-  (println x)
-  (print "                ")
-  (println
-   (or
-    (equal? x 'true)
-    (equal? x 'false)
-   )
-  )
-
-  ;;return value
   (or
    (equal? x 'true)
    (equal? x 'false)
@@ -93,11 +81,8 @@
       (equal? x '/)))
 
 (define (boolean-op? x)
-  (or
-   (equal? x '&&)
-   (equal? x '||)
-  )
-)
+  (or (equal? x '&&)
+      (equal? x '||)))
 
 (define (comparison-op? x)
   (or (equal? x '==)
@@ -159,31 +144,41 @@
 ;; ============================================================
 
 (define (precedence op)
-  (cond
-    [(or (equal? op '-)
-         (equal? op '!)
-         (equal? op 'not))
-     7]
-    [(or (equal? op '*)
-         (equal? op '/))
-     6]
-    [(or (equal? op '+)
-         (equal? op '-))
-     5]
-    [(or (equal? op '<)
-         (equal? op '<=)
-         (equal? op '>)
-         (equal? op '>=))
-     4]
-    [(or (equal? op '==)
-         (equal? op '!=))
-     3]
-    [(equal? op '&&)
-     2]
-    [(equal? op '||)
-     1]
-    [else
-     0]))
+ (cond
+  [
+   (or (equal? op '!) (equal? op 'not))  ;; removed - from here
+   7
+  ]
+  [
+   (or (equal? op '*) (equal? op '/))
+   6
+  ]
+  [
+   (or (equal? op '+) (equal? op '-))    ;; - now correctly gets 5
+   5
+  ]
+  [
+   (or (equal? op '<) (equal? op '<=) (equal? op '>) (equal? op '>=))
+   4
+  ]
+  [
+   (or (equal? op '==) (equal? op '!=))
+   3
+  ]
+  [
+   (equal? op '&&)
+   2
+  ]
+  [
+   (equal? op '||)
+   1
+  ]
+  [
+   else
+   0
+  ]
+ )
+)
 
 
 ;; ============================================================
@@ -224,13 +219,9 @@
 ;;    like: - x, ! x
 ;;    not: + + x, - - x, ~ x, -x, !x, !!x, --x
 (define (unary-shape? e)
-  (println "            unary-shape?")
-  (and
-   (list? e)
-   (= (length e) 2)
-   (unary-op? (my-first e))
-  )
-)
+  (and (list? e)
+       (= (length e) 2)
+       (unary-op? (my-first e))))
 
 ;; if the list is a list, and is the length 3
 ;; why is this called a shape?
@@ -244,12 +235,8 @@
 ;;   &&, ||
 ;;   ==, !=, <, <=, >, >= 
 (define (binary-shape? e)
-  (println "            binary-shape?")
-  (and
-   (three-part-shape? e)
-   (binary-op? (my-second e))
-  )
-)
+  (and (three-part-shape? e)
+       (binary-op? (my-second e))))
 
 
 ;; ============================================================
@@ -296,9 +283,9 @@
 )
 
 (define (lowest-precedence-position list iterator index_of_lowest_precedent)
- ;(println list)
- ;(println iterator)
- ;(println index_of_lowest_precedent)
+ ;;(println list)
+ ;;(println iterator)
+ ;;(println index_of_lowest_precedent)
  ;;(println (list-ref list index_of_lowest_precedent))
  (if
   (= iterator (length list)) ;; conditional
@@ -308,7 +295,7 @@
      (> (precedence (list-ref list iterator)) 0)
      (or
       (= index_of_lowest_precedent -1)
-      (<
+      (<=
        (precedence (list-ref list iterator))
        (precedence (list-ref list index_of_lowest_precedent))
       )
@@ -336,6 +323,36 @@
  )
 )
 
+(define (is-string? e)
+  (and
+   (not (duncan-is-literal? e))
+   (not (binary-op? e))
+   (not (unary-op? e))
+   (not (list? e))
+  )
+)
+
+(define (contains-string? e index e-length)
+  ;;technically you could do (length e) every time instead of e-length.
+  ;;but having it be a parameter makes less method calls, thuss effecincy++
+  (cond
+    [ (= index e-length) #f ]
+    [ (not (list? e)) e ]
+    [ (is-string? (list-ref e index)) (list-ref e index) ]
+    [
+     else
+      (contains-string? e (+ index 1) e-length)
+    ]
+  )
+)
+
+(define (translate-unary-op e)
+  (cond
+   [ (equal? e '!) 'not ]
+   [ else e ]
+  )
+)
+
 ;; ============================================================
 ;; validate-program
 ;;
@@ -356,6 +373,7 @@
 ;; ============================================================
 
 (define (validate-program e)
+  ;;(println '_validate-program)
   (
    cond
     [
@@ -369,6 +387,15 @@
     [
      (binary-op? e)
       e
+    ]
+    [
+     (not (list? e))
+      e
+    ]
+    [
+     ;;(println '__contains-string?)
+     ;;(contains-string? e index e-length)
+     (not (equal? (contains-string? e 0 (length e)) #f)) (contains-string? e 0 (length e))
     ]
     [
      (list? e)
@@ -437,6 +464,11 @@
 (define (infix->prefix e)
  (cond
 
+  ;;not valid program
+  [
+   (not (equal? (validate-program e) #t)) (list 'err (validate-program e))
+  ]
+   
   ;; literal values
   [
    (duncan-is-literal? e)
@@ -447,7 +479,7 @@
   [
    (unary-shape? e)
    (list
-    (my-first e)
+    (translate-unary-op (my-first e))
     (translate-weird-bools (infix->prefix (my-second e)))
    )
   ]
@@ -481,45 +513,3 @@
 ;; You may add more tests as you work.
 ;; ============================================================
 
-;; validation tests. the correct return statment is rightwards of the test.
-;;`mr.t_validation_tests
-;;(validate-program 5) ;; #t
-;;(validate-program 'true) ;; #t
-;;(validate-program '(1 + 2)) ;; #t
-;;(validate-program '(1 + 2 * 3)) ;; #t
-;;(validate-program '((1 + 2) * 3)) ;; #t
-;;(validate-program '(false || !false)) ;; #t
-;;'meant_to_fail_tests
-;;(validate-program '(1 + * 3)) ;; `*
-;;(validate-program '(1 < 2 > 3)) ;; `>
-;;(validate-program '(true && && false)) ;; `&&
-
-;;`_
-;;`_
-;;`_
-
-;; translation tests
-;;`mr.t_translation_tests
-;;(infix->prefix 5) ;; 5
-;;(infix->prefix 'true) ;; %#t
-;;(infix->prefix '(1 + 2)) ;; '(+ 1 2)
-;;(infix->prefix '(1 + 2 * 3)) ;; '(+ 1 (* 2 3) )
-;;(infix->prefix '((1 + 2) * 3)) ;; '(* (+ 1 2) 3)
-;;(infix->prefix '(false || !false)) ;; '(or false (not false) )
-;;(infix->prefix '((2 * 3) < 7)) ;; '( < (* 2 3) 7)
-
-;;`_
-;;`_
-;;`_
-
-;;'Barbismo_tests
-;;(infix->prefix '(2 * 3)) ;; '(* 2 3)
-;;(infix->prefix '(2 * 3 + 4)) ;; '(+ (* 2 3) 4)
-;;(infix->prefix '(2 + 3 * 4 + 5)) ;; '(+ (+ 2 (* 3 4)) 5)
-;;(infix->prefix '((2 + 3))) ;; '(+ 2 3)
-;;(infix->prefix '((2 + 3) * (4 + 5))) ;; '(* (+ 2 3) (+ 4 5))
-;;(infix->prefix '(!true)) ;; '(not true)
-;;(infix->prefix '(!false)) ;; '(not false)
-;;(infix->prefix '(true && false)) ;; '(and true false)
-;;(infix->prefix '(true || false)) ;; '(or true false)
-;;(infix->prefix '(1 < 2)) ;; '(< 1 2)

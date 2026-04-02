@@ -590,11 +590,21 @@
 ;; ============================================================
 
 (define (evaluate-program e)
+  (println "evaluate-program")
   (cond
     ;; 1. Call your PA1 infix->prefix
     ;; 2. If it returns an error, return that error
     ;; 3. If it returns a valid AST, pass it to evaluate-prefix
-    
+
+    ;; invalid program from infix->prefix
+    [
+     (any-error? (infix->prefix e))
+     (infix->prefix e)
+    ]
+
+    [
+     (evaluate-prefix (infix->prefix e))
+    ]
     
     [
      else
@@ -619,54 +629,5 @@
 ;; (evaluate-program '(1 + true))
 ;; (evaluate-program '(1 / (2 - 2)))
 
-;;(println "Barbismo test cases | unary")
-;;(evaluate-prefix '(- 1))
-;;(evaluate-prefix '(- true))
-;;(evaluate-prefix '(- false))
-;;(evaluate-prefix '(not 1))
-;;(evaluate-prefix '(not true))
-;;(evaluate-prefix '(not false))
-;;(evaluate-prefix '(! 1))
-;;(evaluate-prefix '(! true))
-;;(evaluate-prefix '(! false))
-
-;;(println "mr.t pa2 binary arithmatic grader tests")
-;;(evaluate-prefix '(1 + 2))
-;;(evaluate-prefix '(5 - 2))
-;;(evaluate-prefix '(3 * 4))
-;;(evaluate-prefix '(8 / 2))
-
-;;(println "mr.t pa2 binary arithmatic type error grader tests")
-;;(evaluate-prefix '(1 + true))
-;;(evaluate-prefix '(false - 2))
-
-;;(println "barbismo 1v1 boolean and condition tests")
-;;(evaluate-prefix '(true && true))
-;;(evaluate-prefix '(false && false))
-;;(evaluate-prefix '(false && true))
-;;(evaluate-prefix '(true && false))
-
-;;(println "barbismo 1v1 boolean or condition tests")
-;;(evaluate-prefix '(true || true))
-;;(evaluate-prefix '(false || false))
-;;(evaluate-prefix '(false || true))
-;;(evaluate-prefix '(true || false))
-
-;;(println "Barbismo divide by 0 tests")
-;;(evaluate-prefix '(7 / 0))
-;;(evaluate-prefix '(0 / 7))
-;;(evaluate-prefix '(0 / 0))
-
-;;(println "1v1 number comparison mr.t and barbismo hybrid tests")
-;;(evaluate-prefix '(3 > 1))
-;;(evaluate-prefix '(3 < 1))
-;;(evaluate-prefix '(3 >= 1))
-;;(evaluate-prefix '(3 <= 1))
-;;(evaluate-prefix '(3 == 1))
-;;(evaluate-prefix '(3 == 3))
-;;(evaluate-prefix '(3 != 3))
-;;(evaluate-prefix '(3 != 1))
-
-(println "mr. t 'complex expressions' grader tests")
-(evaluate-prefix '(1 + 2 * 3))
-(infix->prefix '(1 + 2 * 3))
+;; barbismo tests
+(evaluate-program '(1 == true))
