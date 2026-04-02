@@ -557,8 +557,13 @@
      (prefix-not-equal-conditional ast)
     ]
     ;; TODO: implement type checking
+    ;; ???
+    
     ;; TODO: implement division by zero check
+    ;; done above
+    
     ;; TODO: propagate errors from subexpressions
+    ;; done above 
 
     [
      else
@@ -589,6 +594,8 @@
     ;; 1. Call your PA1 infix->prefix
     ;; 2. If it returns an error, return that error
     ;; 3. If it returns a valid AST, pass it to evaluate-prefix
+    
+    
     [
      else
       ;; Placeholder
@@ -650,7 +657,7 @@
 ;;(evaluate-prefix '(0 / 7))
 ;;(evaluate-prefix '(0 / 0))
 
-(println "1v1 number comparison mr.t and barbismo hybrid tests")
+;;(println "1v1 number comparison mr.t and barbismo hybrid tests")
 ;;(evaluate-prefix '(3 > 1))
 ;;(evaluate-prefix '(3 < 1))
 ;;(evaluate-prefix '(3 >= 1))
@@ -658,4 +665,8 @@
 ;;(evaluate-prefix '(3 == 1))
 ;;(evaluate-prefix '(3 == 3))
 ;;(evaluate-prefix '(3 != 3))
-(evaluate-prefix '(3 != 1))
+;;(evaluate-prefix '(3 != 1))
+
+(println "mr. t 'complex expressions' grader tests")
+(evaluate-prefix '(1 + 2 * 3))
+(infix->prefix '(1 + 2 * 3))
