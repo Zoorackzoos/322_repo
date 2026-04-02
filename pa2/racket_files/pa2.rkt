@@ -206,24 +206,11 @@
   (println "        divizion-conditionals")
   (and
    (binary-prefix-math-shape? ast)
+   ;;don't care about effenciy -mr.t
+   (not (binary-arthimatic-divide-by-zero-error ast))
+   (not (binary-arthimetic-zero-by-zero ast))
    (equal? (my-first ast) '/)
    (/ (my-second ast) (my-third ast))
-  )
-)
-
-(define (binary-arithmatic-error-conditionals ast)
-  (println "        binary-arithmatic-error-conditionals")
-  ;;1 + true
-  ;;falst - 2
-  (and
-   (binary-shape? ast)
-   (or
-     (boolean-literal? (my-first ast))
-     (boolean-literal? (my-third ast))
-   )
-   (arithmetic-op? (my-second ast))
-   (println "            Type error , from , binary input")
-   '(err "type error")
   )
 )
 
@@ -231,8 +218,8 @@
   (println "        binary-arthimatic-divide-by-zero-error")
   ;;0 in the numerator is ok. it's just 0. 
   (and
-   (binary-shape? ast)
-   (equal? (my-second ast) '/)
+   (binary-prefix-math-shape? ast)
+   (equal? (my-first ast) '/)
    (equal? (my-third ast) 0)
     '(err "division by zero")
   )
@@ -241,9 +228,9 @@
 (define (binary-arthimetic-zero-by-zero ast)
   (println "        binary-arthimetic-zero-by-zero")
   (and
-   (binary-shape? ast)
-   (equal? (my-first ast) '0)
-   (equal? (my-second ast) '/)
+   (binary-prefix-math-shape? ast)
+   (equal? (my-first ast) '/)
+   (equal? (my-second ast) '0)
    (equal? (my-third ast) '0)
    '(err "divizion of zero by 0")
   )
@@ -254,9 +241,9 @@
   (println "        1v1-boolean-and-conditions")
   ;;true && false
   (and
-   (boolean-literal? (my-first ast))
+   (equal? (my-first ast) 'and)
+   (boolean-literal? (my-second ast))
    (boolean-literal? (my-third ast))
-   (equal? (my-second ast) '&&)
    (eval-1v1-boolean-and-conditional ast)
   )
 )
@@ -265,13 +252,13 @@
   ;;display
   (println "            eval-1v1-boolean-and-conditional")
   (print "                ")
-  (println (my-first ast))
+  (println (my-second ast))
   (print "                ")
   (println (my-third ast))
   (print "                    ")
   (println
    (and
-    (equal? (my-first ast) 'true)
+    (equal? (my-second ast) 'true)
     (equal? (my-third ast) 'true)
    )
   )
@@ -279,7 +266,7 @@
   ;;return value
   (convert-racket-bool-to-prefix-bool
    (and
-    (equal? (my-first ast) 'true)
+    (equal? (my-second ast) 'true)
     (equal? (my-third ast) 'true)
    )
   )
@@ -289,9 +276,9 @@
   (println "        1v1-boolean-or-conditions")
   ;;true || false
   (and
-   (boolean-literal? (my-first ast))
+   (equal? (my-first ast) 'or)
+   (boolean-literal? (my-second ast))
    (boolean-literal? (my-third ast))
-   (equal? (my-second ast) '||)
    (eval-1v1-boolean-or-conditional ast)
   )
 )
@@ -320,13 +307,13 @@
   ;;display
   (println "            eval-1v1-boolean-or-conditional")
   (print "                ")
-  (println (my-first ast))
+  (println (my-second ast))
   (print "                ")
   (println (my-third ast))
   (print "                    ")
   (println
    (or
-    (equal? (my-first ast) 'true)
+    (equal? (my-second ast) 'true)
     (equal? (my-third ast) 'true)
    )
   )
@@ -334,7 +321,7 @@
   ;;return value
   (convert-racket-bool-to-prefix-bool
    (or
-    (equal? (my-first ast) 'true)
+    (equal? (my-second ast) 'true)
     (equal? (my-third ast) 'true)
    )
   )
@@ -343,56 +330,56 @@
 (define (1v1-number-greater-than-conditional ast)
   (println "        1v1-number-greater-than-conditional")
   (and
-   (number? (my-first ast))
-   (equal? (my-second ast) '>)
+   (equal? (my-first ast) '>)
+   (number? (my-second ast))
    (number? (my-third ast))
-   (convert-racket-bool-to-prefix-bool (> (my-first ast) (my-third ast)))
+   (convert-racket-bool-to-prefix-bool (> (my-second ast) (my-third ast)))
   )
 )
 
 (define (1v1-number-less-than-conditional ast)
   (println "        1v1-number-less-than-conditional")
   (and
-   (number? (my-first ast))
-   (equal? (my-second ast) '<)
+   (equal? (my-first ast) '<)
+   (number? (my-second ast))
    (number? (my-third ast))
-   (convert-racket-bool-to-prefix-bool (< (my-first ast) (my-third ast)))
+   (convert-racket-bool-to-prefix-bool (< (my-second ast) (my-third ast)))
   )
 )
 
 (define (1v1-number-greater-than-equal-to-conditional ast)
   (println "        1v1-number-greater-than-conditional")
   (and
-   (number? (my-first ast))
-   (equal? (my-second ast) '>=)
+   (equal? (my-first ast) '>=)
+   (number? (my-second ast))
    (number? (my-third ast))
-   (convert-racket-bool-to-prefix-bool (>= (my-first ast) (my-third ast)))
+   (convert-racket-bool-to-prefix-bool (>= (my-second ast) (my-third ast)))
   )
 )
 
 (define (1v1-number-less-than-equal-to-conditional ast)
   (println "        1v1-number-less-than-equal-to-conditional")
   (and
-   (number? (my-first ast))
-   (equal? (my-second ast) '<=)
+   (equal? (my-first ast) '<=)
+   (number? (my-second ast))
    (number? (my-third ast))
-   (convert-racket-bool-to-prefix-bool (<= (my-first ast) (my-third ast)))
+   (convert-racket-bool-to-prefix-bool (<= (my-second ast) (my-third ast)))
   )
 )
 
 (define (prefix-equal-conditional ast)
   (println "        prefix-equal-conditional")
   (and
-    (equal? (my-second ast) '==)
-    (convert-racket-bool-to-prefix-bool (equal? (my-first ast) (my-third ast)))
+    (equal? (my-first ast) '==)
+    (convert-racket-bool-to-prefix-bool (equal? (my-second ast) (my-third ast)))
   )
 )
 
 (define (prefix-not-equal-conditional ast)
   (println "        prefix-not-equal-conditional")
   (and
-    (equal? (my-second ast) '!=)
-    (convert-racket-bool-to-prefix-bool (not (equal? (my-first ast) (my-third ast))))
+    (equal? (my-first ast) '!=)
+    (convert-racket-bool-to-prefix-bool (not (equal? (my-second ast) (my-third ast))))
   )
 )
 
@@ -461,9 +448,6 @@
     ]
     [
      (binary-arthimatic-divide-by-zero-error ast)
-    ]
-    [
-     (binary-arithmatic-error-conditionals ast)
     ]
 
     ;;1v1 boolean
@@ -568,4 +552,4 @@
 ;; (evaluate-program '(1 / (2 - 2)))
 
 ;; barbismo tests
-(evaluate-program '(6 / 2))
+(evaluate-program '(true || false))
