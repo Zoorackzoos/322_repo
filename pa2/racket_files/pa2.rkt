@@ -385,22 +385,43 @@
 
 (define (simplify-complicated-prefix ast)
   (println "        simplify-complicated-prefix")
-   (or
-    (and
-     (list? (my-second ast))
-     (print "            ")
-     (println "1st parameter is a list, Look!")
-     (print "            ")
-     (println (my-second ast))
-    )
-    (and
-     (list? (my-third ast))
-     (print "            ")
-     (println "2nd parameter is a list, Look!")
-     (print "            ")
-     (println (my-third ast))
-    )
-   )
+  ;;left side is a list      '(1 + 2 * 3) -> '(+ 1 (* 2 3)
+  ;;right side is a list
+  ;;both sides are lists
+  (cond
+    [
+     (and
+      (list? (my-second ast))
+      (println "            1st parameter is a list, look!")
+      (print "            ")
+      (println (my-second ast))
+      ;;                                    _________________________________
+      (evaluate-prefix (list (my-first ast) (evaluate-prefix (my-second ast)) (my-third ast)))
+     )
+    ]
+    [
+     (and
+      (list? (my-third ast))
+      (println "            2nd parameter is a list, look!")
+      (print "            ")
+      (println (my-third ast))
+      ;;                                                    _______________________________
+      (evaluate-prefix (list (my-first ast) (my-second ast) (evaluate-prefix (my-third ast))))
+     )
+    ]
+    [
+     (and
+      (list? (my-second ast))
+      (list? (my-third ast))
+      (println "            both parameters are lists, look!")
+      (print "            ")
+      (println (my-second ast))
+      (print "            ")
+      (println (my-third ast))
+      (evaluate-prefix (list (my-first ast) (evaluate-prefix (my-second ast)) (evaluate-prefix (my-third ast))))
+     )
+    ]
+  )
 )
 
 ;; ============================================================
@@ -579,4 +600,4 @@
 ;; (evaluate-program '(1 / (2 - 2)))
 
 ;; barbismo tests
-(evaluate-program '(1 + 2 * 3))
+(evaluate-program '(1 + true))
