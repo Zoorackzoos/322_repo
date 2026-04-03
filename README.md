@@ -1,4 +1,4 @@
-# 322_programming_assignments
+# 322_repo
 
 <img src="https://c.tenor.com/lTT6Bj52Og8AAAAC/tenor.gif" title="evil and intimidating skeleton">
 
