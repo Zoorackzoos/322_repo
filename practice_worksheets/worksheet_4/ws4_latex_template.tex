@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, enumitem}
+\setlist{noitemsep}
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{CSCE 322 --- Worksheet 4}\\[2mm]
+    \large\textbf{Lambda Calculus \& Operational Semantics}
+\end{center}
+
+\bigskip
+
+\noindent\textbf{Instructions:}
+\begin{itemize}
+    \item For Part 1, explicitly show your steps for $\beta$-reduction and $\alpha$-renaming.
+    \item For Part 2, use the big-step operational semantics rules from class. Write your derivations using the fraction style (premises over consequent).
+    \item Assume the standard rules for numbers, booleans, variables, arithmetic, comparisons, conditionals, and \texttt{var}.
+\end{itemize}
+
+\section*{Part 1: Lambda Calculus}
+
+Evaluate the following lambda calculus expressions to normal form. Be careful with free and bound variables, and apply $\alpha$-renaming where necessary to avoid variable capture.
+
+\begin{enumerate}
+    \item \textbf{Multiple Free Variables in Argument}
+    \[
+      (\lambda x.\ \lambda y.\ x\ (\lambda z.\ x\ y\ z))\ (\lambda y.\ \lambda x.\ y\ z\ x)
+    \]
+
+    \vspace{1in}
+
+    \item \textbf{Shadowing and Scope}
+    \[
+      ((\lambda x.\ \lambda y.\ x\ (\lambda y.\ x\ y))\ (\lambda z.\ y\ z))\ x
+    \]
+
+    \vspace{1in}
+
+    \item \textbf{Function Composition with Free Variables}
+    \[
+      (\lambda f.\ \lambda g.\ \lambda x.\ f\ (g\ x))\ (\lambda x.\ y\ x)\ (\lambda y.\ x\ y)
+    \]
+
+    \vspace{1in}
+\end{enumerate}
+
+\newpage
+
+\section*{Part 2: Operational Semantics}
+
+\begin{enumerate}
+    \item \textbf{Deep Shadowing \& Nested Evaluation} \\
+    Give a full big-step derivation for the following expression. Assume an arbitrary initial environment $\rho$.
+    \[
+      \langle (var\ (x\ 5)\ (var\ (y\ (if\ (gt\ x\ 3)\ (+\ x\ 2)\ 0))\ (var\ (x\ (+\ y\ 1))\ (+\ x\ y)))),\ \rho \rangle
+    \]
+
+    \vspace{3in}
+
+    \item \textbf{Late Stuck State} \\
+    Give a big-step derivation showing exactly where the following expression gets stuck. Explain why the derivation cannot continue.
+    \[
+      \langle (if\ (eq\ 1\ 1)\ (var\ (x\ true)\ (if\ x\ (+\ x\ 1)\ 5))\ 0),\ \rho \rangle
+    \]
+
+    \vspace{3in}
+
+    \item \textbf{Complex Conditionals \& Initial Environment} \\
+    Let $\rho_0 = \{ a \mapsto 10, b \mapsto 5 \}$. Evaluate the following expression:
+    \[
+      \langle (if\ (and\ (lt\ b\ a)\ (eq\ (-\ a\ b)\ 5))\ (var\ (a\ b)\ (+\ a\ b))\ 0),\ \rho_0 \rangle
+    \]
+
+\end{enumerate}
+
+\end{document}
