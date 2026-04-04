@@ -50,10 +50,28 @@ plug in z for \lx1.
 this problem has more memes that make it harder than traditional plug and play lambda calculus problems
 for here, you have to see if substitution is possible.
 
-
 2\. Shadowing and Scope 
 
 ((*λx. λy. x* (*λy. x y*)) (*λz. y z*)) *x* 
+convert this into a duncan lambda calculus question
+( ( \lx. ( \ly. ( x ( \ly. ( x y ) ) ) ) ) ( \lz. ( y z ) ) ) x
+\a renaming time :-DDD
+( ( \lx1. ( \ly. ( x1 ( \ly1. ( x1 y1 ) ) ) ) ) ( \lz. ( y z ) ) ) x
+plug in x for z on the very right
+                                                  ____     _       _
+( ( \lx1. ( \ly. ( x1 ( \ly1. ( x1 y1 ) ) ) ) ) ( \lz. ( y z ) ) ) x
+-->
+( ( \lx1. ( \ly. ( x1 ( \ly1. ( x1 y1 ) ) ) ) ) ( y x ) )
+plug in ( y x ) for x1
+    _____          __           __              ______
+( ( \lx1. ( \ly. ( x1 ( \ly1. ( x1 y1 ) ) ) ) ) ( y x ) )
+-->
+( \ly. ( ( y x ) ( \ly1. ( ( y x ) y1 ) ) ) )
+cannot plug in var for y, no var available.
+cannot plug in var for y1, no var available.
+uhm. did i do something wrong?
+
+
 
 3\. Function Composition with Free Variables 
 
