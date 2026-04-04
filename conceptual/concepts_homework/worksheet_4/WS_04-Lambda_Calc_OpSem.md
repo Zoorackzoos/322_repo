@@ -18,19 +18,36 @@ Evaluate the following lambda calculus expressions to normal form. Be careful wi
 
 (*λx. λy. x* (*λz. x y z*)) (*λy. λx. y z x*) 
 
-rephrase into a duncan lambda calculus question
+use a IDE to view this because seeing the "()" without highlighting is difficult. 
+rephrase into a duncan formatted lambda calculus question
 ( \lx.( \ly.( x ( \lz. ( x y z ) ) ) ) ) ( \ly. ( \lx. ( y z x ) ) )
 do \a renaming
-( \lx1.( \ly1.( x1 ( \lz1. ( x y1 z1 ) ) ) ) ) ( \ly. ( \lx2. ( y z x2 ) ) )
-i did the \a renaming based on outer versus outer variables. if that makes sense :-/ 
-free vars: x, z
-bound vars: x1, y1, z1, x2, y
-anyway, plug in \ly. and it's buddies for x1
-( \ly1.( ( \ly. ( \lx2. ( y z x2 ) ) ) ( \lz1. ( x y1 z1 ) ) ) )
-the only way to plug in y1 for something would be to plug a left element into a right element.
-so i probably screwed up the alpha renaming
-what do?
-is this what i'm supposed to be song anyway?
+( \lx2.( \ly.( x2 ( \lz1. ( x2 y z1 ) ) ) ) ) ( \ly1. ( \lx1. ( y1 z x1 ) ) )
+the reason these lambda calculus problems are in here, is becuase that left part has 2 x'es attached to it's \lx.   
+they're like variables, i guess :-/  
+in the previous problems the \l functions were either overwritten or duplicates didn't exist in the first place.  
+    not like I remember -_-
+plug in the right \ly1. and it's buddies for x2
+  ____                                                                            _
+( \ly.( ( \ly1.( \lx1. ( y1 z x1 ) ) ) ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) ) )
+    this is a confusing move. just watch.
+plug in \lz1. and it's buddies for y1
+( \ly.( \lx1.( ( \lz1.( ( \ly1.( \lx1.( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
+plug in z for z1
+( \ly.( \lx1.( \ly1.( \lx1.( y1 z x1 ) ) y z ) x1 ) )
+plug in x1 for y
+( \lx1.( \ly1.( \lx1.( y1 z x1 ) ) x1 z ) )
+plug in x1 for y1
+    we're doing inner \b reduction here, not outer.
+    double x1 i wonder what that does 0_0
+( \lx1.( \lx1.( x1 z x1 ) ) z )
+    plug in z into x1, both of them? ok :P
+( \lx1.( z z z ) )
+    plug in null for x1
+    nothing?
+nothing?
+    there's no x1 to chew up? 
+    i'm confused.
 
 2\. Shadowing and Scope 
 
