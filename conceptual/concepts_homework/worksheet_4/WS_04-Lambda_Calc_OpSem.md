@@ -31,6 +31,30 @@ plug in the right \ly1. and it's buddies for x2
 ( \ly. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) ) )
 plug in the rightward piece for y1
 ( \ly. ( \lx1. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
+cannot replace y with a variable because there's no variable to plug into y
+plug in z for x1. i "_" it for you.
+         _____                                    __                _
+( \ly. ( \lx1. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
+-->
+( \ly. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y z1 ) ) x1 ) )
+plug in x1 for z1. i "___" it for you.
+           _____                                    __     __
+( \ly. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y z1 ) ) x1 ) )
+-->
+( \ly. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y x1 ) )
+plug in y for y1
+           _____           __           _
+( \ly. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y x1 ) )
+-->
+( \ly. ( ( \lx1. ( y z z ) ) ) x1 ) )
+plug in x1 for a x1 that doesn't exist in \lx1.
+           ____                __
+( \ly. ( ( \lx1. ( y z z ) ) ) x1 )
+-->
+( \ly. ( ( ( y z z ) ) ) )
+simplify
+( \ly. ( y z z ) )
+
 
 
 
