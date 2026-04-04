@@ -19,59 +19,76 @@ Evaluate the following lambda calculus expressions to normal form. Be careful wi
 (*λx. λy. x* (*λz. x y z*)) (*λy. λx. y z x*) 
 
 use a IDE to view this because seeing the "()" without highlighting is difficult. 
+
 rephrase into a duncan formatted lambda calculus question
 ( \lx.( \ly.( x ( \lz. ( x y z ) ) ) ) ) ( \ly. ( \lx. ( y z x ) ) )
+
 do \a renaming
 ( \lx2.( \ly.( x2 ( \lz1. ( x2 y z1 ) ) ) ) ) ( \ly1. ( \lx1. ( y1 z x1 ) ) )
+
 plug in right side for x2
   _____        __                             _______________________________
 ( \lx2.( \ly.( x2 ( \lz1. ( x2 y z1 ) ) ) ) ) ( \ly1. ( \lx1. ( y1 z x1 ) ) )
 -->
 ( \ly.( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) ( \lz1.( ( \ly1.( \lx1.( y1 z x1 ) ) ) y z1 ) ) ) )
+
 cannot plug var into \ly. no var present. go to \ly1.
 plug in \lz1 for y1
 ( \ly. ( \lx1. ( ( \lz1. ( ( \ly1.( \lx1.( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
+
 cannot plug var into \lx1. no var present go to \lz1.
 plug in z for z1
                    _____                                   __     _
 ( \ly. ( \lx1. ( ( \lz1. ( ( \ly1.( \lx1.( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
 -->
 ( \ly. ( \lx1. ( ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z ) x1 ) ) )
+
 plug in y for y1
                      _____           __            _
 ( \ly. ( \lx1. ( ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z ) x1 ) ) )
 -->
 ( \ly. ( \lx1. ( ( ( \lx1. ( y z x1 ) ) z ) x1 ) ) )
+
 plug in z for \lx1.
                      _____       __     _
 ( \ly. ( \lx1. ( ( ( \lx1. ( y z x1 ) ) z ) x1 ) ) )
 -->
 ( \ly. ( \lx1. ( ( y z z ) x1 ) ) )
+
 this problem has more memes that make it harder than traditional plug and play lambda calculus problems
-for here, you have to see if substitution is possible.
+for here, you have to see if substitution is possible.  
+final answer:
+( \ly. ( \lx1. ( ( y z z ) x1 ) ) )
+
 
 2\. Shadowing and Scope 
 
 ((*λx. λy. x* (*λy. x y*)) (*λz. y z*)) *x* 
+
 convert this into a duncan lambda calculus question
 ( ( \lx. ( \ly. ( x ( \ly. ( x y ) ) ) ) ) ( \lz. ( y z ) ) ) x
+
 \a renaming time :-DDD
 ( ( \lx1. ( \ly. ( x1 ( \ly1. ( x1 y1 ) ) ) ) ) ( \lz. ( y z ) ) ) x
+
 plug in \lz. and it's buddies for x1
     _____          __           __              __________________
 ( ( \lx1. ( \ly. ( x1 ( \ly1. ( x1 y1 ) ) ) ) ) ( \lz. ( y z ) ) ) x
 -->
 ( \ly. ( ( \lz. ( y z ) ) ( \ly1. ( ( \lz. ( y z ) ) y1 ) ) ) ) x
+
 plug in x for y
   ____            _                          _                  _
 ( \ly. ( ( \lz. ( y z ) ) ( \ly1. ( ( \lz. ( y z ) ) y1 ) ) ) ) x
 -->
 ( \lz. ( x z ) ) ( \ly1. ( ( \lz. ( x z ) ) y1 ) )
+
 plug in \ly1 and it's buddies for z
   ____     _     _________________________________
 ( \lz. ( x z ) ) ( \ly1. ( ( \lz. ( x z ) ) y1 ) )
 -->
 ( x ( \ly1. ( ( \lz. ( x z ) ) y1 ) ) )
+
 cannot plug var into x, not a \l function.
 cannot plug var into y1, no var available.
 plug in y1 for z
@@ -79,13 +96,52 @@ plug in y1 for z
 ( x ( \ly1. ( ( \lz. ( x z ) ) y1 ) ) )
 -->
 ( x ( \ly1. ( x y1 ) ) )
+
 cannot plug var in for y1, no var available.
 seems like that's the end.
+( x ( \ly1. ( x y1 ) ) )
 
 
 3\. Function Composition with Free Variables 
 
 (*λf. λg. λx. f* (*g x*)) (*λx. y x*) (*λy. x y*) 
+
+convert to duncan lambda calculus question
+( \lf. ( \lg. ( \lx. ( f ( g x ) ) ) ) ) ( \lx. ( y x ) ) ( \ly. ( x y ) )
+
+\a renaming :DDDD
+( \lf. ( \lg. ( \lx2. ( f ( g x2 ) ) ) ) ) ( \lx1. ( y x1 ) ) ( \ly1. ( x y1 ) )
+
+plug in x1 and it's buddies for f
+  ____                  _                  __________________
+( \lf. ( \lg. ( \lx2. ( f ( g x2 ) ) ) ) ) ( \lx1. ( y x1 ) ) ( \ly1. ( x y1 ) )
+-->
+( \lg. ( \lx2. ( ( \lx1. ( y x1 ) ) ( g x2 ) ) ) ) ( \ly1. ( x y1 ) )
+
+plug in y1 for g
+  ____                                _            __________________
+( \lg. ( \lx2. ( ( \lx1. ( y x1 ) ) ( g x2 ) ) ) ) ( \ly1. ( x y1 ) )
+-->
+( \lx2. ( ( \lx1. ( y x1 ) ) ( ( \ly1. ( x y1 ) ) x2 ) ) )
+
+cannot plug var in for x2, no var available
+plug y1 for x1
+            _____     __       __________________
+( \lx2. ( ( \lx1. ( y x1 ) ) ( ( \ly1. ( x y1 ) ) x2 ) ) )
+-->
+( \lx2. ( ( ( y ( \ly1. ( x y1 ) ) ) ) x2 ) )
+
+cannot plug var for y, no \ly available
+plug in x2 for y1
+                  _____     __         __
+( \lx2. ( ( ( y ( \ly1. ( x y1 ) ) ) ) x2 ) )
+-->
+( \lx2. ( y ( x x2 ) ) )
+
+i can't substitute further I believe.
+final answer:
+( \lx2. ( y ( x x2 ) ) )
+
 
 1  
 Part 2: Operational Semantics 
