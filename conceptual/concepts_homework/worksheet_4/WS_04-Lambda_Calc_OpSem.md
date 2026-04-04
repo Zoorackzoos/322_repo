@@ -23,37 +23,18 @@ rephrase into a duncan formatted lambda calculus question
 ( \lx.( \ly.( x ( \lz. ( x y z ) ) ) ) ) ( \ly. ( \lx. ( y z x ) ) )
 do \a renaming
 ( \lx2.( \ly.( x2 ( \lz1. ( x2 y z1 ) ) ) ) ) ( \ly1. ( \lx1. ( y1 z x1 ) ) )
-the reason these lambda calculus problems are in here, is becuase that left part has 2 x'es attached to it's \lx.   
-they're like variables, i guess :-/  
-in the previous problems the \l functions were either overwritten or duplicates didn't exist in the first place.  
-    not like I remember -_-
-plug in the right \ly1. and it's buddies for x2
+plug in \ly1 and it's buddies for both \lx2
 ( \ly. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) ) )
-plug in the rightward piece for y1
+cannot plug var into y. no var present.
+plug in \lz1 and it's buddies for \ly1
 ( \ly. ( \lx1. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
-cannot replace y with a variable because there's no variable to plug into y
-plug in z for x1. i "_" it for you.
-         _____                                    __                _
-( \ly. ( \lx1. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z1 ) ) z x1 ) ) )
--->
-( \ly. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y z1 ) ) x1 ) )
-plug in x1 for z1. i "___" it for you.
-           _____                                    __     __
-( \ly. ( ( \lz1. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y z1 ) ) x1 ) )
--->
-( \ly. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y x1 ) )
-plug in y for y1
-           _____           __           _
-( \ly. ( ( \ly1. ( \lx1. ( y1 z z ) ) ) y x1 ) )
--->
-( \ly. ( ( \lx1. ( y z z ) ) ) x1 ) )
-plug in x1 for a x1 that doesn't exist in \lx1.
-           ____                __
-( \ly. ( ( \lx1. ( y z z ) ) ) x1 )
--->
-( \ly. ( ( ( y z z ) ) ) )
-simplify
-( \ly. ( y z z ) )
+cannot plug var into x1. no var present.
+plug in z for z1
+( \ly. ( \lx1. ( ( ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z ) ) x1 ) )
+plug in x1 into x1
+( \ly. ( \ly1. ( \lx1. ( y1 z x1 ) ) ) y z )
+
+
 
 
 
