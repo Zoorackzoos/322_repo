@@ -1,7 +1,10 @@
-\documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath, amssymb, enumitem}
 \setlist{noitemsep}
+
+% annot run program "pdflatex"
+% (in directory
+% "C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\concepts_homework\worksheet_4"):
+% CreateProcess error=2, The system cannot find the file specified
 
 \begin{document}
 
@@ -19,6 +22,8 @@
     \item Assume the standard rules for numbers, booleans, variables, arithmetic, comparisons, conditionals, and \texttt{var}.
 \end{itemize}
 
+\newline
+
 \section*{Part 1: Lambda Calculus}
 
 Evaluate the following lambda calculus expressions to normal form. Be careful with free and bound variables, and apply $\alpha$-renaming where necessary to avoid variable capture.
@@ -28,6 +33,22 @@ Evaluate the following lambda calculus expressions to normal form. Be careful wi
     \[
       (\lambda x.\ \lambda y.\ x\ (\lambda z.\ x\ y\ z))\ (\lambda y.\ \lambda x.\ y\ z\ x)
     \]
+    % ( \lx.( \ly.( x ( \lz. ( x y z ) ) ) ) ) ( \ly. ( \lx. ( y z x ) ) )
+
+    \begin{solution}
+        plug in the rightmost for the outer x
+        \[
+            ( \lambda x.( \lambda y.( x ( \lambda z.( x y z ) ) ) ) ) ( \lambda y. ( \lambda x. ( y z x ) ) )
+            \rightarrow
+            ( \lambda y.( ( \lambda y. ( \lambda x. ( y z x ) ) ) ( \lambda z.( x y z ) ) )
+        \]
+        plug in the rightmost for y
+        \[
+            ( \lambda y. ( \lambda x. ( ( \lambda z.( x y z ) ) z x ) ) )
+            \rightarrow
+
+        \]
+    \end{solution}
 
     \vspace{1in}
 
