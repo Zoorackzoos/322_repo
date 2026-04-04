@@ -18,6 +18,20 @@ Evaluate the following lambda calculus expressions to normal form. Be careful wi
 
 (*λx. λy. x* (*λz. x y z*)) (*λy. λx. y z x*) 
 
+rephrase into a duncan lambda calculus question
+( \lx.( \ly.( x ( \lz. ( x y z ) ) ) ) ) ( \ly. ( \lx. ( y z x ) ) )
+do \a renaming
+( \lx1.( \ly1.( x1 ( \lz1. ( x y1 z1 ) ) ) ) ) ( \ly. ( \lx2. ( y z x2 ) ) )
+i did the \a renaming based on outer versus outer variables. if that makes sense :-/ 
+free vars: x, z
+bound vars: x1, y1, z1, x2, y
+anyway, plug in \ly. and it's buddies for x1
+( \ly1.( ( \ly. ( \lx2. ( y z x2 ) ) ) ( \lz1. ( x y1 z1 ) ) ) )
+the only way to plug in y1 for something would be to plug a left element into a right element.
+so i probably screwed up the alpha renaming
+what do?
+is this what i'm supposed to be song anyway?
+
 2\. Shadowing and Scope 
 
 ((*λx. λy. x* (*λy. x y*)) (*λz. y z*)) *x* 
