@@ -154,6 +154,55 @@ Give a full big-step derivation for the following expression. Assume an arbitrar
 convert this into a duncan friendly question. That's my name btw.
 ( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
 
+    ___________
+( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
+evaluate y 
+x = 5
+"new environment"
+p1 = p[x --> 5]
+
+                  _______________________________________
+( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
+evaluate y. 
+    that var declaration is surrounded by a () which makes a awkward connection 
+    to the other rightward var declaration. just ignore it :-3
+y = ( if ( gt x 3 ) ( + x 2 ) 0 )
+        ( gt x 3 )
+        x > 3
+            5 > 3
+            true
+    ( if true ( + x 2 ) 0 )
+        that 0, is the otherwise condition i think.
+        so if the "gt x 3" wern't true then y = 0.
+    + x 2 
+    + 5 2
+y = 6
+"new environment"
+p2 = p1[y = 6]
+
+                                                          _____________________
+( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
+evaluate x, 2nd time
+x = ( + y 1 )
+    ( + 6 1 )
+x = 7
+"new environment"
+p3 = p2[x = 7]
+
+                                                                                _________
+( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
++ x y
++ 7 y
++ 7 6
+13
+
+                                                                                                  _
+( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
+i'm going to assume that "p" means "execute the program bro".
+when we do it turns into 13.
+
+now i'll show you the "formal evaluation". it looks like a tumor.
+
 2\. Late Stuck State 
 
 Give a big-step derivation showing exactly where the following expression gets stuck. Explain why the derivation cannot continue. 
