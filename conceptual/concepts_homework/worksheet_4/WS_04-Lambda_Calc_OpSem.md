@@ -195,7 +195,7 @@ p3 = p2[x = 7]
 + 7 y
 + 7 6
 13
-
+TODO: this is supposed to be 15
                                                                                                   _
 ( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
 i'm going to assume that "p" means "execute the program bro".
