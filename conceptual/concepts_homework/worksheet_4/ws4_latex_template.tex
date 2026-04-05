@@ -251,47 +251,59 @@
             i'm going to assume that "p" means "execute the program bro".
             when we do it turns into 15.
 
-            now i'll show you the "formal evaluation". it looks like a tumor.
+            now i'll show you the "formal evaluation".
+            Mr. T does this a bit differently in his docs, he has a compressed rho value.
+            That's quite hard to read. and if I can't read it, neither can you.
+            So i'll have the involvement calls separated.
         \end{markdown}
 
         \begin{math}
-            \rho_3 = \rho[ \ x\xrightarrow{}8 \ ,\  y \xrightarrow{}7 \ ]
-            \\
+            \rho_1 = \rho[x \mapsto 5] \\
+            \rho_2 = \rho_1[y \mapsto 7] \\
+            \rho_3 = \rho_2[x \mapsto 8]
         \end{math}
 
-        \begin{math}
-            \frac
-            {
-                \frac
-                {<5> \ \downarrow \ 5}
-                {<var ( x \ 5 )> \ \downarrow \ 5}
-                \frac
-                {
-                    \frac
-                    {<x> \ \downarrow \ 5}
-                    {<(gt \ x \ 3)> \ \downarrow \ true}
-                    \frac
-                    {<x> \ \downarrow \ 5}
-                    {<(+ \ x \ 2)> \ \downarrow \ 7}
+        \[
+            \frac{
+                \langle 5,\ \rho \rangle \Downarrow 5
+                \quad
+                \frac{
+                    \frac{
+                        \langle x,\ \rho_1 \rangle \Downarrow 5
+                    }{
+                        \langle (gt\ x\ 3),\ \rho_1 \rangle \Downarrow true
+                    }
+                    \quad
+                    \frac{
+                        \langle x,\ \rho_1 \rangle \Downarrow 5
+                    }{
+                        \langle (+\ x\ 2),\ \rho_1 \rangle \Downarrow 7
+                    }
+                }{
+                    \langle (if\ (gt\ x\ 3)\ (+\ x\ 2)\ 0),\ \rho_1 \rangle \Downarrow 7
                 }
-                {<var ( y \ ( if \ (gt \ x \ 3) (+ \ x \ 2) \ 0 \ ) \ )> \ \downarrow \ 7}
-                \frac
-                {
-                    \frac
-                    {<y> \ \downarrow \ 7}
-                    {<+ \ y \ 1> \ \downarrow \ 8}
+                \quad
+                \frac{
+                    \frac{
+                        \langle y,\ \rho_2 \rangle \Downarrow 7
+                    }{
+                        \langle (+\ y\ 1),\ \rho_2 \rangle \Downarrow 8
+                    }
+                    \quad
+                    \frac{
+                        \langle x,\ \rho_3 \rangle \Downarrow 8
+                        \quad
+                        \langle y,\ \rho_3 \rangle \Downarrow 7
+                    }{
+                        \langle (+\ x\ y),\ \rho_3 \rangle \Downarrow 15
+                    }
+                }{
+                    \langle (var\ (x\ (+\ y\ 1))\ (+\ x\ y)),\ \rho_2 \rangle \Downarrow 15
                 }
-                {<var (x \ ( \ + \ y \ 1) \ )> \ \downarrow \ 8}
-                \frac
-                {<x> \ \downarrow \ 7 \ \ \ <y> \ \downarrow \ 8}
-                {<+ \ x \ y> \ \downarrow \ 15}
+            }{
+                \langle (var\ (x\ 5)\ (var\ (y\ (if\ (gt\ x\ 3)\ (+\ x\ 2)\ 0))\ (var\ (x\ (+\ y\ 1))\ (+\ x\ y)))),\ \rho \rangle \Downarrow 15
             }
-            {
-                \langle (var\ (x\ 5)\ (var\ (y\ (if\ (gt\ x\ 3)\ (+\ x\ 2)\ 0))\ (var\ (x\ (+\ y\ 1))\ (+\ x\ y)))),\ \rho \rangle \
-            \downarrow \
-            15
-            }
-        \end{math}
+        \]
 
         \vspace{3in}
 
@@ -301,12 +313,155 @@
             \langle (if\ (eq\ 1\ 1)\ (var\ (x\ true)\ (if\ x\ (+\ x\ 1)\ 5))\ 0),\ \rho \rangle
         \]
 
+        \begin{markdown}
+            turn this into a duncan friendly question
+            ( ( if ( eq 1 1 ) ( var ( x true ) ( if x ( + x 1 ) 5 ) ) 0 ) , p )
+
+            conditional  if yes                                if no
+            c___________c y____________________________________y n_n
+            ( ( if ( eq 1 1 ) ( var ( x true ) ( if x ( + x 1 ) 5 ) ) 0 ) , p )
+
+            evaluate conditional
+            eq 1 1
+            true
+
+            evaluate "if yes"
+            _____________
+            ( var ( x true ) ( if x ( + x 1 ) 5 ) )
+            x = true
+            "new envoirnment"
+            p1 = p[x = true]
+            ___________________
+            ( var ( x true ) ( if x ( + x 1 ) 5 ) )
+            if true....
+            + true 1
+            aka "true + 1"
+            you cannot evaluate this.
+            CAN'T GO FURTHER.
+
+            formal derivation now:
+        \end{markdown}
+
+        \begin{math}
+            \rho_1 = \rho_1[x \mapsto true]
+        \end{math}
+
+        \[
+            \frac
+            {
+                <eq \ 1 \ 1> \ \downarrow \ true \ \ \
+            \frac
+            {<x, p1> \ \downarrow \ true}
+            {<(if\ x\ (+\ x\ 1)\ 5)> \ \downarrow \ type \ error}
+            }
+            {< \langle (if\ (eq\ 1\ 1)\ (var\ (x\ true)\ (if\ x\ (+\ x\ 1)\ 5))\ 0),\ \rho \rangle > \ \downarrow \ type \ error}
+        \]
+
         \vspace{3in}
 
         \item \textbf{Complex Conditionals \& Initial Environment} \\
         Let $\rho_0 = \{ a \mapsto 10, b \mapsto 5 \}$. Evaluate the following expression:
         \[
             \langle (if\ (and\ (lt\ b\ a)\ (eq\ (-\ a\ b)\ 5))\ (var\ (a\ b)\ (+\ a\ b))\ 0),\ \rho_0 \rangle
+        \]
+
+        \begin{markdown}
+            turn this into a duncan friendly question
+            ( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+
+            evaluate the if statement conditional
+            _____________________________________
+            ( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+
+            do the 1st conditional in the "and"
+            __________
+            ( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+            this question comes with pre-built p.
+            lt b a
+            call p0 for b
+            lt 5 a
+            call p0 for a
+            lt 5 10
+            AKA
+            5 < 10
+            true
+
+            evaluate the 2nd "and" conditional
+            _________________
+            ( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+            eq (- a b) 5
+            call p0 for a
+            eq (- 10 b) 5
+            call p0 for b
+            eq (- 10 5) 5
+            eq 5 5
+            true
+
+            evaluate the and for real this time
+            ( ( if ( and true true ) ( var ( a b ) ( + a b ) ) 0), p0 )
+            true
+
+            evaluate var a
+            ___________
+            ( ( if ( and true true ) ( var ( a b ) ( + a b ) ) 0), p0 )
+            a = b
+            a = 5
+            "new environment"
+            p1 = p1[a --> 5]
+
+            evaluate + a b
+            ________
+            ( ( if ( and true true ) ( var ( a b ) ( + a b ) ) 0), p0 )
+            + a b
+            call p1 for the value of a
+            + 5 b
+            call p0 for the value of b
+            + 5 5
+            10
+            your answer is 10.
+
+            formal irradiation now.
+        \end{markdown}
+
+        \[
+            \frac
+            {
+                \frac
+                {
+                    \frac
+                    {
+                        <b \ , \ p_0>\ \xrightarrow{} \ 10
+                    \ \ \
+                        <a \ , \ p_0> \ \xrightarrow{} \ 5
+                    }
+                    {<(lt\ b\ a)> \ \xrightarrow{} \ true}
+                    \frac
+                    {
+                        \frac
+                        {
+                            <b \ , \ p_0>\ \xrightarrow{} \ 10
+                        \ \ \
+                            <a \ , \ p_0> \ \xrightarrow{} \ 5
+                        }
+                        {<(-\ a\ b)> \ \xrightarrow{} \ 5}
+                    }
+                    {<(eq\ (-\ a\ b)\ 5)> \ \xrightarrow{} \ true}
+                }
+                {
+                    <(and\ (lt\ b\ a)\ (eq\ (-\ a\ b)\ 5))> \ \xrightarrow{} \ true
+                }
+                \frac
+                {
+                    \frac
+                    {<a , p_0> \ \xrightarrow{} \ 5}
+                    {<p_1 \ , \ a> \ \xrightarrow{} \ p_1[a = 5]}
+                    \frac
+                    {<p_1 , a>\ \xrightarrow{} \ 5 \ \ \ <p_0 , b> \ \xrightarrow{} \ 5}
+                    {<(+\ a\ b)> \ \xrightarrow{} \ 10}
+                }
+                {<(var\ (a\ b)\ (+\ a\ b))> \ \downarrow \ 10}
+            }
+            {\langle (if\ (and\ (lt\ b\ a)\ (eq\ (-\ a\ b)\ 5))\ (var\ (a\ b)\ (+\ a\ b))\ 0),\ \rho_0 \rangle \ \xrightarrow{} \ 10}
         \]
 
     \end{enumerate}

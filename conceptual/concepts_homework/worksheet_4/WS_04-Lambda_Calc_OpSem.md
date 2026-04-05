@@ -209,10 +209,86 @@ Give a big-step derivation showing exactly where the following expression gets s
 
 *⟨*(*if* (*eq* 1 1\) (*var* (*x true*) (*if x* (+ *x* 1\) 5)) 0\)*, ρ⟩* 
 
+turn this into a duncan friendly question
+( ( if ( eq 1 1 ) ( var ( x true ) ( if x ( + x 1 ) 5 ) ) 0 ) , p )
+
+       conditional  if yes                                if no
+    c___________c y____________________________________y n_n
+( ( if ( eq 1 1 ) ( var ( x true ) ( if x ( + x 1 ) 5 ) ) 0 ) , p )
+
+evaluate conditional
+eq 1 1 
+true
+
+evaluate "if yes"
+  _____________
+( var ( x true ) ( if x ( + x 1 ) 5 ) )
+x = true
+                 ___________________
+( var ( x true ) ( if x ( + x 1 ) 5 ) )
+if true.... 
++ true 1
+aka "true + 1"
+you cannot evaluate this.
+CAN'T GO FURTHER.
+
 3\. Complex Conditionals & Initial Environment 
 
 Let *ρ*0 \= *{a 7→* 10*, b 7→* 5*}*. Evaluate the following expression: 
 
 *⟨*(*if* (*and* (*lt b a*) (*eq* (*− a b*) 5)) (*var* (*a b*) (+ *a b*)) 0\)*, ρ*0*⟩* 
 
-2
+turn this into a duncan friendly question
+( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+
+evaluate the if statement conditional
+       _____________________________________
+( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+
+do the 1st conditional in the "and"
+             __________
+( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+this question comes with pre-built p. 
+lt b a
+    call p0 for b
+lt 5 a
+    call p0 for a 
+lt 5 10
+AKA
+5 < 10
+true
+
+evaluate the 2nd "and" conditional
+                        _________________
+( ( if ( and ( lt b a ) ( eq ( - a b ) 5 ) ) ( var ( a b ) ( + a b ) ) 0), p0 )
+eq (- a b) 5
+    call p0 for a
+eq (- 10 b) 5
+    call p0 for b
+eq (- 10 5) 5
+eq 5 5 
+true
+
+evaluate the and for real this time
+( ( if ( and true true ) ( var ( a b ) ( + a b ) ) 0), p0 )
+true
+
+evaluate var a
+                           ___________
+( ( if ( and true true ) ( var ( a b ) ( + a b ) ) 0), p0 )
+a = b 
+a = 5
+"new environment"
+p1 = p1[a --> 5]
+
+evaluate + a b
+                                       ________
+( ( if ( and true true ) ( var ( a b ) ( + a b ) ) 0), p0 )
++ a b 
+    call p1 for the value of a
++ 5 b
+    call p0 for the value of b
++ 5 5
+10
+your answer is 10.
+
