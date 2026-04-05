@@ -124,21 +124,20 @@ plug in y1 for g
 -->
 ( \lx2. ( ( \lx1. ( y x1 ) ) ( ( \ly1. ( x y1 ) ) x2 ) ) )
 
-cannot plug var in for x2, no var available
-plug y1 for x1
-            _____     __       __________________
+plug in y1 and it's buddies for x1
+            _____     __     _________________________
 ( \lx2. ( ( \lx1. ( y x1 ) ) ( ( \ly1. ( x y1 ) ) x2 ) ) )
 -->
-( \lx2. ( ( ( y ( \ly1. ( x y1 ) ) ) ) x2 ) )
+( \lx2. ( y ( ( \ly1. ( x y1 ) ) x2 ) ) )
 
-cannot plug var for y, no \ly available
+cannot plug var in for y, no \ly present
 plug in x2 for y1
-                  _____     __         __
-( \lx2. ( ( ( y ( \ly1. ( x y1 ) ) ) ) x2 ) )
+                _____     __     __
+( \lx2. ( y ( ( \ly1. ( x y1 ) ) x2 ) ) )
 -->
 ( \lx2. ( y ( x x2 ) ) )
 
-i can't substitute further I believe.
+cannot reduce further. 
 final answer:
 ( \lx2. ( y ( x x2 ) ) )
 
