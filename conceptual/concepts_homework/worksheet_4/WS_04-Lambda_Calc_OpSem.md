@@ -151,6 +151,9 @@ Give a full big-step derivation for the following expression. Assume an arbitrar
 
 *⟨*(*var* (*x* 5\) (*var* (*y* (*if* (*gt x* 3\) (+ *x* 2\) 0)) (*var* (*x* (+ *y* 1)) (+ *x y*))))*, ρ⟩* 
 
+convert this into a duncan friendly question. That's my name btw.
+( ( var ( x 5 ) ( var ( y ( if ( gt x 3 ) ( + x 2 ) 0 ) ) ( var ( x ( + y 1 ) ) ( + x y ) ) ) ) , p )
+
 2\. Late Stuck State 
 
 Give a big-step derivation showing exactly where the following expression gets stuck. Explain why the derivation cannot continue. 
