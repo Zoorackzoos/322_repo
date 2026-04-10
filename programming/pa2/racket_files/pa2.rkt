@@ -186,9 +186,9 @@
    (print "                        ")
    (println (number? (my-second ast)))
 
-   (println "                    (number? (my-third ast))")
-   (print "                        ")
-   (println (number? (my-third ast)))
+   ;;(println "                    (number? (my-third ast))")
+   ;;(print "                        ")
+   ;;(println (number? (my-third ast)))
    
    ;;final display
    (print "                ")
@@ -416,9 +416,6 @@
 
 (define (simplify-complicated-prefix ast)
   (println "        simplify-complicated-prefix")
-  ;;left side is a list      '(1 + 2 * 3) -> '(+ 1 (* 2 3)
-  ;;right side is a list
-  ;;both sides are lists
   (cond
     [
      (and
@@ -426,7 +423,26 @@
       (println "            1st parameter is a list, look!")
       (print "            ")
       (println (my-second ast))
-      ;;                                    _________________________________
+      (any-error? (evaluate-prefix (my-second ast)))
+      (evaluate-prefix (my-second ast))
+     )
+    ]
+    [
+     (and
+      (list? (my-third ast))
+      (println "            2nd parameter is a list, look!")
+      (print "            ")
+      (println (my-third ast))
+      (any-error? (evaluate-prefix (my-third ast)))
+      (evaluate-prefix (my-third ast))
+     )
+    ]
+    [
+     (and
+      (list? (my-second ast))
+      (println "            1st parameter is a list, look!")
+      (print "            ")
+      (println (my-second ast))
       (evaluate-prefix (list (my-first ast) (evaluate-prefix (my-second ast)) (my-third ast)))
      )
     ]
@@ -436,7 +452,6 @@
       (println "            2nd parameter is a list, look!")
       (print "            ")
       (println (my-third ast))
-      ;;                                                    _______________________________
       (evaluate-prefix (list (my-first ast) (my-second ast) (evaluate-prefix (my-third ast))))
      )
     ]
@@ -449,7 +464,6 @@
       (println (my-second ast))
       (print "            ")
       (println (my-third ast))
-      ;;                                    __________________________________________________________________
       (evaluate-prefix (list (my-first ast) (evaluate-prefix (my-second ast)) (evaluate-prefix (my-third ast))))
      )
     ]
@@ -512,15 +526,24 @@
      '(err "type error")
     )
 
-    ;; equals and not equals
+    ;; equals and not equals type error (number vs bool)
     (and
-     (prefix-bool-op? (my-first ast))
+     (or
+      (equal? (my-first ast) '==)
+      (equal? (my-first ast) '!=)
+     )
      (not (unary-shape? ast))
      (not (list? (my-second ast)))
      (not (list? (my-third ast)))
      (or
-      (not (boolean-literal? (my-second ast)))
-      (not (boolean-literal? (my-third ast)))
+      (and
+       (boolean-literal? (my-second ast))
+       (number? (my-third ast))
+      )
+      (and
+       (number? (my-second ast))
+       (boolean-literal? (my-third ast))
+      )
      )
      '(err "type error")
     )
@@ -708,4 +731,4 @@
 ;; (evaluate-program '(1 / (2 - 2)))
 
 ;; barbismo tests
-(evaluate-program '(true < false))
+(evaluate-program '(! (1 + true)))
