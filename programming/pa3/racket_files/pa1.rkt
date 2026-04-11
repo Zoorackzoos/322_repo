@@ -614,11 +614,7 @@
 )
 
 ;;test cases
-;;(validate-program 'x)
-;;(validate-program 'y)
-;;(validate-program '(var (x 1) x))
-;;(validate-program '(! (1 + true)))
-(validate-program '(var (x 1) (var (y 2) (x + y))))
+(infix->prefix '(var (x (1 + 2)) (x * 3)))
 
 
 
