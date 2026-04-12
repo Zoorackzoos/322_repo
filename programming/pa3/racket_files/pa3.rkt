@@ -188,8 +188,8 @@
 ;; You may add more tests as you work.
 ;; ============================================================
 
-;; 10
-(evaluate-with-env 'y '((x 5) (y 10)))
+;; 6
+(evaluate-with-env '(x + y + 1) '((x 2) (y 3)))
 
 
 

@@ -40,9 +40,20 @@
   (equal? x '(err "division by zero")))
 
 (define (any-error? x)
-  (and (list? x)
-       (not (null? x))
-       (equal? (car x) 'err)))
+  ;;display
+  (println "            any-error?")
+  (print "                ")
+  (println x)
+
+  ;;work
+  (and
+   (list? x)
+   (println "                x is a list")
+   (not (null? x))
+   (println "                x is not null")
+   (equal? (car x) 'err)
+  )
+)
 
 
 ;; ============================================================
@@ -501,6 +512,7 @@
   ;;work
   (or
     (and
+     (println "            previous type error ?")
      (any-error? ast)
     )
    
@@ -508,16 +520,24 @@
     ;; '(1 + true) --> '(+ 1 true)
     ;; '(true < false) -> (< true false)
     (and
+     (println "            bools in numeric ops ?")
      (or
       (arithmetic-op? (my-first ast))
+      (println "                my-first was a numeric op")
       (numeric-comparison-op? (my-first ast))
+      (println "                my-first was a numeric comparison op")
      )
      (not (unary-shape? ast))
+     (println "                ast was not a unary shape")
      (not (list? (my-second ast)))
+     (println "                my-second was not a list")
      (not (list? (my-third ast)))
+     (println "                my-third was not a list")
      (or
       (not (number? (my-second ast)))
+      (println "                my-second was not a number")
       (not (number? (my-third ast)))
+      (println "                my-third was not a number")
      )
      '(err "type error")
     )
@@ -525,6 +545,7 @@
     ;; boolean
     ;; '(1 && 2)
     (and
+     (println "            numbers in a bool op ?")
      (prefix-bool-op? (my-first ast))
      (not (unary-shape? ast))
      (not (list? (my-second ast)))
@@ -538,6 +559,7 @@
 
     ;; equals and not equals type error (number vs bool)
     (and
+     (println "            equals type error ?")
      (or
       (equal? (my-first ast) '==)
       (equal? (my-first ast) '!=)
