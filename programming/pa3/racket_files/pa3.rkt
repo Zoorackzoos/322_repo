@@ -74,6 +74,13 @@
   (println env)
   (print "            ")
   (println iterator)
+
+  (print "            ")
+  (println (list-ref env iterator))
+  (print "            ")
+  (println (my-first (list-ref env iterator))) 
+  (print "            ")
+  (println var)
   
   (if
    (equal? (my-first (list-ref env iterator)) var);;condtional
@@ -125,9 +132,29 @@
     ;;jackass single variable ahh input
     [
      (and
+      (println "        jackass single variable ahh input")
       (not (list? e))
       (variable? e)
       (duncan-lookup-env e env 0)
+     )
+    ]
+
+    ;;less-jackass single variable list ahh input
+    [
+     (and
+      (println "        less-jackass single variable list ahh input")
+      (list? e)
+      (variable? (my-first e))
+      (duncan-lookup-env e env 0)
+     )
+    ]
+    
+    ;;declare a var in the input
+    [
+     (and
+      (equal? (my-first e) 'var)
+      (println "        you made a var. what the hell bro.")
+      (prefixed-eval-with-env (my-third e) (append (my-second e) env))
      )
     ]
 
@@ -198,8 +225,8 @@
 ;; You may add more tests as you work.
 ;; ============================================================
 
-;; 6
-(evaluate-with-env '(x + y + 1) '((x 2) (y 3)))
+;; 5
+(evaluate-with-env '(var (x 5) x) '() )
 
 
 
