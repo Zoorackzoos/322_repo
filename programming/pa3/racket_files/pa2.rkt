@@ -520,24 +520,19 @@
     ;; '(1 + true) --> '(+ 1 true)
     ;; '(true < false) -> (< true false)
     (and
-     (println "            bools in numeric ops ?")
-     (or
-      (arithmetic-op? (my-first ast))
-      (println "                my-first was a numeric op")
-      (numeric-comparison-op? (my-first ast))
-      (println "                my-first was a numeric comparison op")
-     )
-     (not (unary-shape? ast))
-     (println "                ast was not a unary shape")
-     (not (list? (my-second ast)))
-     (println "                my-second was not a list")
-     (not (list? (my-third ast)))
-     (println "                my-third was not a list")
-     (or
-      (not (number? (my-second ast)))
-      (println "                my-second was not a number")
-      (not (number? (my-third ast)))
-      (println "                my-third was not a number")
+     (and
+      (or
+       (arithmetic-op? (my-first ast))
+       (numeric-comparison-op? (my-first ast))
+       )
+      (not (unary-shape? ast))
+      (not (list? (my-second ast)))
+      (not (list? (my-third ast)))
+      (or
+       (not (number? (my-second ast)))
+       (not (number? (my-third ast)))
+       )
+      (println "            bool in a numeric operation")
      )
      '(err "type error")
     )
@@ -545,37 +540,41 @@
     ;; boolean
     ;; '(1 && 2)
     (and
-     (println "            numbers in a bool op ?")
-     (prefix-bool-op? (my-first ast))
-     (not (unary-shape? ast))
-     (not (list? (my-second ast)))
-     (not (list? (my-third ast)))
-     (or
-      (not (boolean-literal? (my-second ast)))
-      (not (boolean-literal? (my-third ast)))
+     (and
+      (prefix-bool-op? (my-first ast))
+      (not (unary-shape? ast))
+      (not (list? (my-second ast)))
+      (not (list? (my-third ast)))
+      (or
+       (not (boolean-literal? (my-second ast)))
+       (not (boolean-literal? (my-third ast)))
+      )
+      (println "            numbers in a bool op")
      )
      '(err "type error")
     )
 
     ;; equals and not equals type error (number vs bool)
     (and
-     (println "            equals type error ?")
-     (or
-      (equal? (my-first ast) '==)
-      (equal? (my-first ast) '!=)
-     )
-     (not (unary-shape? ast))
-     (not (list? (my-second ast)))
-     (not (list? (my-third ast)))
-     (or
-      (and
-       (boolean-literal? (my-second ast))
-       (number? (my-third ast))
+     (and
+      (or
+       (equal? (my-first ast) '==)
+       (equal? (my-first ast) '!=)
       )
-      (and
-       (number? (my-second ast))
-       (boolean-literal? (my-third ast))
+      (not (unary-shape? ast))
+      (not (list? (my-second ast)))
+      (not (list? (my-third ast)))
+      (or
+       (and
+        (boolean-literal? (my-second ast))
+        (number? (my-third ast))
+       )
+       (and
+        (number? (my-second ast))
+        (boolean-literal? (my-third ast))
+       )
       )
+      (println "            equals type error")
      )
      '(err "type error")
     )

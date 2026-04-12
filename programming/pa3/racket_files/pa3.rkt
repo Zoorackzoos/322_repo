@@ -130,6 +130,16 @@
       (duncan-lookup-env e env 0)
      )
     ]
+
+    ;;one of the elemetns is a bastard list
+    [
+     (list? (my-second e))
+     (prefixed-eval-with-env (list (my-first e) (prefixed-eval-with-env (my-second e) env) (my-third e)) env)
+    ]
+    [
+     (list? (my-second e))
+     (prefixed-eval-with-env (list (my-first e) (my-second e) (prefixed-eval-with-env (my-third e)) env) env)
+    ]
     
     ;;left or right is a variable
     [
