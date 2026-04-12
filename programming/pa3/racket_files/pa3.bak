@@ -112,36 +112,12 @@
 ;;   implement this function
 ;; ============================================================
 (define (extend-env var val env)
-  'todo
-)
+  'todo)
 
 
 ;; ============================================================
 ;; Evaluator
 ;; ============================================================
-
-;; helper functions for evaluator
-;;   just put the infix->prefix version of e into this.
-;;   you could have a different design if you knew what made a e prefixed or not. i don't.
-(define (prefixed-eval-with-env e env iterator)
-  ;;display
-  (println "    prefixed-eval-with-env")
-  (print "        ")
-  (println e)
-  (print "        ")
-  (println env)
-  (print "        ")
-  (println iterator)
-  (print "        ")
-  (println (list-ref env iterator))
-
-  ;;work
-  (if
-   (equal? (my-first (list-ref env iterator)) e);;condtional
-   (my-second (list-ref env iterator));;if yes
-   (prefixed-eval-with-env e env (+ iterator 1));;if no
-  )
-)
 
 ;; ============================================================
 ;; evaluate-with-env
@@ -165,15 +141,7 @@
 ;;   You may reuse evaluation helpers from PA2.
 ;; ============================================================
 (define (evaluate-with-env e env)
-  ;;display
-  (println "evaluate-with-env")
-  (print "    ")
-  (println e)
-  (print "    ")
-  (println env)
-
-  ;;work
-  (prefixed-eval-with-env (infix->prefix e) env 0)
+  'todo
 )
 
 
@@ -183,20 +151,20 @@
 ;; You may add more tests as you work.
 ;; ============================================================
 
-;; intended output =
-;; 5
-(evaluate-with-env 'x '((x 5)) )
+;;mr.t test cases
+;; environment tests
+(lookup-env 'x '((x 5) (y 10)))
+;;(lookup-env 'z '((x 5) (y 10)))
+;;(extend-env 'x 5 '())
 
+;; evaluation tests
+;;(evaluate-with-env '(1 + 2) '())
+;;(evaluate-with-env 'x '((x 5)))
+;;(evaluate-with-env '(x + 1) '((x 5)))
+;;(evaluate-with-env '(var (x 5) x) '())
+;;(evaluate-with-env '(var (x (1 + 2)) (x * 3)) '())
+;;(evaluate-with-env '(var (x 5) (var (y 10) (x + y))) '())
 
-
-
-
-
-
-
-
-
-
-
-
-
+;; error tests
+;;(evaluate-with-env 'x '())
+;;(evaluate-with-env '(var (x 5) (y + 1)) '())
