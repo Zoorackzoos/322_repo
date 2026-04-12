@@ -78,7 +78,7 @@
   (if
    (equal? (my-first (list-ref env iterator)) var);;condtional
    (my-second (list-ref env iterator));;if yes
-   (prefixed-eval-with-env var env (+ iterator 1));;if no
+   (duncan-lookup-env var env (+ iterator 1));;if no
   )
 )
 
@@ -188,13 +188,8 @@
 ;; You may add more tests as you work.
 ;; ============================================================
 
-;; intended output =
-;; 5
-;;(evaluate-with-env 'x '((x 5)) )
-
-;; 6
-(evaluate-with-env '(x + 1) '((x 5)))
-
+;; 10
+(evaluate-with-env 'y '((x 5) (y 10)))
 
 
 
