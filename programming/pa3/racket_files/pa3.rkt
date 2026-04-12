@@ -165,7 +165,31 @@
       (println "        are you making a var ?")
       (equal? (my-first e) 'var)
       (println "        you made a var. what the hell bro.")
-      (prefixed-eval-with-env (my-third e) (append (list (my-second e)) env))
+      (if
+       (list? (my-second e));;conditional
+       (prefixed-eval-with-env (my-third e) (append (list (prefixed-eval-with-env (my-second e) env)) env));;if yes
+       (prefixed-eval-with-env (my-third e) (append (list (my-second e)) env));;if no
+      )
+     )
+    ]
+
+    ;;free var error choeckers left & right
+    [
+     (and
+      (println "    previous free var error my-second ?")
+      (list? e)
+      (>= (length e) 2)
+      (list? (my-second e))
+      (equal? (my-second e) '(err "free variable") )
+     )
+    ]
+    [
+     (and
+      (println "    previous free var error my-third ?")
+      (list? e)
+      (>= (length e) 3)
+      (list? (my-third e))
+      (equal? (my-third e) '(err "free variable") )
      )
     ]
 
@@ -173,6 +197,10 @@
     [
      (and
       (println "        is my-second a list ?")
+      (print "            ")
+      (println e)
+      (print "            ")
+      (println (not (equal? (my-second e) '(err "free variable"))))
       (not (equal? (my-second e) '(err "free variable")))
       (list? (my-second e))
       (prefixed-eval-with-env (list (my-first e) (prefixed-eval-with-env (my-second e) env) (my-third e)) env)
@@ -254,7 +282,7 @@
 ;; ============================================================
 
 ;; '(err "free variable")
-(evaluate-with-env '(x + 1) '() )
+(evaluate-with-env '(var (x (y + 1)) x) '() )
 
 
 
