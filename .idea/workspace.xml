@@ -26,10 +26,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="midterm 2: intial commit">
-      <change afterPath="$PROJECT_DIR$/conceptual/midterm_2_studee/Midterm_02_practice_sol.pdf" afterDir="false" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="midterm 2: done">
+      <change afterPath="$PROJECT_DIR$/conceptual/rouge/04_20_2026.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conceptual/midterm_2_studee/Midterm_02_practice.md" beforeDir="false" afterPath="$PROJECT_DIR$/conceptual/midterm_2_studee/Midterm_02_practice.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,15 +352,8 @@
       <workItem from="1776106326960" duration="881000" />
       <workItem from="1776123518741" duration="45000" />
       <workItem from="1776207804354" duration="5100000" />
-      <workItem from="1776262736140" duration="6177000" />
-    </task>
-    <task id="LOCAL-00004" summary="creeping death">
-      <option name="closed" value="true" />
-      <created>1774882042703</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1774882042703</updated>
+      <workItem from="1776262736140" duration="6794000" />
+      <workItem from="1776708437781" duration="1802000" />
     </task>
     <task id="LOCAL-00005" summary="all my homies hate strings">
       <option name="closed" value="true" />
@@ -747,7 +739,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776107294349</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="midterm 2: done">
+      <option name="closed" value="true" />
+      <created>1776279563165</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1776279563166</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,7 +759,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="binary operations: complete." />
     <MESSAGE value="inproper design: fml." />
     <MESSAGE value="update 13: understanding." />
     <MESSAGE value="update 14: uhh idk." />
@@ -784,7 +783,8 @@
     <MESSAGE value="pa3: need to do infix-&gt;prefix" />
     <MESSAGE value="pa3: DEATH" />
     <MESSAGE value="midterm 2: intial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="midterm 2: intial commit" />
+    <MESSAGE value="midterm 2: done" />
+    <option name="LAST_COMMIT_MESSAGE" value="midterm 2: done" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

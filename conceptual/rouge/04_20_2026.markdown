@@ -1,0 +1,12 @@
+(var (x (ref 10))
+    (var (y x)
+        (var (tmp (wref y 20))
+            (+ (deref x) (deref y)))))
+
+1 (ref 10) -> (p_1 , {(p_1 -> 10)})
+2 (var (x ... )) -> p_1 = {(x -> p_1)} , h = {(p_1 -> 100}
+
+x -> L1 -> 10
+y -> L1 -> 10
+    tmp is temporary varible
+y -> L1 -> 20
