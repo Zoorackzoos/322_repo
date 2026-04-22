@@ -10,3 +10,125 @@ x -> L1 -> 10
 y -> L1 -> 10
     tmp is temporary varible
 y -> L1 -> 20
+
+Problem 4: Memory Leak / Unreachable Location
+(var (p (ref 1))
+    (var (p (ref 2))
+        (+ (deref p) 10)))
+
+ref
+    p -> L1 -> 1
+ref
+    p -> l2 -> 2
+        REF MAKE SYOU NEW LOCAITON YOU BOZO
+deref
+    p -> l2 -> 2
+    -->
+    p -> l1 -> free
+    2 + 10 -> 12
+
+memory leak if:
+1. l variables are not free at the end of the program
+2. a l variable exists but is not accessable
+
+ idid this in a inproper way. to do it correctly you have to do the:
+    p = ( * le epic set of variables)
+    h = ( * le epic set of l variables)
+
+Problem 5: Side Effects and Evaluation Order
+(var (p (ref 5))
+    (+ (wref p 10) (deref p)))
+
+ref
+p -> l1 -> 5
+wref p
+p -> l1 -> 10
+deref p 
+p -> l1 -> 10 
+-->
+p -> l1 -> free
++ 10 10
+20 
+
+p1 = (p -> l1)
+h = (l1 = 10
+
+Problem 6: Type Error - Dereferencing a Non-Location
+(var (x 42)
+    (deref x))
+
+p1 = ( x = 42 )
+h1 = ( )
+deref x 
+    does x lead to a l variable?
+        no
+    so there's a type error
+
+Problem 7: The ”Use-After-Free” Error (Dangling Pointer)
+(var (p (ref 42))
+    (var (q p)
+        (var (tmp (free p))
+            (deref q))))
+
+p1 = ( p -> l1 )
+h1 = ( l1 -> 42 )
+
+p2 = ( p -> l1 , q -> l1 )
+h2 = ( l1 = 42)
+
+p3 = ( tmp -> p , p -> l1 , q -> l1 )
+h3 = ( l1 = 42 )
+    idk how to notate what free does. 
+    here's a good guess
+p4 = ( tmp -> p , p -> 42 , q -> 42 )
+h4 = ( l1 = free )
+
+deref q
+q doesn't lead to a l variable
+so theer's a type error
+
+Problem 8: The ”Double Free” Error
+(var (ptr (ref 7))
+    (var (tmp1 (free ptr))
+        (free ptr)))
+
+p1 = ( ptr -> l1 )
+h1 = ( l1 -> 7 )
+
+bro tried to free ptr twice
+
+Problem 9: Functions Returning References (Factory Pattern)
+
+(fun ((make-cell (init)) (ref init))
+    (var (c1 (apply (make-cell (5))))
+        (var (c2 (apply (make-cell (5))))
+            (var (tmp (wref c1 10))
+                (+ (deref c1) (deref c2))))))
+
+c1 = (apply (make-call (5) ) )
+c1 -> l1 -> 5
+c2 -> l2 -> 5
+
+wref
+tmp ->
+    c1 -> l1 -> 5
+    c1 -> l1 -> 10
+tmp -> 10
+
++ (deref c1) (deref c2)
++ 10 5 
+15
+:-)
+
+do not give heap 'h' it's numerical difference like you do p 
+jus tmake it h and as it changes update it
+    is there a difference? 
+    yes? no? yes? no? 
+"
+
+
+
+
+
+
+
