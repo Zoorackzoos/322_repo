@@ -26,7 +26,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="T delivers :smug" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="T delivers :smug">
+      <change afterPath="$PROJECT_DIR$/soft 261/old/chat_responses/given_assignemnt_details.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soft 261/old/chat_responses/given_notes_and_rubric.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soft 261/old/chat_responses/told_to_give_template.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soft 261/old/data_to_draw_on/rubric_transcript.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soft 261/old/notes_taken_during_presentations.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soft 261/soft_261_take_home_final_submission.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,11 +110,11 @@
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_programming_assignments\practice_worksheets\worksheet_4" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\soft 261\old\data_to_draw_on" />
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\soft 261\old" />
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\soft 261\chat_responses" />
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\soft 261" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\programming\pa3\duncan_docs" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\code_compenduim" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\programming" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\concepts_homework" />
     </key>
   </component>
   <component name="RunManager">
@@ -352,6 +360,9 @@
       <workItem from="1776262736140" duration="6794000" />
       <workItem from="1776708437781" duration="1818000" />
       <workItem from="1776879770554" duration="2258000" />
+      <workItem from="1777065895665" duration="4462000" />
+      <workItem from="1777073047512" duration="520000" />
+      <workItem from="1777074619056" duration="466000" />
     </task>
     <task id="LOCAL-00007" summary="update: 1">
       <option name="closed" value="true" />
