@@ -27,19 +27,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="T delivers :smug">
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/draft_2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/presentation/Mutual of Omaha Showcase Presentation.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/presentation/UNL SoC Falkinburg-Career Explore Showcase Presentation.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/revised_diagram_from_presention_1.drawio.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/soft_261_take_home_final_submission.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa3/racket_files/compiled/drracket/errortrace/pa3_rkt.dep" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa3/racket_files/compiled/drracket/errortrace/pa3_rkt.dep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa3/racket_files/compiled/drracket/errortrace/pa3_rkt.zo" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa3/racket_files/compiled/drracket/errortrace/pa3_rkt.zo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soft 261/old/chat_responses/given_assignemnt_details.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/chat_responses/given_assignemnt_details.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soft 261/old/chat_responses/given_notes_and_rubric.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/chat_responses/given_notes_and_rubric.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soft 261/old/chat_responses/told_to_give_template.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/chat_responses/told_to_give_template.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soft 261/old/data_to_draw_on/rubric_transcript.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/data_to_draw_on/rubric_transcript.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soft 261/old/notes_taken_during_presentations.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/notes_taken_during_presentations.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soft 261/soft_261_take_home_final_submission.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/conceptual/final_studee/FinalExam_practice.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/conceptual/final_studee/final_practice.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +39,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -96,7 +87,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/code_stuff/CSCE/CSCE_322_AKA_programming_language_concepts/322_repo/soft 261/presentation",
+    "last_opened_file_path": "C:/Users/dunca/Desktop/code_files/CSCE/CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class/322_Clion_super_folder/322_repo/conceptual/final_studee",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -108,11 +99,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\final_studee" />
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261\presentation" />
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\rouge" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\midterm_2_studee" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\programming\pa3\racket_files" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\shi_i_need_to_delete_at_some_point\soft 261" />
