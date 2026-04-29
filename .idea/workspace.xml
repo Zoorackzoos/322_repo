@@ -26,23 +26,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="whatever">
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/CSCE_231/exam_1/chap2-3-4_questions.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/CSCE_231/exam_2/chap5-6-7-8_questions.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/CSCE_231/exam_2/fuckass_diagram_table.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/CSCE_231/exam_2/get_ARM_1_cycle_per_instruction_based_on_instruction_and_component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/CSCE_231/exam_3/chap9-10-11-12_questions.pdf" afterDir="false" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="whatever 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/draft_2.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/draft_2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/chat_responses/given_assignemnt_details.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/old/chat_responses/given_assignemnt_details.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/chat_responses/given_notes_and_rubric.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/old/chat_responses/given_notes_and_rubric.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/chat_responses/told_to_give_template.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/old/chat_responses/told_to_give_template.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/data_to_draw_on/rubric_transcript.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/old/data_to_draw_on/rubric_transcript.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/old/notes_taken_during_presentations.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/old/notes_taken_during_presentations.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/presentation/Mutual of Omaha Showcase Presentation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/presentation/Mutual of Omaha Showcase Presentation.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/presentation/UNL SoC Falkinburg-Career Explore Showcase Presentation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/presentation/UNL SoC Falkinburg-Career Explore Showcase Presentation.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/revised_diagram_from_presention_1.drawio.svg" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/revised_diagram_from_presention_1.drawio.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft 261/soft_261_take_home_final_submission.md" beforeDir="false" afterPath="$PROJECT_DIR$/shi_i_need_to_delete_at_some_point/soft_261/soft_261_take_home_final_submission.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code_compenduims/LaTex_code_conpenduim.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conceptual/final_studee/final_practice.md" beforeDir="false" afterPath="$PROJECT_DIR$/conceptual/final_studee/final_practice.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,15 +371,9 @@
       <workItem from="1777328074248" duration="88000" />
       <workItem from="1777389258098" duration="41000" />
       <workItem from="1777389320827" duration="52000" />
-      <workItem from="1777408394216" duration="4319000" />
-    </task>
-    <task id="LOCAL-00008" summary="DIE BY MY chiken tenders">
-      <option name="closed" value="true" />
-      <created>1774891274544</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1774891274544</updated>
+      <workItem from="1777408394216" duration="4339000" />
+      <workItem from="1777473262368" duration="616000" />
+      <workItem from="1777485027792" duration="1894000" />
     </task>
     <task id="LOCAL-00009" summary="Readme: changing skeleton.">
       <option name="closed" value="true" />
@@ -778,7 +759,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777317488910</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="whatever 2">
+      <option name="closed" value="true" />
+      <created>1777471912099</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1777471912100</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -790,7 +779,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update 15: fixed some." />
     <MESSAGE value="update 16: good refactor. back to where i was." />
     <MESSAGE value="adding midterm 1 rewrite" />
     <MESSAGE value="removing cmake file cuz i'm not working in C" />
@@ -815,7 +803,8 @@
     <MESSAGE value="add practice for pointers" />
     <MESSAGE value="T delivers :smug" />
     <MESSAGE value="whatever" />
-    <option name="LAST_COMMIT_MESSAGE" value="whatever" />
+    <MESSAGE value="whatever 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="whatever 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -125,13 +125,118 @@ head
 
 tailcons (or true false) (cons (and (not false) true) nil)
 
+day two
 
+Problem 5 (15 points) – Nested var and Environments
 
+Assume the initial environment is
+σ0 = [ b 7→ 2, a 7→ 6 ].
 
+Consider:
+```racket
+(var (a (- a b))
+    (var (b (+ a b))
+        (var (a (* a b))
+            (*  (var (b (- b a))
+                    (+ a b))
+                (var (a (+ a b))
+                    (- a b))))))
+```
 
+(a) (10 pts) Evaluate this expression starting from σ0. For each var, show the value of its bound
+expression and the resulting environment (with the new binding at the front). Clearly mark
+when an inner var finishes and its binding falls out of scope. Give the final numeric value
 
+informal:
+\p0 = ( b --> 2 , a --> 6 )
 
+```racket
+(var (a (- a b))            ;;<-- 
+    (var (b (+ a b))
+        (var (a (* a b))
+            (*  (var (b (- b a))
+                    (+ a b))
+                (var (a (+ a b))
+                    (- a b))))))
+```
+\p1 = ( a --> 4 , b --> 2, a --> 6 )
 
+```racket
+(var (a (- a b))            
+    (var (b (+ a b))            <--
+        (var (a (* a b))
+            (*  (var (b (- b a))
+                    (+ a b))
+                (var (a (+ a b))
+                    (- a b))))))
+```
+\p2 = ( b --> 6 , a --> 4, b --> 2, a --> 6 )
+
+```racket
+(var (a (- a b))            
+    (var (b (+ a b))            
+        (var (a (* a b))        <--
+            (*  (var (b (- b a))
+                    (+ a b))
+                (var (a (+ a b))
+                    (- a b))))))
+```
+\p3 = ( a --> 10, b --> 6 , a --> 4, b --> 2, a --> 6 )
+
+```
+(var (a (- a b))            
+    (var (b (+ a b))            
+        (var (a (* a b))        
+            (*  (var (b (- b a)) <-- <-- 
+                    (+ a b))     <--
+                (var (a (+ a b)) <-- 
+                    (- a b)))))) <--
+```
+\p4 = ( b --> -4, a --> 10, b --> 6 , a --> 4, b --> 2, a --> 6 )
+
+```
+(var (a (- a b))            
+    (var (b (+ a b))            
+        (var (a (* a b))        
+            (*  (var (b (- b a)) <-- 
+                    (+ a b))     <-- <--
+                (var (a (+ a b)) <-- 
+                    (- a b)))))) <--
+```
++ a b
++ 10 -4
+6
+
+```
+(var (a (- a b))            
+    (var (b (+ a b))            
+        (var (a (* a b))        
+            (*  (var (b (- b a)) <-- 
+                    (+ a b))     <-- 
+                (var (a (+ a b)) <-- <--
+                    (- a b)))))) <--
+```
+use this:
+\p3 = ( a --> 10, b --> 6 , a --> 4, b --> 2, a --> 6 )
+not \p4
+\p4_b = ( a --> 16 , a --> 10, b --> 6 , a --> 4, b --> 2, a --> 6 )
+
+```
+(var (a (- a b))            
+    (var (b (+ a b))            
+        (var (a (* a b))        
+            (*  (var (b (- b a)) <-- 
+                    (+ a b))     <-- 
+                (var (a (+ a b)) <-- 
+                    (- a b)))))) <-- <--
+```
+\p4_b = ( a --> 16 , a --> 10, b --> 6 , a --> 4, b --> 2, a --> 6 )
+- a b 
+- 16 6
+10
+
+10 + 6 --> 16
+:( 
 
 
 
