@@ -26,10 +26,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="whatever 2">
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="burger???? did he just say burger????????????">
+      <change afterPath="$PROJECT_DIR$/conceptual/final_studee/FinalExam_practice_sol.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/conceptual/final_studee/final_exam_study.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_compenduims/LaTex_code_conpenduim.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conceptual/final_studee/final_practice.md" beforeDir="false" afterPath="$PROJECT_DIR$/conceptual/final_studee/final_practice.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conceptual/final_studee/final_practice.md" beforeDir="false" afterPath="$PROJECT_DIR$/conceptual/final_studee/final_practice_lecture.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,48 +70,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;LaTeX.ws4_latex_template.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dunca/Desktop/code_files/CSCE/CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class/322_super_folder/322_repo/shi_i_need_to_delete_at_some_point/CSCE_231&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "LaTeX.ws4_latex_template.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/dunca/Desktop/code_files/CSCE/CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class/322_super_folder/322_repo/conceptual",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\conceptual" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\final_studee" />
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261\presentation" />
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\rouge" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\conceptual\final_studee" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_3" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_2" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_1" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\pdfs" />
     </key>
   </component>
   <component name="RunManager">
@@ -373,15 +374,9 @@
       <workItem from="1777389320827" duration="52000" />
       <workItem from="1777408394216" duration="4339000" />
       <workItem from="1777473262368" duration="616000" />
-      <workItem from="1777485027792" duration="1894000" />
-    </task>
-    <task id="LOCAL-00009" summary="Readme: changing skeleton.">
-      <option name="closed" value="true" />
-      <created>1774892717107</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1774892717107</updated>
+      <workItem from="1777485027792" duration="2318000" />
+      <workItem from="1777506543130" duration="7000" />
+      <workItem from="1777578161799" duration="2685000" />
     </task>
     <task id="LOCAL-00010" summary="get rid of unused C file">
       <option name="closed" value="true" />
@@ -767,7 +762,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777471912100</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="burger???? did he just say burger????????????">
+      <option name="closed" value="true" />
+      <created>1777490014820</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1777490014821</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,7 +782,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update 16: good refactor. back to where i was." />
     <MESSAGE value="adding midterm 1 rewrite" />
     <MESSAGE value="removing cmake file cuz i'm not working in C" />
     <MESSAGE value="initial commit: practice worksheet &amp; hmk" />
@@ -804,7 +806,8 @@
     <MESSAGE value="T delivers :smug" />
     <MESSAGE value="whatever" />
     <MESSAGE value="whatever 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="whatever 2" />
+    <MESSAGE value="burger???? did he just say burger????????????" />
+    <option name="LAST_COMMIT_MESSAGE" value="burger???? did he just say burger????????????" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
