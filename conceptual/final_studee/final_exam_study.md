@@ -73,42 +73,181 @@ For each λ-expression below:
 (λx. λy. x y (λx. x)) (λy. y z)
 -->
 ( λx. ( λy. ( x y ( λx. ( x ) ) ) ) ) ( λy. ( y z ) )
--->
-( λx2. ( λy1. ( x2 y1 ( λx1. ( x1 ) ) ) ) ) ( λy2. ( y2 z ) )
+
+do this in order. ok? 
 free vars
 z
 bound vars
-x1, y1, x2
+x, y
+
+( λx. ( λy. ( x y ( λx. ( x ) ) ) ) ) ( λy. ( y z ) )
+-->
+( λx. ( λy. ( x y ( λx1. ( x1 ) ) ) ) ) ( λy1. ( y1 z ) )
+
+what i put:
+    because there were multiple variables by the same name.
+what you're supposed to put:
+    α-conversion is required to avoid variable shadowing where inner bindings reuse the same variable name as outer bindings.
+my revision of that honky nonsense:
+    inner variables used the same name as outer variables. variable shadowing. so we needed \a-reduction
 
 ## (b) (4 pts)
 \lp. ( \lq. p ( \lp. q ( \lq. p q ) ) )
     turn into Duncan version
 \lp. ( \lq. ( p ( \lp. ( q ( \lq. ( p q ) ) ) ) ) )
-    i'm going to do this out of order where i do 3, then 2 then 1 and the 4 
-    3214
-\lp2. ( \lq2. ( p2 ( \lp1. ( q2 ( \lq1. ( p1 q1 ) ) ) ) ) )
-free vars:
-none
-bound vars 
-q1, p1, q2, p2
 
-\a-conversion was required because there were variables by the same name.
+free vars
+none
+bound vars
+p, q
+
+\lp. ( \lq. ( p ( \lp. ( q ( \lq. ( p q ) ) ) ) ) )
+-->
+what i put first
+    \lp. ( \lq. ( p ( \lp1. ( q ( \lq1. ( p1 q1 ) ) ) ) ) )
+    you look at the answer sheet and it says this is correct
+        :-/ 
+        just pick this one man 
+what i put second
+    \lp1. ( \lq. ( p1 ( \lp. ( q ( \lq1. ( p q1 ) ) ) ) ) )
+what chat said
+    \lp. ( \lq. ( p ( \lp1. ( q ( \lq1. ( p q1 ) ) ) ) ) )
+
+what i put first
+    because there were multiple variables by the same name.
+what chat said
+    α-conversion is required to prevent inner λ-bindings from shadowing outer variables with the same name.
+paraphrase of that honky nonsense
+    variable shadowing was present so \a-conversion had to happen in order for vars to not have the same name.
 
 ## (c) (5 pts)
     i'll just turn this into duncan version 1st thing
 \lf. ( ( \lg. ( f ( g f ) ) ) ( \lf. ( \lx. ( f ( f x ) ) ) ) )
-    \a-conversion
-\lf2. ( ( \lg1. ( f ( g1 f2 ) ) ) ( \lf1. ( \lx1. ( f ( f1 x1 ) ) ) ) )
+
 free vars
-f
+none
 bound vars
-x1, f1, f2, g1 
+f, g, x
 
-\a-conversion was required because there were variables by the same name.
+\lf. ( ( \lg. ( f ( g f ) ) ) ( \lf. ( \lx. ( f ( f x ) ) ) ) )
+-->
+what i put first
+    \lf2. ( ( \lg. ( f ( g f2 ) ) ) ( \lf1. ( \lx. ( f ( f1 x ) ) ) ) )
+what i put send
+    \lf. ( ( \lg. ( f ( g f ) ) ) ( \lf1. ( \lx. ( f1 ( f1 x ) ) ) ) )
+what chat said
+    \lf0. ( ( \lg. ( f0 ( g f0 ) ) ) ( \lf1. ( \lx. ( f1 ( f1 x ) ) ) ) )
+        like the same thing
+
+what i said first
+    because there were multiple variables by the same name.
+honky nonsense
+    α-conversion is required to ensure that each λ-binder has a unique variable name and does not shadow another binding.
+paraphrase of honky nonsense
+    variable shadowing occurred, different variables went by the same name, so \a-conversion had to occur.
+
+### consensus based on failure
+when you alpha rename, you have to include all of the named functions inside the \l function  
+so like:  
+\lx.( x ( x \lx. ( x ) \ly ( y ) ) )
+-->
+\lx1.( x1 ( x1 \lx. ( x ) \ly ( y ) ) )
+
+# Problem 3 (15 points) – Church Encodings and β-Reduction
+We use the standard Church encodings:
+    pair = λx. λy. λf. f x y
+    fst = λp. p (λx. λy. x)
+    snd = λp. p (λx. λy. y)
+    cons = λh. λt. pair h t
+    head = λℓ. fst ℓ
+    tail = λℓ. snd ℓ
+    true = λt. λf. t
+    false = λt. λf. f
+    not = λb. b false true
+    and = λp. λq. p q false
+    or = λp. λq. p true q
+
+## (a) (6 pts) 
+Reduce step-by-step using β-reduction. Show your work and give the final fully reduced
+
+head ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) )
+
+first time
+    head ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) )
+        plug head
+    λℓ. (fst ℓ) ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) )
+        plug in rightwards mess for \s
+    fst ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) ) )
+        plug in fst
+    λp. ( p ( λx. ( λy. ( x ) ) ) ) ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) )
+        plug in rightwards mess for p
+    ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) ( λx. ( λy. ( x ) ) ) )
+        plug in values for tail
+    ( λℓ. (snd ℓ) ( tail ( cons p ( cons p ( cons r nil ) ) ) ) ( λx. ( λy. ( x ) ) ) )
+        plug in middle mess for \s
+    ( ( snd ( tail ( cons p ( cons p ( cons r nil ) ) ) ) ) ( λx. ( λy. ( x ) ) ) )
+        plug in snd values for snd
+    ( ( λp. ( p ( λx. ( λy. ( y ) ) ) ) ( tail ( cons p ( cons p ( cons r nil ) ) ) ) ) ( λx. ( λy. ( x ) ) ) )
+        plug in middle mess for p
+    ( ( ( tail ( cons p ( cons p ( cons r nil ) ) ) ) ( λx. ( λy. ( y ) ) ) ) ( λx. ( λy. ( x ) ) ) )
+        f this noise bruh.
+
+transcription of what mr. t put:
+    tail (pair p (pair q (pair r nil))) = (λp′
+    . p′
+    (λx. λy. y)) (pair p (pair q (pair r nil)))
+    →β (pair p (pair q (pair r nil))) (λx. λy. y)
+    →β (λy. λf. f p y) (pair q (pair r nil)) (λx. λy. y)
+    →β (λf. f p (pair q (pair r nil))) (λx. λy. y)
+    →β (λx. λy. y) p (pair q (pair r nil))
+    →β (λy. y) (pair q (pair r nil))
+    →β pair q (pair r nil).
+    The second tail follows the same pattern:
+    tail (pair q (pair r nil)) →∗
+    β pair r nil.
+    Finally, head (pair r nil) = fst (pair r nil) →∗
+    β
+    r.
+    Final value: r.
+
+second time
+    head ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) )
+        i'm going to be doing this like racket code. not a pure lambda calculus expansion
+        cons, construction of a list.
+                  ____   ______________________________
+    head ( tail ( tail ( cons p ( cons p ( cons r nil ) ) ) ) )
+        -->
+           ____ _________________________
+    head ( tail ( cons p ( cons r nil ) ) )
+        -->
+    head ( cons r nil )
+        -->
+    r
 
 
+## (b) (9 pts) Reduce step-by-step using β-reduction. Show the major reduction steps; you may
+abbreviate the purely mechanical cons/pair/fst/snd chain after part (a) already exhibits it.
+Give the final fully reduced Church value.
 
+head ( tail ( cons ( or true false ) ( cons ( and ( not false ) true ) nil ) ) )
 
+what mr.T put:
+    (λp. λq. p q false) true true →β (λq. true q false) true
+    →β true true false
+    = (λt. λf. t) true false
+    →β (λf. true) false
+    →β true. ✓
+    Final value: true
+first time
+                     _____________                  _________
+head ( tail ( cons ( or true false ) ( cons ( and ( not false ) true ) nil ) ) )
+                                _______________
+head ( tail ( cons true ( cons ( and true true ) nil ) ) )
+       ____ ________________________________
+head ( tail ( cons true ( cons true nil ) ) )
+____ ________________
+head ( cons true nil )
+true
 
 
 
