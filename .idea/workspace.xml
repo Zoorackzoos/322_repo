@@ -26,7 +26,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="final_exam_study.md: Need correction.">
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="fuck">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conceptual/final_studee/final_exam_study.md" beforeDir="false" afterPath="$PROJECT_DIR$/conceptual/final_studee/final_exam_study.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -373,23 +374,7 @@
       <workItem from="1777473262368" duration="616000" />
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
-      <workItem from="1777578161799" duration="5133000" />
-    </task>
-    <task id="LOCAL-00011" summary="update: 1, thinking.">
-      <option name="closed" value="true" />
-      <created>1774909842384</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1774909842384</updated>
-    </task>
-    <task id="LOCAL-00012" summary="update: 2, locked in twin.">
-      <option name="closed" value="true" />
-      <created>1774912492053</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1774912492053</updated>
+      <workItem from="1777578161799" duration="16957000" />
     </task>
     <task id="LOCAL-00013" summary="check-up: Dr. racket did a fucky wucky.">
       <option name="closed" value="true" />
@@ -767,7 +752,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777583669276</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="final_exam_study.md: q2: correction">
+      <option name="closed" value="true" />
+      <created>1777586157302</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1777586157302</updated>
+    </task>
+    <task id="LOCAL-00061" summary="fuck">
+      <option name="closed" value="true" />
+      <created>1777650835599</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1777650835599</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,8 +780,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removing cmake file cuz i'm not working in C" />
-    <MESSAGE value="initial commit: practice worksheet &amp; hmk" />
     <MESSAGE value="pa2: before function re-do." />
     <MESSAGE value="pa2: winning." />
     <MESSAGE value="pa2: fool." />
@@ -804,7 +803,9 @@
     <MESSAGE value="whatever 2" />
     <MESSAGE value="burger???? did he just say burger????????????" />
     <MESSAGE value="final_exam_study.md: Need correction." />
-    <option name="LAST_COMMIT_MESSAGE" value="final_exam_study.md: Need correction." />
+    <MESSAGE value="final_exam_study.md: q2: correction" />
+    <MESSAGE value="fuck" />
+    <option name="LAST_COMMIT_MESSAGE" value="fuck" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

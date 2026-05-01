@@ -249,7 +249,152 @@ ____ ________________
 head ( cons true nil )
 true
 
+# Problem 4 (12 points) – Canonical Prefix Evaluation
+Use the canonical prefix language semantics. Recall that and and or short-circuit.
+(a) (2 pts)
+(- (* (+ 1 2) (- 5 1)) (* 2 3))
 
+idk what bro is mapping about with the short circuits
+(- (* (+ 1 2) (- 5 1)) (* 2 3))
+-->
+(- (* 3 4 ) (* 2 3))
+-->
+(- 12 6)
+-->
+6
+
+(b) (3 pts)
+(if (and (not (lt 4 4)) (or (eq 6 (* 2 3)) false) )
+    (- (* 5 2) (+ 3 1))
+    (and false true))
+-->
+(if (and (not false) (or (eq 6 6 ) false) )
+    (- (* 5 2) (+ 3 1))
+    (and false true))
+-->
+(if (and true (or true false) )
+    (- (* 5 2) (+ 3 1))
+    (and false true))
+-->
+(if (and true true )
+    (- (* 5 2) (+ 3 1))
+    (and false true))
+-->
+(if true
+    (- (* 5 2) (+ 3 1)) <-- choose this one becuase true
+    (and false true))
+-->
+    (- (* 5 2) (+ 3 1) )
+    (- 10 4 )
+    6
+
+(c) (3 pts) Classify the result and explain in one sentence whether short-circuit evaluation helps
+here.
+(or (* 3 false) (eq 0 0))
+
+short circuiting is that racket thing where some code only executes if the previous bool was right. if it wan't then it just stops the program
+    or bool expression, whatever. 
+        you used this to have print statments.
+(or (* 3 false) (eq 0 0))
+-->
+(or (type error) (eq 0 0))
+-->
+*blow up* 
+
+short circut evaluation doesnn't help here. 
+if that 2nd bool was on the left instead of the right, it woul dbe true and the program would stop with that. 
+however, the 1st bool contained the type error
+
+(d) (4 pts) Consider the malformed expression
+(and (gt 5 3) (+ 7 2))
+    (i) Identify whether this is a syntax error or a semantic (type) error and justify.
+        the rightwards operation results in a number, not a boolean. which chases a type error
+    (ii) Provide two different one-edit fixes – each changing exactly one operator or value – that turn
+    this into a well-typed expression. Give the result of each fixed expression.
+        (or (gt 5 3) (+ 7 2))
+            in racket i think the 1st bool only gets read so the or just stops
+            if that were false though, then it would get a type error
+            DON'T DO THIS
+            well-typed means no type errors at all 
+        (and (gt 5 3) (gt 7 2))
+            no type error at all :-3
+        (eq (* 5 3) (+ 7 2))
+            comparing a number and a number. 
+            yay :DDDD 
+
+# Problem 5 (15 points) – Nested var and Environments
+Assume the initial environment is
+σ0 = [ b -→ 2, a -→ 6 ].
+Consider:
+(var (a (- a b))                        1
+    (var (b (+ a b))                    2
+        (var (a (* a b))                3
+            (* (var (b (- b a))         4
+                    (+ a b))            5
+                (var (a (+ a b))        6
+                    (- a b))))))        7
+(a) (10 pts) Evaluate this expression starting from σ0. For each var, show the value of its bound
+expression and the resulting environment (with the new binding at the front). Clearly mark
+when an inner var finishes and its binding falls out of scope. Give the final numeric value.
+
+i'm going to mark down the lines in the problem's head, or whatever you call that. and use that to index through this
+index: 1 
+s1 = [ a --> 4, b --> 2, a --> 6 ]
+
+index:2
+s2 = [ b --> 6, a --> 4, b --> 2, a --> 6 ]
+
+index:3
+s3 = [ a--> 10, b --> 6, a --> 4, b --> 2, a --> 6 ]
+
+index:4
+s4 = [ b --> -4, a--> 10, b --> 6, a --> 4, b --> 2, a --> 6 ]
+
+index:5
+6
+
+index:6
+s5 = [ a --> 16, a--> 10, b --> 6, a --> 4, b --> 2, a --> 6 ]
+
+index:7
+6
+
+index:4 replug
++ 6 6
+12
+
+(b) (3 pts) Identify the binding of a and b used in the inner (+ a b) (left factor) and the inner
+(- a b) (right factor), and explain in one sentence why they differ.
+
+
+
+(c) (2 pts) What changes if the innermost two vars are swapped, so that (var (a ...) ...)
+comes before (var (b ...) ...)? In one sentence, explain why this matters.
+
+
+# Problem 6 (18 points) – Closures, Higher-Order Functions, and
+Heap
+(a) (10 pts) Let σ0 = [ ] and h0 = [ ]. Evaluate using the big-step rules from the language reference
+(use static scope, rule [App]); show every environment created and the final heap.
+(var (s (ref 1))
+(fun ((make-mult (m))
+(fun ((mult (n)) (* n (deref s)))
+mult))
+(var (g (apply (make-mult (0))))
+(var (u (wref s 7))
+(var (h (apply (make-mult (0))))
+(+ (apply (g (4)))
+(apply (h (4)))))))))
+The intermediate (var (u ...) ...) sequences wref between binding g and binding h.
+(b) (3 pts) Explain in 2–3 sentences why g and h return the same answer, even though g was
+created before (wref s 7) and h was created after.
+(c) (5 pts) Each fragment below starts from σ0 = [ ] and h0 = [ ]. Classify each as evaluates to a
+value (give value + final h), runtime error (say where), or syntax error (say what’s malformed).
+(i) (var (p (ref 0)) (var (q (ref p)) (deref (deref q))))
+(ii) (var (p (ref 3)) (var (q (wref p 8)) (+ (deref p) q)))
+(iii) (fun ((f (x)) (deref x)) (apply (f (5))))
+(iv) (var (p (ref 2)) (var (u (free p)) (wref p 9)))
+(v) (var (p (ref 4)) (var p (ref 5) (deref p)))
 
 
 
