@@ -26,12 +26,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: try 3 and meme added.">
-      <change afterPath="$PROJECT_DIR$/programming/pa4/programs/tung.TTT" afterDir="false" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: meme try.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/pa4.2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/programs/factorial.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/programs/factorial.TTT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/programs/gcd.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/programs/gcd.TTT" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programming/pa4/run-triple-t.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/run-triple-t.rkt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -383,14 +379,6 @@
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
       <workItem from="1777578161799" duration="16957000" />
-    </task>
-    <task id="LOCAL-00019" summary="update 8: rrrrrrefactor.">
-      <option name="closed" value="true" />
-      <created>1775063381506</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1775063381506</updated>
     </task>
     <task id="LOCAL-00020" summary="update 8: rrrrrrefactor.">
       <option name="closed" value="true" />
@@ -776,7 +764,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777804034684</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="pa4: meme try.">
+      <option name="closed" value="true" />
+      <created>1777805251036</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1777805251036</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +784,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pa3: initial commit" />
     <MESSAGE value="blergo" />
     <MESSAGE value="pa2 i'm a idiot :(" />
     <MESSAGE value="pa3 initial commit" />
@@ -813,7 +808,8 @@
     <MESSAGE value="pa4: Kill &quot;begins&quot; in pa3." />
     <MESSAGE value="pa4: try 2." />
     <MESSAGE value="pa4: try 3 and meme added." />
-    <option name="LAST_COMMIT_MESSAGE" value="pa4: try 3 and meme added." />
+    <MESSAGE value="pa4: meme try." />
+    <option name="LAST_COMMIT_MESSAGE" value="pa4: meme try." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
