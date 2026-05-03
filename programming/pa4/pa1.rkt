@@ -49,8 +49,8 @@
     (equal? x 'if)
     (equal? x 'fun)
     (equal? x 'apply)
-    (equal? x 'cond) ;; from part 2 of pa4
-    (equal? x 'else) ;;
+    (equal? x 'cond) ;; pa4
+    (equal? x 'else) ;; pa4
   )
 )
 
