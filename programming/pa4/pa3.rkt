@@ -1,0 +1,249 @@
+#lang racket
+(provide (all-defined-out))
+(require "pa1.rkt")
+(require "pa2.rkt")
+
+;; ============================================================
+;; CSCE 322 - PA3 Starter File
+;;
+;; In this assignment you will:
+;;   1. evaluate variables using an environment
+;;   2. evaluate `var` bindings and extend the environment
+;;   3. handle variable shadowing and free variable errors
+;;
+;; Allowed style:
+;;   - top-level define only
+;;   - recursion
+;;   - if / cond
+;;   - basic list operations
+;;
+;; Not allowed:
+;;   - let / let*
+;;   - lambda
+;;   - nested define
+;;   - mutation
+;;   - loops
+;; ============================================================
+
+;; ============================================================
+;; Name: Duncan Holmes
+;; ============================================================
+
+
+;; ============================================================
+;; Environment Helpers
+;; ============================================================
+
+;; ============================================================
+;; lookup-env
+;;
+;; Input:
+;;   var: a variable symbol (e.g., 'x)
+;;   env: an environment list (e.g., '((x 5) (y 10)))
+;;
+;; Output:
+;;   The bound value if found, or #f if not found.
+;;
+;; Examples:
+;;   (lookup-env 'x '((x 5) (y 10))) => 5
+;;   (lookup-env 'z '((x 5) (y 10))) => #f
+;;
+;; ============================================================
+(define (lookup-env var env)
+  ;;not fucking with the signature in case mr.t has a secret grader
+  
+  ;;display 
+  (println "lookup-env")
+  (print "    ")
+  (println var)
+  (println "    ")
+  (println env)
+  
+  ;;work
+  (prefixed-eval-with-env var env 0)
+)
+
+(define (duncan-lookup-env var env iterator)
+  ;;display
+  (println "        duncan-lookup-env")
+  (print "            ")
+  (println var)
+  (print "            ")
+  (println env)
+  (print "            ")
+  (println iterator)
+
+  (if
+   (or;;conditonal
+    (= (length env) iterator)
+    (= (length env) 0)
+   )
+   '(err "free variable");;if yes
+   (begin;;if no
+     (print "            ")
+     (println (list-ref env iterator))
+     (print "            ")
+     (println (my-first (list-ref env iterator)))
+     (print "            ")
+     (println var)
+  
+     (if
+      (equal? (my-first (list-ref env iterator)) var);;condtional
+      (my-second (list-ref env iterator));;if yes
+      (duncan-lookup-env var env (+ iterator 1));;if no
+     )
+   )
+  )
+)
+
+(define (is-error? x)
+  (and (list? x) (not (null? x)) (equal? (car x) 'err))
+)
+
+;; ============================================================
+;; extend-env
+;;
+;; Input:
+;;   var: a variable symbol (e.g., 'x)
+;;   val: the evaluated value to bind to the variable
+;;   env: the current environment list
+;;
+;; Output:
+;;   A new environment list with `(var val)` added to the front.
+;;
+;; Examples:
+;;   (extend-env 'x 5 '()) => '((x 5))
+;;   (extend-env 'z 20 '((x 5))) => '((z 20) (x 5))
+;;
+;; ============================================================
+(define (extend-env var val env)
+  'todo
+)
+
+
+;; ============================================================
+;; Evaluator
+;; ============================================================
+
+;; helper functions for evaluator
+;;   just put the infix->prefix version of e into this.
+(define (prefixed-eval-with-env e env)
+  ;;display
+  (println "    prefixed-eval-with-env")
+  (print "        ")
+  (println e)
+  (print "        ")
+  (println env)
+
+  ;;work
+  (cond
+    [(literal? e) e]
+    
+    [
+     (and
+      (println "        previous free var error ?")
+      (equal? e '(err "free variable"))
+     )
+     '(err "free variable")
+    ]
+    
+    ;;jackass single variable ahh input
+    [
+     (and
+      (println "        jackass single variable ahh input ?")
+      (not (list? e))
+      (variable? e)
+      (duncan-lookup-env e env 0)
+     )
+    ]
+    
+    ;;declare a var in the input
+    [(equal? (my-first e) 'var)
+     (if
+      (is-error? (prefixed-eval-with-env (my-second (my-second e)) env))
+      (prefixed-eval-with-env (my-second (my-second e)) env)
+      (prefixed-eval-with-env
+       (my-third e)
+       (cons (list (my-first (my-second e))
+                   (prefixed-eval-with-env (my-second (my-second e)) env))
+             env))
+      )
+     ]
+
+    ;;one of the elemetns is a bastard list
+    [
+     (and
+      (println "        is my-second a list ?")
+      (not (equal? (my-second e) '(err "free variable")))
+      (list? (my-second e))
+      (prefixed-eval-with-env (list (my-first e) (prefixed-eval-with-env (my-second e) env) (my-third e)) env)
+     )
+    ]
+    [
+     (and
+      (println "        is my-third a list ?")
+      (not (equal? (my-third e) '(err "free variable")))
+      (list? (my-third e))
+      (prefixed-eval-with-env (list (my-first e) (my-second e) (prefixed-eval-with-env (my-third e)) env) env)
+     )
+    ]
+    
+    ;;left or right is a variable
+    [
+     (and
+      (println "        is my-second a var that's env-ed ?")
+      (not (equal? (my-second e) '(err "free variable")))
+      (variable? (my-second e))
+      (prefixed-eval-with-env (list (my-first e) (duncan-lookup-env (my-second e) env 0) (my-third e)) env)
+     )
+    ]
+    [
+     (and
+      (println "        is my-third a var that's env-ed ?")
+      (not (equal? (my-third e) '(err "free variable")))
+      (variable? (my-third e))
+      (prefixed-eval-with-env (list (my-first e) (my-second e) (duncan-lookup-env (my-third e) env 0)) env)
+     )
+    ]
+    ;;evaluating the fucking thing
+    [
+     else
+     (println "        time to evaluate :-DDDDD")
+     (evaluate-program e)
+    ]
+  )
+)
+
+;; ============================================================
+;; evaluate-with-env
+;;
+;; Input:
+;;   e:   an infix expression (same as PA1/PA2, but with variables)
+;;   env: the current environment list
+;;
+;; Output:
+;;   The evaluated value, or an error list like '(err "free variable")
+;;
+;; Examples:
+;;   (evaluate-with-env '(x + 1) '((x 5))) => 6
+;;   (evaluate-with-env '(var (x 5) (x * 2)) '()) => 10
+;;   (evaluate-with-env 'y '()) => '(err "free variable")
+;;
+;; ============================================================
+(define (evaluate-with-env e env)
+  ;;display
+  (println "evaluate-with-env")
+  (print "    ")
+  (println e)
+  (print "    ")
+  (println env)
+
+  ;;work
+  (prefixed-eval-with-env (infix->prefix e) env)
+)
+
+;;(println "divizion by zero test case")
+;;(evaluate-with-env '(var (x (1 / 0)) x) '())
+
+;;(println "the difficult one")
+;;(evaluate-with-env '(var (x (y + 1)) x) '())

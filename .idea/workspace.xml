@@ -27,8 +27,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="fuck">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conceptual/final_studee/final_exam_study.md" beforeDir="false" afterPath="$PROJECT_DIR$/conceptual/final_studee/final_exam_study.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/grade.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/test-cases/part1-tests.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/test-cases/part2-tests.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/test-cases/part6-tests.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/utils/feature-detect.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/utils/runner-harness.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/pa1.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/pa2.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/pa3.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/pa4_guide.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/pa4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa4.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/pa4.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa4.rkt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +50,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -86,7 +97,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/dunca/Desktop/code_files/CSCE/CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class/322_super_folder/322_repo/conceptual",
+    "last_opened_file_path": "C:/Users/User/Desktop/code_stuff/CSCE/CSCE_322_AKA_programming_language_concepts/322_repo/programming/pa4",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -98,18 +109,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\programming\pa4" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\conceptual" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_Clion_super_folder\322_repo\conceptual\final_studee" />
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261\presentation" />
-      <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\programming\pa4" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\conceptual\final_studee" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_3" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_2" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_1" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231" />
     </key>
   </component>
   <component name="RunManager">

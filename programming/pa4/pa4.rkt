@@ -11,11 +11,17 @@
 ;;   1. extend your interpreter with user-defined functions using
 ;;      closures and static scoping
 ;;   2. add a conditional expression (if)
-;;   3. choose two features from the Part 2 menu and integrate them
+;;   3. choose one feature from the Part 2 menu and integrate it
 ;;   4. give your language a name, a file extension, and a runner
 ;;   5. write a short design document
 ;;   6. (optional, substantial EC) implement a mutable heap in
 ;;      pa4-ec.rkt per Lecture 16
+;;
+;; Parser. The bundle includes a starter pa1.rkt that already
+;; supports if / fun / apply. You may use that file as your
+;; pa1.rkt or extend your own from PA3. If your Part 2 feature
+;; introduces new surface syntax, you must extend the parser
+;; yourself either way.
 ;;
 ;; Allowed style:
 ;;   - top-level define only
@@ -40,7 +46,7 @@
 ;; Name: TODO
 ;; Language: TODO
 ;; Extension: TODO
-;; Two chosen features (from the menu in Part 2): TODO, TODO
+;; Chosen Part 2 feature (one from the menu): TODO
 ;; ============================================================
 
 
@@ -133,7 +139,7 @@
 
     ;; TODO: binary operators (reuse pa2.rkt helpers)
 
-    ;; TODO: any Part 2 feature AST forms
+    ;; TODO: AST forms for your Part 2 feature
 
     [else
      ;; Placeholder
