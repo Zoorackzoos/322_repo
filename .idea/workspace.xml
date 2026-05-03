@@ -26,12 +26,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: unknown.">
-      <change afterPath="$PROJECT_DIR$/programming/pa4/0_duncan_docs/grader_command.md" afterDir="false" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: try 2.">
+      <change afterPath="$PROJECT_DIR$/programming/pa4/0_duncan_docs/rouge.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/0_duncan_docs/triple_t_ascii_image.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/programs/factorial.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/programs/gcd.rkt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programming/pa4/run-triple-t.rkt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa1_rkt.dep" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa1_rkt.dep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa1_rkt.zo" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa1_rkt.zo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa2_rkt.dep" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa2_rkt.dep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa2_rkt.zo" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa2_rkt.zo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa3_rkt.dep" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa3_rkt.dep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa3_rkt.zo" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/compiled/drracket/errortrace/pa3_rkt.zo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programming/pa4/pa1.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa1.rkt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/pa2.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa2.rkt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/pa3.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa3.rkt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,14 +390,6 @@
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
       <workItem from="1777578161799" duration="16957000" />
-    </task>
-    <task id="LOCAL-00017" summary="update 6: arithmatic.">
-      <option name="closed" value="true" />
-      <created>1775051550446</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1775051550446</updated>
     </task>
     <task id="LOCAL-00018" summary="update 7: need refactor for bool.">
       <option name="closed" value="true" />
@@ -775,7 +775,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777780060433</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="pa4: try 2.">
+      <option name="closed" value="true" />
+      <created>1777792706648</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1777792706648</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -787,7 +795,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="worksheet: added latex file cuz why not." />
     <MESSAGE value="file structure refactor" />
     <MESSAGE value="pa3: initial commit" />
     <MESSAGE value="blergo" />
@@ -812,7 +819,8 @@
     <MESSAGE value="pa4: kill todos" />
     <MESSAGE value="pa4: Kill &quot;begins&quot; in pa2." />
     <MESSAGE value="pa4: Kill &quot;begins&quot; in pa3." />
-    <option name="LAST_COMMIT_MESSAGE" value="pa4: Kill &quot;begins&quot; in pa3." />
+    <MESSAGE value="pa4: try 2." />
+    <option name="LAST_COMMIT_MESSAGE" value="pa4: try 2." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
