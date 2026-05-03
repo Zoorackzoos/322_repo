@@ -153,13 +153,7 @@
         (define rest (eval-args (cdr args) env))
         (cond
           [(pa4-error? rest) rest]
-          [else (cons v rest)]
-        )
-       ]
-     )
-    ]
-  )
-)
+          [else (cons v rest)])])]))
 
 
 ;; ============================================================
@@ -167,75 +161,34 @@
 ;; ============================================================
 
 (define (is-var-ast? ast)
-  (and
-   (list? ast)
-   (not (null? ast))
-   (equal? (car ast) 'var)
-  )
-)
+  (and (list? ast) (not (null? ast)) (equal? (car ast) 'var)))
 
 (define (is-if-ast? ast)
-  (and
-   (list? ast)
-   (not (null? ast))
-   (equal? (car ast) 'if)
-  )
-)
+  (and (list? ast) (not (null? ast)) (equal? (car ast) 'if)))
 
 (define (is-fun-ast? ast)
-  (and
-   (list? ast)
-   (not (null? ast))
-   (equal? (car ast) 'fun)
-  )
-)
+  (and (list? ast) (not (null? ast)) (equal? (car ast) 'fun)))
 
 (define (is-apply-ast? ast)
-  (and
-   (list? ast)
-   (not (null? ast))
-   (equal? (car ast) 'apply)
-  )
-)
+  (and (list? ast) (not (null? ast)) (equal? (car ast) 'apply)))
 
 (define (is-cond-ast? ast)
-  (and
-   (list? ast)
-   (not (null? ast))
-   (equal? (car ast) 'cond)
-  )
-)
+  (and (list? ast) (not (null? ast)) (equal? (car ast) 'cond)))
 
 (define (is-unary-ast? ast)
-  (and
-   (list? ast)
-   (= (length ast) 2)
-   (or
-    (equal? (car ast) 'not)
-    (equal? (car ast) '-)
-    (equal? (car ast) '!)
-   )
-  )
-)
+  (and (list? ast) (= (length ast) 2)
+       (or (equal? (car ast) 'not)
+           (equal? (car ast) '-)
+           (equal? (car ast) '!))))
 
 (define (is-binary-ast? ast)
-  (and
-   (list? ast)
-   (= (length ast) 3)
-   (or
-    (arithmetic-op? (car ast))
-    (boolean-op-prefix? (car ast))
-    (comparison-op? (car ast))
-   )
-  )
-)
+  (and (list? ast) (= (length ast) 3)
+       (or (arithmetic-op? (car ast))
+           (boolean-op-prefix? (car ast))
+           (comparison-op? (car ast)))))
 
 (define (boolean-op-prefix? x)
-  (or
-   (equal? x 'and)
-   (equal? x 'or)
-  )
-)
+  (or (equal? x 'and) (equal? x 'or)))
 
 
 ;; ============================================================
@@ -278,13 +231,7 @@
            (evaluate-prefix-with-env (car (cdr arm)) env)]
           [(equal? cv 'false)
            (eval-cond-arms (cdr arms) env)]
-          [else '(err "type error")]
-         )
-        ]
-      )
-    ]
-   )
-)
+          [else '(err "type error")])])]))
 
 
 ;; ============================================================
@@ -306,41 +253,32 @@
      (define v (pa4-lookup-env ast env))
      (cond
        [(equal? v #f) '(err "free variable")]
-       [else v]
-     )
-    ]
+       [else v])]
 
     ;; Not a list — shouldn't happen
     [(not (list? ast)) '(err "invalid ast")]
 
     ;; var binding
-    [
-     (is-var-ast? ast)
+    [(is-var-ast? ast)
      (define var-name (car (car (cdr ast))))
      (define var-expr (car (cdr (car (cdr ast)))))
      (define body     (car (cdr (cdr ast))))
      (define val (evaluate-prefix-with-env var-expr env))
      (cond
        [(pa4-error? val) val]
-       [else (evaluate-prefix-with-env body (pa4-extend-env var-name val env))]
-     )
-    ]
+       [else (evaluate-prefix-with-env body (pa4-extend-env var-name val env))])]
 
     ;; if  -- lazy branches
-    [
-     (is-if-ast? ast)
+    [(is-if-ast? ast)
      (define cv (evaluate-prefix-with-env (car (cdr ast)) env))
      (cond
        [(pa4-error? cv) cv]
        [(equal? cv 'true)  (evaluate-prefix-with-env (car (cdr (cdr ast))) env)]
        [(equal? cv 'false) (evaluate-prefix-with-env (car (cdr (cdr (cdr ast)))) env)]
-       [else '(err "type error")]
-     )
-    ]
+       [else '(err "type error")])]
 
     ;; fun -- build closure, bind name, evaluate rest
-    [
-     (is-fun-ast? ast)
+    [(is-fun-ast? ast)
      (define fname  (fun-fname-ast ast))
      (define params (fun-params-ast ast))
      (define body   (fun-body-ast ast))
@@ -350,14 +288,10 @@
        [else
         (define clos (list 'closure fname params body env))
         (define new-env (pa4-extend-env fname clos env))
-        (evaluate-prefix-with-env rest new-env)
-       ]
-     )
-    ]
+        (evaluate-prefix-with-env rest new-env)])]
 
     ;; apply -- static scoping
-    [
-     (is-apply-ast? ast)
+    [(is-apply-ast? ast)
      (define fname (apply-fname-ast ast))
      (define arg-exprs (apply-args-ast ast))
      (define looked-up (pa4-lookup-env fname env))
@@ -379,35 +313,22 @@
               (define body-env
                 (bind-params params vals
                   (pa4-extend-env fname clos (closure-env clos))))
-              (evaluate-prefix-with-env (closure-body clos) body-env)
-             ]
-           )
-          ]
-         )
-       ]
-      )
-    ]
+              (evaluate-prefix-with-env (closure-body clos) body-env)])])])]
 
     ;; cond
-    [
-     (is-cond-ast? ast)
+    [(is-cond-ast? ast)
      (define arms (car (cdr ast)))
-     (eval-cond-arms arms env)
-    ]
+     (eval-cond-arms arms env)]
 
     ;; unary operators
-    [
-     (is-unary-ast? ast)
+    [(is-unary-ast? ast)
      (define v (evaluate-prefix-with-env (car (cdr ast)) env))
      (cond
        [(pa4-error? v) v]
-       [else (evaluate-prefix v)]
-     )
-    ]
+       [else (evaluate-prefix v)])]
 
     ;; binary operators
-    [
-     (is-binary-ast? ast)
+    [(is-binary-ast? ast)
      (define lv (evaluate-prefix-with-env (car (cdr ast)) env))
      (cond
        [(pa4-error? lv) lv]
@@ -415,15 +336,9 @@
         (define rv (evaluate-prefix-with-env (car (cdr (cdr ast))) env))
         (cond
           [(pa4-error? rv) rv]
-          [else (evaluate-prefix (list (car ast) lv rv))]
-        )
-       ]
-      )
-     ]
+          [else (evaluate-prefix (list (car ast) lv rv))])])]
 
-    [else '(err "invalid ast")]
- )
-)
+    [else '(err "invalid ast")]))
 
 
 ;; ============================================================
@@ -434,6 +349,4 @@
   (define ast (infix->prefix e))
   (cond
     [(pa4-error? ast) ast]
-    [else (evaluate-prefix-with-env ast env)]
-  )
-)
+    [else (evaluate-prefix-with-env ast env)]))

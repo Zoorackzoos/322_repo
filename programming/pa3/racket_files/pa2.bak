@@ -40,9 +40,20 @@
   (equal? x '(err "division by zero")))
 
 (define (any-error? x)
-  (and (list? x)
-       (not (null? x))
-       (equal? (car x) 'err)))
+  ;;display
+  (println "            any-error?")
+  (print "                ")
+  (println x)
+
+  ;;work
+  (and
+   (list? x)
+   (println "                x is a list")
+   (not (null? x))
+   (println "                x is not null")
+   (equal? (car x) 'err)
+  )
+)
 
 
 ;; ============================================================
@@ -424,6 +435,13 @@
   (cond
     [
      (and
+      (equal? ast '(err "free variable"))
+      (println "            you've got a free var :-3")
+      '(err "free variable")
+     )
+    ]
+    [
+     (and
       (list? (my-second ast))
       (println "            1st parameter is a list, look!")
       (print "            ")
@@ -501,23 +519,27 @@
   ;;work
   (or
     (and
-     (any-error? ast)
+     (println "            previous type error ?")
+     (equal? ast '(err "type error"))
     )
    
     ;; numerical 
     ;; '(1 + true) --> '(+ 1 true)
     ;; '(true < false) -> (< true false)
     (and
-     (or
-      (arithmetic-op? (my-first ast))
-      (numeric-comparison-op? (my-first ast))
-     )
-     (not (unary-shape? ast))
-     (not (list? (my-second ast)))
-     (not (list? (my-third ast)))
-     (or
-      (not (number? (my-second ast)))
-      (not (number? (my-third ast)))
+     (and
+      (or
+       (arithmetic-op? (my-first ast))
+       (numeric-comparison-op? (my-first ast))
+       )
+      (not (unary-shape? ast))
+      (not (list? (my-second ast)))
+      (not (list? (my-third ast)))
+      (or
+       (not (number? (my-second ast)))
+       (not (number? (my-third ast)))
+       )
+      (println "            bool in a numeric operation")
      )
      '(err "type error")
     )
@@ -525,35 +547,41 @@
     ;; boolean
     ;; '(1 && 2)
     (and
-     (prefix-bool-op? (my-first ast))
-     (not (unary-shape? ast))
-     (not (list? (my-second ast)))
-     (not (list? (my-third ast)))
-     (or
-      (not (boolean-literal? (my-second ast)))
-      (not (boolean-literal? (my-third ast)))
+     (and
+      (prefix-bool-op? (my-first ast))
+      (not (unary-shape? ast))
+      (not (list? (my-second ast)))
+      (not (list? (my-third ast)))
+      (or
+       (not (boolean-literal? (my-second ast)))
+       (not (boolean-literal? (my-third ast)))
+      )
+      (println "            numbers in a bool op")
      )
      '(err "type error")
     )
 
     ;; equals and not equals type error (number vs bool)
     (and
-     (or
-      (equal? (my-first ast) '==)
-      (equal? (my-first ast) '!=)
-     )
-     (not (unary-shape? ast))
-     (not (list? (my-second ast)))
-     (not (list? (my-third ast)))
-     (or
-      (and
-       (boolean-literal? (my-second ast))
-       (number? (my-third ast))
+     (and
+      (or
+       (equal? (my-first ast) '==)
+       (equal? (my-first ast) '!=)
       )
-      (and
-       (number? (my-second ast))
-       (boolean-literal? (my-third ast))
+      (not (unary-shape? ast))
+      (not (list? (my-second ast)))
+      (not (list? (my-third ast)))
+      (or
+       (and
+        (boolean-literal? (my-second ast))
+        (number? (my-third ast))
+       )
+       (and
+        (number? (my-second ast))
+        (boolean-literal? (my-third ast))
+       )
       )
+      (println "            equals type error")
      )
      '(err "type error")
     )
@@ -570,13 +598,11 @@
 ;;   the evaluated value (number or boolean)
 ;;   OR a runtime error
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 
 (define (evaluate-prefix ast)
-  (println "evaluate-prefix")
-  (print "    ")
+  (println "    evaluate-prefix")
+  (print "        ")
   (println ast)
   
   (cond
@@ -592,7 +618,7 @@
      (type-error-checker ast)
     ]
 
-    ;; TODO: handle unary operators
+    ;; handle unary operators
 
     ;;unary bool 
     [
@@ -610,7 +636,7 @@
      (unary-type-error-conditionals ast)
     ]
     
-    ;; TODO: handle binary operators
+    ;; handle binary operators
     ;; if it's bigger than 3 items then we simplofy that using recursion down the line
     ;; when it gets to here it is 3 items
     ;;     arithmatic:
@@ -669,13 +695,13 @@
      (simplify-complicated-prefix ast)
     ]
     
-    ;; TODO: implement type checking
+    ;; implement type checking
     ;; ???
     
-    ;; TODO: implement division by zero check
+    ;; implement division by zero check
     ;; done above
     
-    ;; TODO: propagate errors from subexpressions
+    ;; propagate errors from subexpressions
     ;; done above 
 
     [
@@ -698,25 +724,28 @@
 ;;   OR a PA1 syntax error
 ;;   OR a PA2 runtime error
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 
 (define (evaluate-program e)
-  (println "evaluate-program")
+  (println "    evaluate-program")
   (cond
     ;; 1. Call your PA1 infix->prefix
     ;; 2. If it returns an error, return that error
     ;; 3. If it returns a valid AST, pass it to evaluate-prefix
 
+    ;;pa3:
+    ;;    my pa3 functions already infix->prefix this
+    ;;    and i'm not adding jank ass parameters to do it here as well
+    
     ;; invalid program from infix->prefix
-    [
-     (any-error? (infix->prefix e))
-     (infix->prefix e)
-    ]
+    ;;[
+    ;; (any-error? (infix->prefix e))
+    ;; (infix->prefix e)
+    ;;]
 
     [
-     (evaluate-prefix (infix->prefix e))
+     ;;(evaluate-prefix (infix->prefix e))
+     (evaluate-prefix e)
     ]
     
     [
@@ -726,32 +755,3 @@
     ]
   )
 )
-
-
-;; ============================================================
-;; Public test cases
-;;
-;; You may add more tests as you work.
-;; ============================================================
-
-;;(println "Mr T test cases") 
-;;(evaluate-program 5)
-;; (evaluate-program '(1 + 2))
-;; (evaluate-program '(1 + 2 * 3))
-;; (evaluate-program '(1 + * 3))
-;; (evaluate-program '(1 + true))
-;; (evaluate-program '(1 / (2 - 2)))
-
-;; barbismo tests
-;;(evaluate-program '(! (1 + true)))
-
-
-
-
-
-
-
-
-
-
-

@@ -122,10 +122,8 @@
     (equal? (my-first ast) 'not)
    )
    (boolean-literal? (my-second ast))
-   (begin
-     (println "                    unary bool detected (#t)")
-     #t
-   )
+   (println "                    unary bool detected (#t)")
+   #t
   )
 )
 
@@ -134,10 +132,8 @@
   (and
    (equal? (my-first ast) '-)
    (number? (my-second ast))
-   (begin
-     (println "                negative number detected (#t)")
-     #t
-   )
+   (println "                negative number detected (#t)")
+   #t
   )
 )
 
@@ -151,17 +147,13 @@
   (cond
     [
      (equal? (my-second ast) 'true)
-      (begin
-        (println "                true -> false")
-        'false
-      )
+      (println "                true -> false")
+      'false
     ]
     [
      (equal? (my-second ast) 'false)
-      (begin
-        (println "                false -> true")
-        'true
-      )
+      (println "                false -> true")
+      'true
     ]
   )
 )
@@ -171,10 +163,8 @@
   ;;like the only outcome you could have here is negative.
   ;;so just set it negative.
   (print "                ")
-  (begin
-    (println (- (my-second ast) (* (my-second ast) 2)) ) 
-    (- (my-second ast) (* (my-second ast) 2))
-  )
+  (println (- (my-second ast) (* (my-second ast) 2)) )
+  (- (my-second ast) (* (my-second ast) 2))
 )
 
 (define (binary-prefix-math-shape? ast)
@@ -330,17 +320,13 @@
   (cond
     [
      (equal? bool #t)
-     (begin
-       (println "                    #t -> 'true")
-       'true
-     )
+     (println "                    #t -> 'true")
+     'true
     ]
     [
      (equal? bool #f)
-     (begin
-       (println "                    #f -> 'false")
-       'false
-     )
+     (println "                    #f -> 'false")
+     'false
     ]
   )
 )

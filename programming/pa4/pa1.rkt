@@ -39,15 +39,20 @@
   (or (number? x) (boolean-literal? x)))
 
 (define (reserved-word? x)
-  (or (literal? x)
-      (arithmetic-op? x)
-      (boolean-op? x)
-      (comparison-op? x)
-      (unary-op? x)
-      (equal? x 'var)
-      (equal? x 'if)
-      (equal? x 'fun)
-      (equal? x 'apply)))
+  (or
+    (literal? x)
+    (arithmetic-op? x)
+    (boolean-op? x)
+    (comparison-op? x)
+    (unary-op? x)
+    (equal? x 'var)
+    (equal? x 'if)
+    (equal? x 'fun)
+    (equal? x 'apply)
+    (equal? x 'cond) ;; from part 2 of pa4
+    (equal? x 'else) ;;
+  )
+)
 
 (define (variable? x)
   (and (symbol? x)

@@ -48,8 +48,6 @@
 ;;   (lookup-env 'x '((x 5) (y 10))) => 5
 ;;   (lookup-env 'z '((x 5) (y 10))) => #f
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 (define (lookup-env var env)
   ;;not fucking with the signature in case mr.t has a secret grader
@@ -81,7 +79,7 @@
     (= (length env) 0)
    )
    '(err "free variable");;if yes
-   (begin;;if no
+   (and;;if no
      (print "            ")
      (println (list-ref env iterator))
      (print "            ")
@@ -101,29 +99,6 @@
 (define (is-error? x)
   (and (list? x) (not (null? x)) (equal? (car x) 'err))
 )
-
-;; ============================================================
-;; extend-env
-;;
-;; Input:
-;;   var: a variable symbol (e.g., 'x)
-;;   val: the evaluated value to bind to the variable
-;;   env: the current environment list
-;;
-;; Output:
-;;   A new environment list with `(var val)` added to the front.
-;;
-;; Examples:
-;;   (extend-env 'x 5 '()) => '((x 5))
-;;   (extend-env 'z 20 '((x 5))) => '((z 20) (x 5))
-;;
-;; TODO:
-;;   implement this function
-;; ============================================================
-(define (extend-env var val env)
-  'todo
-)
-
 
 ;; ============================================================
 ;; Evaluator
@@ -233,7 +208,6 @@
 ;;   (evaluate-with-env '(var (x 5) (x * 2)) '()) => 10
 ;;   (evaluate-with-env 'y '()) => '(err "free variable")
 ;;
-;; TODO:
 ;;   implement this function. You should convert the infix
 ;;   expression `e` to a prefix AST using `infix->prefix` from PA1,
 ;;   then recursively evaluate the AST.

@@ -122,10 +122,8 @@
     (equal? (my-first ast) 'not)
    )
    (boolean-literal? (my-second ast))
-   (begin
-     (println "                    unary bool detected (#t)")
-     #t
-   )
+   (println "                    unary bool detected (#t)")
+   #t
   )
 )
 
@@ -134,10 +132,8 @@
   (and
    (equal? (my-first ast) '-)
    (number? (my-second ast))
-   (begin
-     (println "                negative number detected (#t)")
-     #t
-   )
+   (println "                negative number detected (#t)")
+   #t
   )
 )
 
@@ -151,17 +147,13 @@
   (cond
     [
      (equal? (my-second ast) 'true)
-      (begin
-        (println "                true -> false")
-        'false
-      )
+     (println "                true -> false")
+     'false
     ]
     [
      (equal? (my-second ast) 'false)
-      (begin
-        (println "                false -> true")
-        'true
-      )
+     (println "                false -> true")
+     'true
     ]
   )
 )
@@ -171,10 +163,8 @@
   ;;like the only outcome you could have here is negative.
   ;;so just set it negative.
   (print "                ")
-  (begin
-    (println (- (my-second ast) (* (my-second ast) 2)) ) 
-    (- (my-second ast) (* (my-second ast) 2))
-  )
+  (println (- (my-second ast) (* (my-second ast) 2)) ) 
+  (- (my-second ast) (* (my-second ast) 2))
 )
 
 (define (binary-prefix-math-shape? ast)
@@ -330,17 +320,13 @@
   (cond
     [
      (equal? bool #t)
-     (begin
-       (println "                    #t -> 'true")
-       'true
-     )
+     (println "                    #t -> 'true")
+     'true
     ]
     [
      (equal? bool #f)
-     (begin
-       (println "                    #f -> 'false")
-       'false
-     )
+     (println "                    #f -> 'false")
+     'false
     ]
   )
 )
@@ -598,8 +584,6 @@
 ;;   the evaluated value (number or boolean)
 ;;   OR a runtime error
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 
 (define (evaluate-prefix ast)
@@ -620,7 +604,7 @@
      (type-error-checker ast)
     ]
 
-    ;; TODO: handle unary operators
+    ;; handle unary operators
 
     ;;unary bool 
     [
@@ -638,7 +622,7 @@
      (unary-type-error-conditionals ast)
     ]
     
-    ;; TODO: handle binary operators
+    ;; handle binary operators
     ;; if it's bigger than 3 items then we simplofy that using recursion down the line
     ;; when it gets to here it is 3 items
     ;;     arithmatic:
@@ -697,13 +681,13 @@
      (simplify-complicated-prefix ast)
     ]
     
-    ;; TODO: implement type checking
+    ;; implement type checking
     ;; ???
     
-    ;; TODO: implement division by zero check
+    ;; implement division by zero check
     ;; done above
     
-    ;; TODO: propagate errors from subexpressions
+    ;; propagate errors from subexpressions
     ;; done above 
 
     [
@@ -726,8 +710,6 @@
 ;;   OR a PA1 syntax error
 ;;   OR a PA2 runtime error
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 
 (define (evaluate-program e)

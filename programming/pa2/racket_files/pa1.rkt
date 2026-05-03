@@ -240,7 +240,6 @@
 
 
 ;; ============================================================
-;; TODO helper ideas
 ;;
 ;; You do not have to use all of these, but may find them useful.
 ;;
@@ -368,8 +367,6 @@
 ;;   (validate-program '(1 + * 3))        => '*
 ;;   (validate-program '(1 < 2 > 3))      => '>
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 
 (define (validate-program e)
@@ -457,8 +454,6 @@
 ;;   (infix->prefix '(false || !false))
 ;;                                    => '(or false (not false))
 ;;
-;; TODO:
-;;   implement this function
 ;; ============================================================
 
 (define (infix->prefix e)

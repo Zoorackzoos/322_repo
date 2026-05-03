@@ -26,22 +26,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="fuck">
-      <change afterPath="$PROJECT_DIR$/programming/pa4/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/grade.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/test-cases/part1-tests.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/test-cases/part2-tests.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/test-cases/part6-tests.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/utils/feature-detect.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/grader/utils/runner-harness.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/pa1.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/pa2.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/pa3.rkt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/pa4_guide.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/pa4.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa4.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/pa4.rkt" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/pa4.rkt" afterDir="false" />
-    </list>
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: unknown." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,34 +64,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "LaTeX.ws4_latex_template.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/code_stuff/CSCE/CSCE_322_AKA_programming_language_concepts/322_repo/programming/pa4",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;LaTeX.ws4_latex_template.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/code_stuff/CSCE/CSCE_322_AKA_programming_language_concepts/322_repo/programming/pa4&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\programming\pa4" />
@@ -386,38 +371,6 @@
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
       <workItem from="1777578161799" duration="16957000" />
-    </task>
-    <task id="LOCAL-00013" summary="check-up: Dr. racket did a fucky wucky.">
-      <option name="closed" value="true" />
-      <created>1774984300190</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1774984300190</updated>
-    </task>
-    <task id="LOCAL-00014" summary="update 3: minor.">
-      <option name="closed" value="true" />
-      <created>1774985471913</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1774985471913</updated>
-    </task>
-    <task id="LOCAL-00015" summary="update 4: confused.">
-      <option name="closed" value="true" />
-      <created>1774988243528</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1774988243528</updated>
-    </task>
-    <task id="LOCAL-00016" summary="update 5: I WIN.">
-      <option name="closed" value="true" />
-      <created>1775050603240</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1775050603240</updated>
     </task>
     <task id="LOCAL-00017" summary="update 6: arithmatic.">
       <option name="closed" value="true" />
@@ -779,7 +732,39 @@
       <option name="project" value="LOCAL" />
       <updated>1777650835599</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="pa4: initial commit.">
+      <option name="closed" value="true" />
+      <created>1777775087400</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1777775087400</updated>
+    </task>
+    <task id="LOCAL-00063" summary="pa4: kill todos">
+      <option name="closed" value="true" />
+      <created>1777779056596</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1777779056596</updated>
+    </task>
+    <task id="LOCAL-00064" summary="pa4: Kill &quot;begins&quot; in pa2.">
+      <option name="closed" value="true" />
+      <created>1777779628841</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1777779628841</updated>
+    </task>
+    <task id="LOCAL-00065" summary="pa4: Kill &quot;begins&quot; in pa3.">
+      <option name="closed" value="true" />
+      <created>1777780060433</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1777780060433</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -791,10 +776,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pa2: before function re-do." />
-    <MESSAGE value="pa2: winning." />
-    <MESSAGE value="pa2: fool." />
-    <MESSAGE value="pa2: it's probably fine :-/." />
     <MESSAGE value="worksheet: added latex file cuz why not." />
     <MESSAGE value="file structure refactor" />
     <MESSAGE value="pa3: initial commit" />
@@ -816,7 +797,11 @@
     <MESSAGE value="final_exam_study.md: Need correction." />
     <MESSAGE value="final_exam_study.md: q2: correction" />
     <MESSAGE value="fuck" />
-    <option name="LAST_COMMIT_MESSAGE" value="fuck" />
+    <MESSAGE value="pa4: initial commit." />
+    <MESSAGE value="pa4: kill todos" />
+    <MESSAGE value="pa4: Kill &quot;begins&quot; in pa2." />
+    <MESSAGE value="pa4: Kill &quot;begins&quot; in pa3." />
+    <option name="LAST_COMMIT_MESSAGE" value="pa4: Kill &quot;begins&quot; in pa3." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

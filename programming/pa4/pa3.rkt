@@ -79,7 +79,7 @@
     (= (length env) 0)
    )
    '(err "free variable");;if yes
-   (begin;;if no
+   (and;;if no
      (print "            ")
      (println (list-ref env iterator))
      (print "            ")
