@@ -1,7 +1,0 @@
-(var (x 10)
-    (fun ((add-one (y)) (y + 1))
-        (var (x 99)
-            (apply (add-one (x)))
-        )
-    )
-)
