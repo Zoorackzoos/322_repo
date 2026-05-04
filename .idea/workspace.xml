@@ -26,7 +26,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: done. :-(" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="slight refactor because i am clumsy">
+      <change afterPath="$PROJECT_DIR$/programming/pa4/design.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/0_duncan_docs/grader_command.md" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/0_duncan_docs/grader_command.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,11 +110,11 @@
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\soft 261\presentation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\programming\pa4\mr_t_files" />
       <recent name="C:\Users\User\Desktop\code_stuff\CSCE\CSCE_322_AKA_programming_language_concepts\322_repo\programming\pa4" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\conceptual\final_studee" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_3" />
       <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_2" />
-      <recent name="C:\Users\dunca\Desktop\code_files\CSCE\CSCE_322_AKA_programming_language_concepts_AKA_mr_t_class\322_super_folder\322_repo\shi_i_need_to_delete_at_some_point\CSCE_231\exam_1" />
     </key>
   </component>
   <component name="RunManager">
@@ -376,23 +380,7 @@
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
       <workItem from="1777578161799" duration="16957000" />
-      <workItem from="1777832839588" duration="16208000" />
-    </task>
-    <task id="LOCAL-00023" summary="binary operations: complete.">
-      <option name="closed" value="true" />
-      <created>1775147307393</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1775147307393</updated>
-    </task>
-    <task id="LOCAL-00024" summary="inproper design: fml.">
-      <option name="closed" value="true" />
-      <created>1775148229816</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1775148229816</updated>
+      <workItem from="1777832839588" duration="17686000" />
     </task>
     <task id="LOCAL-00025" summary="update 13: understanding.">
       <option name="closed" value="true" />
@@ -770,7 +758,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777863204674</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="f this xml file bruh">
+      <option name="closed" value="true" />
+      <created>1777863362620</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1777863362620</updated>
+    </task>
+    <task id="LOCAL-00073" summary="slight refactor because i am clumsy">
+      <option name="closed" value="true" />
+      <created>1777863449836</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1777863449837</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,8 +786,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pa3: before code change." />
-    <MESSAGE value="pa3: before radical refactor." />
     <MESSAGE value="pa3: getting somewhere" />
     <MESSAGE value="pa3: need to do infix-&gt;prefix" />
     <MESSAGE value="pa3: DEATH" />
@@ -807,7 +809,9 @@
     <MESSAGE value="pa4: design doc try." />
     <MESSAGE value="pa4: design doc try 2." />
     <MESSAGE value="pa4: done. :-(" />
-    <option name="LAST_COMMIT_MESSAGE" value="pa4: done. :-(" />
+    <MESSAGE value="f this xml file bruh" />
+    <MESSAGE value="slight refactor because i am clumsy" />
+    <option name="LAST_COMMIT_MESSAGE" value="slight refactor because i am clumsy" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

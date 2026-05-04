@@ -10,4 +10,7 @@ Add `--verbose` for per-test details:
 racket grader/grade.rkt /path/to/your/submission/ --verbose
 ```
 
+
+```bash
 racket grader/grade.rkt pa4.rkt --verbose
+```
