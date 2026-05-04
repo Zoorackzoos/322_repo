@@ -6,12 +6,14 @@ Triple T (.TTT) is a "toy" programming language similar to racket in the sense i
 
 more technically, Triple T includes:
 1. static scoping
-   1. this means when a function or method is called, it can only call the envoirnment that came before it. 
+   1. this means when a function or method is called, it can only call the environment that came before it. 
 ```markdown
 (var (x 10)
-    (fun (add-one (x)) (+ x 1))
-        (var (x 99))
-            (apply (add-one (x)))
+    (fun ((add-one (y)) (y + 1))
+        (var (x 99)
+            (apply (add-one (1)))
+        )
+    )
 )
 ```
 So in this program, the variable x would be 10 when it gets put through the "add-one" function, and thus the final result would be 11.  
@@ -70,11 +72,8 @@ i chose cond because it makes it so you don't have to have awful nested if state
 also it was easier than the other options :-3.  
 The way cond works is that it contains:
 * (conditional results) ← like a switch statement in a conventional language
-* (else request) ← again... like a else function... in a conventional language
+* (else result) ← again... like a else function... in a conventional language
 
-<!-- 
-i've never been more geeked during a weekend than this. god help me.
--->
 
 ## section 3: using the language
 if you're in this source code, so this repo. or zip file.  
@@ -83,7 +82,14 @@ here are the commands:
 ```text
 //factorial
 racket run-triple-t.rkt programs/factorial.TTT
+//expected output: 3628800
 
 //greatest common denominator. 
 racket run-triple-t.rkt programs/gcd.TTT     
+//expected output: 6
+
+//meme program
+racket run-triple-t.rkt programs/tung.TTT
+//expected output: cool ascii image i made of Triple T himself...
 ```
+said ascii art is [here](0_duncan_docs/triple_t_ascii_image.md)

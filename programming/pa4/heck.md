@@ -1,8 +1,7 @@
-(var (b (- a b))
-    (if 
-        (gt b a)
-        (+ a b)
-        (var (a (* b 2)) (+ a b))
+(var (x 10)
+    (fun ((add-one (y)) (y + 1))
+        (var (x 99)
+            (apply (add-one (x)))
+        )
     )
 )
-
