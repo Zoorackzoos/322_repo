@@ -26,10 +26,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: meme try.">
-      <change afterPath="$PROJECT_DIR$/programming/pa4/design.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programming/pa4/heck.md" afterDir="false" />
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: design doc try.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/design.md" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/design.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programming/pa4/programs/gcd.TTT" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/programs/gcd.TTT" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,15 +380,7 @@
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
       <workItem from="1777578161799" duration="16957000" />
-      <workItem from="1777832839588" duration="7080000" />
-    </task>
-    <task id="LOCAL-00020" summary="update 8: rrrrrrefactor.">
-      <option name="closed" value="true" />
-      <created>1775063488927</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1775063488927</updated>
+      <workItem from="1777832839588" duration="15131000" />
     </task>
     <task id="LOCAL-00021" summary="update 9: need more time.">
       <option name="closed" value="true" />
@@ -774,7 +766,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777805251036</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="pa4: design doc try.">
+      <option name="closed" value="true" />
+      <created>1777842059945</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1777842059946</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -786,7 +786,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="blergo" />
     <MESSAGE value="pa2 i'm a idiot :(" />
     <MESSAGE value="pa3 initial commit" />
     <MESSAGE value="pa3: before code change." />
@@ -811,7 +810,8 @@
     <MESSAGE value="pa4: try 2." />
     <MESSAGE value="pa4: try 3 and meme added." />
     <MESSAGE value="pa4: meme try." />
-    <option name="LAST_COMMIT_MESSAGE" value="pa4: meme try." />
+    <MESSAGE value="pa4: design doc try." />
+    <option name="LAST_COMMIT_MESSAGE" value="pa4: design doc try." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
