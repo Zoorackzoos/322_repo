@@ -26,11 +26,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: design doc try 2.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/design.md" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/design.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programming/pa4/heck.md" beforeDir="false" afterPath="$PROJECT_DIR$/programming/pa4/heck.md" afterDir="false" />
-    </list>
+    <list default="true" id="91968281-247e-40e0-8ab3-d1872af6bcdd" name="Changes" comment="pa4: done. :-(" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -380,15 +376,7 @@
       <workItem from="1777485027792" duration="2318000" />
       <workItem from="1777506543130" duration="7000" />
       <workItem from="1777578161799" duration="16957000" />
-      <workItem from="1777832839588" duration="15906000" />
-    </task>
-    <task id="LOCAL-00022" summary="update 10: unknown">
-      <option name="closed" value="true" />
-      <created>1775070316041</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1775070316041</updated>
+      <workItem from="1777832839588" duration="16208000" />
     </task>
     <task id="LOCAL-00023" summary="binary operations: complete.">
       <option name="closed" value="true" />
@@ -774,7 +762,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777862309148</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="pa4: done. :-(">
+      <option name="closed" value="true" />
+      <created>1777863204674</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1777863204674</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -786,7 +782,6 @@
     <isAutomaticReloadCMake value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pa3 initial commit" />
     <MESSAGE value="pa3: before code change." />
     <MESSAGE value="pa3: before radical refactor." />
     <MESSAGE value="pa3: getting somewhere" />
@@ -811,7 +806,8 @@
     <MESSAGE value="pa4: meme try." />
     <MESSAGE value="pa4: design doc try." />
     <MESSAGE value="pa4: design doc try 2." />
-    <option name="LAST_COMMIT_MESSAGE" value="pa4: design doc try 2." />
+    <MESSAGE value="pa4: done. :-(" />
+    <option name="LAST_COMMIT_MESSAGE" value="pa4: done. :-(" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
