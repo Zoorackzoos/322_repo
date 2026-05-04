@@ -49,8 +49,8 @@
     (equal? x 'if)
     (equal? x 'fun)
     (equal? x 'apply)
-    (equal? x 'cond) ;; from part 2 of pa4
-    (equal? x 'else) ;;
+    (equal? x 'cond) ;; pa4
+    (equal? x 'else) ;; pa4
   )
 )
 
@@ -167,6 +167,14 @@
 (define (if-then-of e) (my-third e))
 (define (if-else-of e) (my-fourth e))
 
+(define (cond-shape? e)
+  (and
+   (list? e)
+   (= (length e) 2)
+   (equal? (car e) 'cond)
+   (list? (car (cdr e)))
+  )
+)
 
 ;; ============================================================
 ;; fun / apply shape checks
@@ -335,19 +343,34 @@
     [(not (list? e)) e]
     [(null? e) e]
 
-    [(var-shape? e)
-     (if (not (equal? (validate-helper (my-second (my-second e))) #t))
-         (validate-helper (my-second (my-second e)))
-         (validate-helper (my-third e)))]
+    [
+     (var-shape? e)
+     (if
+      (not (equal? (validate-helper (my-second (my-second e))) #t)) ;;conditonal 
+      (validate-helper (my-second (my-second e))) ;;if yes
+      (validate-helper (my-third e)) ;; if no
+     )
+    ]
 
     ;; if: validate all three sub-expressions
-    [(if-shape? e)
+    [
+     ;;if this statement doesn't pass, then the cond doens't pull up.
+     ;; like me on that one friday in 322 by accident.
+     (if-shape? e)
      (cond
-       [(not (equal? (validate-helper (if-cond-of e)) #t))
-        (validate-helper (if-cond-of e))]
-       [(not (equal? (validate-helper (if-then-of e)) #t))
-        (validate-helper (if-then-of e))]
-       [else (validate-helper (if-else-of e))])]
+       [
+        (not (equal? (validate-helper (if-cond-of e)) #t))
+        (validate-helper (if-cond-of e))
+       ]
+       [
+        (not (equal? (validate-helper (if-then-of e)) #t))
+        (validate-helper (if-then-of e))
+       ]
+       [
+        else (validate-helper (if-else-of e))
+       ]
+     )
+    ]
 
     ;; fun: validate body and rest
     [(fun-shape? e)
@@ -356,8 +379,15 @@
          (validate-helper (fun-rest-of e)))]
 
     ;; apply: validate every argument
-    [(apply-shape? e)
-     (validate-args-list (apply-args-of e))]
+    [
+     (apply-shape? e)
+     (validate-args-list (apply-args-of e))
+    ]
+
+    [
+     (cond-shape? e)
+     #t
+    ]
 
     ;; Unary: (op expr)
     [(unary-shape? e)
@@ -370,15 +400,35 @@
          (my-nth e (- (length e) 1)))]
 
     ;; Odd length >= 3: flat infix expression
-    [(>= (length e) 3)
+    [
+     (>= (length e) 3)
      (cond
-       [(not (equal? (check-structure e 0) #t))
+       [
+        (not (equal? (check-structure e 0) #t))
         (check-structure e 0)]
-       [(not (equal? (check-non-assoc e 1 (find-min-prec e 1 999) #f) #t))
-        (check-non-assoc e 1 (find-min-prec e 1 999) #f)]
-       [else (validate-operands e 0)])]
+       [
+        (not (equal? (check-non-assoc e 1 (find-min-prec e 1 999) #f) #t))
+        (check-non-assoc e 1 (find-min-prec e 1 999) #f)
+       ]
+       [else (validate-operands e 0)]
+     )
+    ]
 
-    [else e]))
+    [
+     (and
+      (list? e)
+      (not (null? e))
+      (equal? (car e) 'cond)
+     )
+     #t
+    ]
+
+    [
+     else
+     e
+    ]
+  )
+)
 
 
 ;; ============================================================
@@ -387,7 +437,6 @@
 
 (define (validate-program e)
   (validate-helper e))
-
 
 ;; ============================================================
 ;; Translation
@@ -404,45 +453,113 @@
     [else (cons (translate (car args))
                 (translate-args-list (cdr args)))]))
 
+;; helper funciton for translation's cond feature for part 2 of pa4
+(define (translate-cond-arms arms)
+  (cond
+    [(null? arms) '()]
+    [
+     else
+     (define arm (car arms))
+     (cond
+       [
+        (equal? (car arm) 'else)
+        (cons
+         (list
+          'else
+          (translate (car (cdr arm))))
+          (translate-cond-arms (cdr arms))
+        )
+       ]
+       [
+        else
+        (cons
+         (list (translate (car arm)) (translate (car (cdr arm))))
+         (translate-cond-arms (cdr arms))
+        )
+       ]
+      )
+    ]
+  )
+)
+
 (define (translate e)
   (cond
     [(literal? e) e]
     [(variable? e) e]
 
-    [(var-shape? e)
-     (list 'var
-           (list (my-first (my-second e))
-                 (translate (my-second (my-second e))))
-           (translate (my-third e)))]
+    [
+     (var-shape? e)
+     (list
+      'var
+      (list
+       (my-first (my-second e))
+       (translate (my-second (my-second e)))
+      )
+      (translate (my-third e))
+     )
+    ]
 
     [(if-shape? e)
-     (list 'if
-           (translate (if-cond-of e))
-           (translate (if-then-of e))
-           (translate (if-else-of e)))]
+     (list
+      'if
+      (translate (if-cond-of e))
+      (translate (if-then-of e))
+      (translate (if-else-of e))
+     )
+    ]
 
-    [(fun-shape? e)
-     (list 'fun
-           (list (list (fun-fname-of e) (fun-params-of e))
-                 (translate (fun-body-of e)))
-           (translate (fun-rest-of e)))]
+    [
+     (fun-shape? e)
+     (list
+      'fun
 
-    [(apply-shape? e)
-     (list 'apply
-           (list (apply-fname-of e)
-                 (translate-args-list (apply-args-of e))))]
+      (list
+       (list (fun-fname-of e) (fun-params-of e))
+       (translate (fun-body-of e))
+      )
+      (translate (fun-rest-of e))
+     )
+    ]
 
-    [(unary-shape? e)
-     (list (normalize-op (my-first e))
-           (translate (my-second e)))]
+    [
+     (apply-shape? e)
+     (list
+      'apply
+      (list
+       (apply-fname-of e)
+       (translate-args-list (apply-args-of e))
+      )
+     )
+    ]
 
-    [(= (length e) 3)
-     (list (normalize-op (my-second e))
-           (translate (my-first e))
-           (translate (my-third e)))]
+    ;; cond case :-3
+    [
+     (cond-shape? e)
+     (list 'cond (translate-cond-arms (car (cdr e))))
+    ]
+
+    [
+     (unary-shape? e)
+     (list
+      (normalize-op (my-first e))
+      (translate (my-second e))
+     )
+    ]
+
+    [
+     (= (length e) 3)
+     (list
+      (normalize-op (my-second e))
+      (translate (my-first e))
+      (translate (my-third e))
+     )
+    ]
 
     [else
-     (translate-at-split e (find-split-index e 1 -1 999))]))
+     (translate-at-split e (find-split-index e 1 -1 999))
+    ]
+ )
+)
 
 
 ;; ============================================================

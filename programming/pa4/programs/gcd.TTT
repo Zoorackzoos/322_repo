@@ -1,0 +1,1 @@
+(fun ((gcd (a b)) (if (a == b) a (if (a < b) (apply (gcd (b a))) (apply (gcd ((a - b) b)))))) (apply (gcd (48 18))))

@@ -41,16 +41,16 @@
 
 (define (any-error? x)
   ;;display
-  (println "            any-error?")
-  (print "                ")
-  (println x)
+  ;;(println "            any-error?")
+  ;;(print "                ")
+  ;;(println x)
 
   ;;work
   (and
    (list? x)
-   (println "                x is a list")
+   ;;(println "                x is a list")
    (not (null? x))
-   (println "                x is not null")
+   ;;(println "                x is not null")
    (equal? (car x) 'err)
   )
 )
@@ -61,7 +61,7 @@
 ;; ============================================================
 
 (define (unary-bool-conditionals ast)
-  (println "        unary-bool-conditionals")
+  ;;(println "        unary-bool-conditionals")
   (and
     (unary-shape? ast)
     (is-unary-bool? ast)
@@ -70,7 +70,7 @@
 )
 
 (define (negative-number-conditionals ast)
-  (println "        negative-number-conditionals")
+  ;;(println "        negative-number-conditionals")
   (and
    (unary-shape? ast)
    (is-negative-number? ast)
@@ -79,11 +79,11 @@
 )
 
 (define (unary-type-error-conditionals ast)
-  (println "        unary-type-error-conditionals")
+  ;;(println "        unary-type-error-conditionals")
   (and
    (unary-shape? ast)
    (is-unary-type-error? ast)
-   (println "            Type error , from , unary input")
+   ;;(println "            Type error , from , unary input")
    '(err "type error")
   )
 )
@@ -99,7 +99,7 @@
   ;;! 1
   ;;- true
   ;;not 1
-  (println "            is-unary-type-error?")
+  ;;(println "            is-unary-type-error?")
   (or
    (
     and
@@ -115,30 +115,30 @@
 )
 
 (define (is-unary-bool? ast)
-  (println "            is-unary-bool?")
+  ;;(println "            is-unary-bool?")
   (and
    (or
     (equal? (my-first ast) '!)
     (equal? (my-first ast) 'not)
    )
    (boolean-literal? (my-second ast))
-   (println "                    unary bool detected (#t)")
+   ;;(println "                    unary bool detected (#t)")
    #t
   )
 )
 
 (define (is-negative-number? ast)
-  (println "            is-negative-number?")
+  ;;(println "            is-negative-number?")
   (and
    (equal? (my-first ast) '-)
    (number? (my-second ast))
-   (println "                negative number detected (#t)")
+   ;;(println "                negative number detected (#t)")
    #t
   )
 )
 
 (define (eval-unary-bool ast)
-  (println "            eval-unary-bool")
+  ;;(println "            eval-unary-bool")
   ;;possible correct answers:
   ;;  ! true
   ;;  ! false
@@ -147,58 +147,58 @@
   (cond
     [
      (equal? (my-second ast) 'true)
-      (println "                true -> false")
+      ;;(println "                true -> false")
       'false
     ]
     [
      (equal? (my-second ast) 'false)
-      (println "                false -> true")
+      ;;(println "                false -> true")
       'true
     ]
   )
 )
 
 (define (eval-negative-number ast)
-  (println "            eval-negative-number")
+  ;;(println "            eval-negative-number")
   ;;like the only outcome you could have here is negative.
   ;;so just set it negative.
-  (print "                ")
-  (println (- (my-second ast) (* (my-second ast) 2)) )
+  ;;(print "                ")
+  ;;(println (- (my-second ast) (* (my-second ast) 2)) )
   (- (my-second ast) (* (my-second ast) 2))
 )
 
 (define (binary-prefix-math-shape? ast)
-  (println "            binary-prefix-math-shape?")
+  ;;(println "            binary-prefix-math-shape?")
   (and
    ;;display
    ;;first bool
-   (println "                    (>= (length ast) 3)")
-   (print "                        (>= ")
-   (print (length ast))
-   (println " 3)")
-   (print "                        ")
-   (println (>= (length ast) 3))
+   ;;(println "                    (>= (length ast) 3)")
+   ;;(print "                        (>= ")
+   ;;(print (length ast))
+   ;;(println " 3)")
+   ;;(print "                        ")
+   ;;(println (>= (length ast) 3))
 
-   (println "                    (arithmetic-op? (my-first ast))")
-   (print "                        ")
-   (println (arithmetic-op? (my-first ast)))
+   ;;(println "                    (arithmetic-op? (my-first ast))")
+   ;;(print "                        ")
+   ;;(println (arithmetic-op? (my-first ast)))
 
-   (println "                    (number? (my-second ast))")
-   (print "                        ")
-   (println (number? (my-second ast)))
+   ;;(println "                    (number? (my-second ast))")
+   ;;(print "                        ")
+   ;;(println (number? (my-second ast)))
 
    ;;(println "                    (number? (my-third ast))")
    ;;(print "                        ")
    ;;(println (number? (my-third ast)))
    
    ;;final display
-   (print "                ")
-   (println
-    (and (>= (length ast) 3)
-    (arithmetic-op? (my-first ast))
-    (number? (my-second ast))
-    (number? (my-third ast)))
-   )
+   ;;(print "                ")
+   ;;(println
+   ;; (and (>= (length ast) 3)
+   ;; (arithmetic-op? (my-first ast))
+   ;; (number? (my-second ast))
+   ;; (number? (my-third ast)))
+   ;;)
    
    (>= (length ast) 3)
    (arithmetic-op? (my-first ast))
@@ -208,7 +208,7 @@
 )
 
 (define (adition-conditionals ast)
-  (println "        adition-conditionals")
+  ;;(println "        adition-conditionals")
   (and
    (binary-prefix-math-shape? ast)
    (equal? (my-first ast) '+)
@@ -217,7 +217,7 @@
 )
 
 (define (subtraction-conditionals ast)
-  (println "        subtraction-conditionals")
+  ;;(println "        subtraction-conditionals")
   (and
    (binary-prefix-math-shape? ast)
    (equal? (my-first ast) '-)
@@ -226,7 +226,7 @@
 )
 
 (define (multiplication-conditionals ast)
-  (println "        multiplication-conditionals")
+  ;;(println "        multiplication-conditionals")
   (and
    (binary-prefix-math-shape? ast)
    (equal? (my-first ast) '*)
@@ -235,7 +235,7 @@
 )
 
 (define (divizion-conditionals ast)
-  (println "        divizion-conditionals")
+  ;;(println "        divizion-conditionals")
   (and
    (binary-prefix-math-shape? ast)
    ;;don't care about effenciy -mr.t
@@ -247,7 +247,7 @@
 )
 
 (define (binary-arthimatic-divide-by-zero-error ast)
-  (println "        binary-arthimatic-divide-by-zero-error")
+  ;;(println "        binary-arthimatic-divide-by-zero-error")
   ;;0 in the numerator is ok. it's just 0. 
   (and
    (binary-prefix-math-shape? ast)
@@ -258,7 +258,7 @@
 )
 
 (define (binary-arthimetic-zero-by-zero ast)
-  (println "        binary-arthimetic-zero-by-zero")
+  ;;(println "        binary-arthimetic-zero-by-zero")
   (and
    (binary-prefix-math-shape? ast)
    (equal? (my-first ast) '/)
@@ -270,7 +270,7 @@
 
 
 (define (1v1-boolean-and-conditions ast)
-  (println "        1v1-boolean-and-conditions")
+  ;;(println "        1v1-boolean-and-conditions")
   ;;true && false
   (and
    (equal? (my-first ast) 'and)
@@ -282,18 +282,18 @@
 
 (define (eval-1v1-boolean-and-conditional ast)
   ;;display
-  (println "            eval-1v1-boolean-and-conditional")
-  (print "                ")
-  (println (my-second ast))
-  (print "                ")
-  (println (my-third ast))
-  (print "                    ")
-  (println
-   (and
-    (equal? (my-second ast) 'true)
-    (equal? (my-third ast) 'true)
-   )
-  )
+  ;;(println "            eval-1v1-boolean-and-conditional")
+  ;;(print "                ")
+  ;;(println (my-second ast))
+  ;;(print "                ")
+  ;;(println (my-third ast))
+  ;;(print "                    ")
+  ;;(println
+  ;; (and
+  ;;  (equal? (my-second ast) 'true)
+  ;;  (equal? (my-third ast) 'true)
+  ;; )
+  ;;)
 
   ;;return value
   (convert-racket-bool-to-prefix-bool
@@ -305,7 +305,7 @@
 )
 
 (define (1v1-boolean-or-conditions ast)
-  (println "        1v1-boolean-or-conditions")
+  ;;(println "        1v1-boolean-or-conditions")
   ;;true || false
   (and
    (equal? (my-first ast) 'or)
@@ -316,16 +316,16 @@
 )
 
 (define (convert-racket-bool-to-prefix-bool bool)
-  (println "                convert-racket-bool-to-prefix-bool")
+  ;;(println "                convert-racket-bool-to-prefix-bool")
   (cond
     [
      (equal? bool #t)
-     (println "                    #t -> 'true")
+     ;;(println "                    #t -> 'true")
      'true
     ]
     [
      (equal? bool #f)
-     (println "                    #f -> 'false")
+     ;;(println "                    #f -> 'false")
      'false
     ]
   )
@@ -333,18 +333,18 @@
 
 (define (eval-1v1-boolean-or-conditional ast)
   ;;display
-  (println "            eval-1v1-boolean-or-conditional")
-  (print "                ")
-  (println (my-second ast))
-  (print "                ")
-  (println (my-third ast))
-  (print "                    ")
-  (println
-   (or
-    (equal? (my-second ast) 'true)
-    (equal? (my-third ast) 'true)
-   )
-  )
+  ;;(println "            eval-1v1-boolean-or-conditional")
+  ;;(print "                ")
+  ;;(println (my-second ast))
+  ;;(print "                ")
+  ;;(println (my-third ast))
+  ;;(print "                    ")
+  ;;(println
+  ;; (or
+  ;;  (equal? (my-second ast) 'true)
+  ;;  (equal? (my-third ast) 'true)
+  ;; )
+  ;;)
 
   ;;return value
   (convert-racket-bool-to-prefix-bool
@@ -356,7 +356,7 @@
 )
 
 (define (1v1-number-greater-than-conditional ast)
-  (println "        1v1-number-greater-than-conditional")
+  ;;(println "        1v1-number-greater-than-conditional")
   (and
    (equal? (my-first ast) '>)
    (number? (my-second ast))
@@ -366,7 +366,7 @@
 )
 
 (define (1v1-number-less-than-conditional ast)
-  (println "        1v1-number-less-than-conditional")
+  ;;(println "        1v1-number-less-than-conditional")
   (and
    (equal? (my-first ast) '<)
    (number? (my-second ast))
@@ -376,7 +376,7 @@
 )
 
 (define (1v1-number-greater-than-equal-to-conditional ast)
-  (println "        1v1-number-greater-than-conditional")
+  ;;(println "        1v1-number-greater-than-conditional")
   (and
    (equal? (my-first ast) '>=)
    (number? (my-second ast))
@@ -386,7 +386,7 @@
 )
 
 (define (1v1-number-less-than-equal-to-conditional ast)
-  (println "        1v1-number-less-than-equal-to-conditional")
+  ;;(println "        1v1-number-less-than-equal-to-conditional")
   (and
    (equal? (my-first ast) '<=)
    (number? (my-second ast))
@@ -396,7 +396,7 @@
 )
 
 (define (prefix-equal-conditional ast)
-  (println "        prefix-equal-conditional")
+  ;;(println "        prefix-equal-conditional")
   (and
     (equal? (my-first ast) '==)
     (convert-racket-bool-to-prefix-bool (equal? (my-second ast) (my-third ast)))
@@ -404,7 +404,7 @@
 )
 
 (define (prefix-not-equal-conditional ast)
-  (println "        prefix-not-equal-conditional")
+  ;;(println "        prefix-not-equal-conditional")
   (and
     (equal? (my-first ast) '!=)
     (convert-racket-bool-to-prefix-bool (not (equal? (my-second ast) (my-third ast))))
@@ -413,25 +413,25 @@
 
 (define (simplify-complicated-prefix ast)
   ;;display
-  (println "        simplify-complicated-prefix")
-  (print "            ")
-  (println ast)
+  ;;(println "        simplify-complicated-prefix")
+  ;;(print "            ")
+  ;;(println ast)
 
   ;;work
   (cond
     [
      (and
       (equal? ast '(err "free variable"))
-      (println "            you've got a free var :-3")
+      ;;(println "            you've got a free var :-3")
       '(err "free variable")
      )
     ]
     [
      (and
       (list? (my-second ast))
-      (println "            1st parameter is a list, look!")
-      (print "            ")
-      (println (my-second ast))
+      ;;(println "            1st parameter is a list, look!")
+      ;;(print "            ")
+      ;;(println (my-second ast))
       (any-error? (evaluate-prefix (my-second ast)))
       (evaluate-prefix (my-second ast))
      )
@@ -439,9 +439,9 @@
     [
      (and
       (list? (my-third ast))
-      (println "            2nd parameter is a list, look!")
-      (print "            ")
-      (println (my-third ast))
+      ;;(println "            2nd parameter is a list, look!")
+      ;;(print "            ")
+      ;;(println (my-third ast))
       (any-error? (evaluate-prefix (my-third ast)))
       (evaluate-prefix (my-third ast))
      )
@@ -449,18 +449,18 @@
     [
      (and
       (list? (my-second ast))
-      (println "            1st parameter is a list, look!")
-      (print "            ")
-      (println (my-second ast))
+      ;;(println "            1st parameter is a list, look!")
+      ;;(print "            ")
+      ;;(println (my-second ast))
       (evaluate-prefix (list (my-first ast) (evaluate-prefix (my-second ast)) (my-third ast)))
      )
     ]
     [
      (and
       (list? (my-third ast))
-      (println "            2nd parameter is a list, look!")
-      (print "            ")
-      (println (my-third ast))
+      ;;(println "            2nd parameter is a list, look!")
+      ;;(print "            ")
+      ;;(println (my-third ast))
       (evaluate-prefix (list (my-first ast) (my-second ast) (evaluate-prefix (my-third ast))))
      )
     ]
@@ -468,11 +468,11 @@
      (and
       (list? (my-second ast))
       (list? (my-third ast))
-      (println "            both parameters are lists, look!")
-      (print "            ")
-      (println (my-second ast))
-      (print "            ")
-      (println (my-third ast))
+      ;;(println "            both parameters are lists, look!")
+      ;;(print "            ")
+      ;;(println (my-second ast))
+      ;;(print "            ")
+      ;;(println (my-third ast))
       (evaluate-prefix (list (my-first ast) (evaluate-prefix (my-second ast)) (evaluate-prefix (my-third ast))))
      )
     ]
@@ -480,7 +480,7 @@
 )
 
 (define (prefix-bool-op? e)
-  (println "            prefix-bool-op")
+  ;;(println "            prefix-bool-op")
   (or
    (equal? e 'and)
    (equal? e 'or)
@@ -498,14 +498,14 @@
 
 (define (type-error-checker ast)
   ;;display
-  (println "        type-error-checker")
-  (print "            ")
-  (println ast)
+  ;;(println "        type-error-checker")
+  ;;(print "            ")
+  ;;(println ast)
   
   ;;work
   (or
     (and
-     (println "            previous type error ?")
+     ;;(println "            previous type error ?")
      (equal? ast '(err "type error"))
     )
    
@@ -525,7 +525,7 @@
        (not (number? (my-second ast)))
        (not (number? (my-third ast)))
        )
-      (println "            bool in a numeric operation")
+      ;;(println "            bool in a numeric operation")
      )
      '(err "type error")
     )
@@ -542,7 +542,7 @@
        (not (boolean-literal? (my-second ast)))
        (not (boolean-literal? (my-third ast)))
       )
-      (println "            numbers in a bool op")
+      ;;(println "            numbers in a bool op")
      )
      '(err "type error")
     )
@@ -567,7 +567,7 @@
         (boolean-literal? (my-third ast))
        )
       )
-      (println "            equals type error")
+      ;;(println "            equals type error")
      )
      '(err "type error")
     )
@@ -587,9 +587,9 @@
 ;; ============================================================
 
 (define (evaluate-prefix ast)
-  (println "    evaluate-prefix")
-  (print "        ")
-  (println ast)
+  ;;(println "    evaluate-prefix")
+  ;;(print "        ")
+  ;;(println ast)
   
   (cond
     ;; Base cases: literals
@@ -713,7 +713,7 @@
 ;; ============================================================
 
 (define (evaluate-program e)
-  (println "    evaluate-program")
+  ;;(println "    evaluate-program")
   (cond
     ;; 1. Call your PA1 infix->prefix
     ;; 2. If it returns an error, return that error

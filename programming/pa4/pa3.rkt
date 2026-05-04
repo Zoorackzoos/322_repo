@@ -53,11 +53,11 @@
   ;;not fucking with the signature in case mr.t has a secret grader
   
   ;;display 
-  (println "lookup-env")
-  (print "    ")
-  (println var)
-  (println "    ")
-  (println env)
+  ;;(println "lookup-env")
+  ;;(print "    ")
+  ;;(println var)
+  ;;(println "    ")
+  ;;(println env)
   
   ;;work
   (prefixed-eval-with-env var env 0)
@@ -65,13 +65,13 @@
 
 (define (duncan-lookup-env var env iterator)
   ;;display
-  (println "        duncan-lookup-env")
-  (print "            ")
-  (println var)
-  (print "            ")
-  (println env)
-  (print "            ")
-  (println iterator)
+  ;;(println "        duncan-lookup-env")
+  ;;(print "            ")
+  ;;(println var)
+  ;;(print "            ")
+  ;;(println env)
+  ;;(print "            ")
+  ;;(println iterator)
 
   (if
    (or;;conditonal
@@ -80,12 +80,12 @@
    )
    '(err "free variable");;if yes
    (and;;if no
-     (print "            ")
-     (println (list-ref env iterator))
-     (print "            ")
-     (println (my-first (list-ref env iterator)))
-     (print "            ")
-     (println var)
+     ;;(print "            ")
+     ;;(println (list-ref env iterator))
+     ;;(print "            ")
+     ;;(println (my-first (list-ref env iterator)))
+     ;;(print "            ")
+     ;;(println var)
   
      (if
       (equal? (my-first (list-ref env iterator)) var);;condtional
@@ -129,11 +129,11 @@
 ;;   just put the infix->prefix version of e into this.
 (define (prefixed-eval-with-env e env)
   ;;display
-  (println "    prefixed-eval-with-env")
-  (print "        ")
-  (println e)
-  (print "        ")
-  (println env)
+  ;;(println "    prefixed-eval-with-env")
+  ;;(print "        ")
+  ;;(println e)
+  ;;(print "        ")
+  ;;(println env)
 
   ;;work
   (cond
@@ -141,7 +141,7 @@
     
     [
      (and
-      (println "        previous free var error ?")
+      ;;(println "        previous free var error ?")
       (equal? e '(err "free variable"))
      )
      '(err "free variable")
@@ -150,7 +150,7 @@
     ;;jackass single variable ahh input
     [
      (and
-      (println "        jackass single variable ahh input ?")
+      ;;(println "        jackass single variable ahh input ?")
       (not (list? e))
       (variable? e)
       (duncan-lookup-env e env 0)
@@ -173,7 +173,7 @@
     ;;one of the elemetns is a bastard list
     [
      (and
-      (println "        is my-second a list ?")
+      ;;(println "        is my-second a list ?")
       (not (equal? (my-second e) '(err "free variable")))
       (list? (my-second e))
       (prefixed-eval-with-env (list (my-first e) (prefixed-eval-with-env (my-second e) env) (my-third e)) env)
@@ -181,7 +181,7 @@
     ]
     [
      (and
-      (println "        is my-third a list ?")
+      ;;(println "        is my-third a list ?")
       (not (equal? (my-third e) '(err "free variable")))
       (list? (my-third e))
       (prefixed-eval-with-env (list (my-first e) (my-second e) (prefixed-eval-with-env (my-third e)) env) env)
@@ -191,7 +191,7 @@
     ;;left or right is a variable
     [
      (and
-      (println "        is my-second a var that's env-ed ?")
+      ;;(println "        is my-second a var that's env-ed ?")
       (not (equal? (my-second e) '(err "free variable")))
       (variable? (my-second e))
       (prefixed-eval-with-env (list (my-first e) (duncan-lookup-env (my-second e) env 0) (my-third e)) env)
@@ -199,7 +199,7 @@
     ]
     [
      (and
-      (println "        is my-third a var that's env-ed ?")
+      ;;(println "        is my-third a var that's env-ed ?")
       (not (equal? (my-third e) '(err "free variable")))
       (variable? (my-third e))
       (prefixed-eval-with-env (list (my-first e) (my-second e) (duncan-lookup-env (my-third e) env 0)) env)
@@ -208,7 +208,7 @@
     ;;evaluating the fucking thing
     [
      else
-     (println "        time to evaluate :-DDDDD")
+     ;;(println "        time to evaluate :-DDDDD")
      (evaluate-program e)
     ]
   )
@@ -232,11 +232,11 @@
 ;; ============================================================
 (define (evaluate-with-env e env)
   ;;display
-  (println "evaluate-with-env")
-  (print "    ")
-  (println e)
-  (print "    ")
-  (println env)
+  ;;(println "evaluate-with-env")
+  ;;(print "    ")
+  ;;(println e)
+  ;;(print "    ")
+  ;;(println env)
 
   ;;work
   (prefixed-eval-with-env (infix->prefix e) env)
